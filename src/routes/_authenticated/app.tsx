@@ -1,3 +1,4 @@
+import { AppFooter } from "@/components/app-footer";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
@@ -16,7 +17,6 @@ import {
 } from "@/lib/app.functions";
 import { TwoFactorGate, TwoFactorSettings } from "@/components/two-factor-gate";
 import {
-  SiteFooter,
   WaBadge,
   WaButton,
   WaCallout,
