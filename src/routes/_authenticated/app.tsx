@@ -212,29 +212,68 @@ function Dashboard() {
               <WaCard>
                 <div className="wa-stack wa-gap-m">
                   <h2 style={{ margin: 0 }}>2. Your X developer keys</h2>
-                  {data?.credentials.connected ? (
-                    <div className="wa-stack wa-gap-s">
-                      <p style={{ margin: 0 }}>
-                        Connected as <strong>@{data.credentials.xUsername}</strong> · key{" "}
-                        {data.credentials.hint}
-                      </p>
-                      <div>
-                        <WaButton
-                          appearance="outlined"
-                          variant="danger"
-                          onClick={() => void run(removeXCredentials(), "Keys removed.")}
-                        >
-                          Remove keys
-                        </WaButton>
+                  <p style={{ margin: 0, color: "var(--wa-color-text-quiet)" }}>
+                    You need your own X developer account and your own app — Crosspost never posts
+                    through a shared or Crosspost-owned account. Set the app&apos;s user
+                    authentication permission to <strong>Read and write</strong>, then paste its
+                    four values. You can keep a separate set of keys for Development, Staging and
+                    Production, and choose which one Crosspost posts with.
+                  </p>
+
+                  <div className="wa-stack wa-gap-s">
+                    {slots.map((slot) => (
+                      <div
+                        key={slot.environment}
+                        className="wa-cluster wa-gap-s"
+                        style={{ justifyContent: "space-between", alignItems: "center" }}
+                      >
+                        <span className="wa-cluster wa-gap-xs" style={{ alignItems: "center" }}>
+                          <strong>{environmentLabels[slot.environment]}</strong>
+                          {activeEnvironment === slot.environment ? (
+                            <WaBadge variant="success">In use</WaBadge>
+                          ) : null}
+                          <span
+                            style={{
+                              color: "var(--wa-color-text-quiet)",
+                              fontSize: "var(--wa-font-size-s)",
+                            }}
+                          >
+                            {slot.connected
+                              ? `@${slot.xUsername ?? "unknown"} · key ${slot.hint ?? ""}`
+                              : "No keys yet"}
+                          </span>
+                        </span>
+                        <span className="wa-cluster wa-gap-2xs">
+                          <WaButton
+                            appearance="outlined"
+                            disabled={!slot.connected || activeEnvironment === slot.environment}
+                            onClick={() =>
+                              void run(
+                                setActiveXEnvironment({ data: { environment: slot.environment } }),
+                                `Now posting with your ${environmentLabels[slot.environment]} keys.`,
+                              )
+                            }
+                          >
+                            Use
+                          </WaButton>
+                          <WaButton
+                            appearance="outlined"
+                            variant="danger"
+                            disabled={!slot.connected}
+                            onClick={() =>
+                              void run(
+                                removeXCredentials({ data: { environment: slot.environment } }),
+                                `${environmentLabels[slot.environment]} keys cleared.`,
+                              )
+                            }
+                          >
+                            Clear
+                          </WaButton>
+                        </span>
                       </div>
-                    </div>
-                  ) : (
-                    <p style={{ margin: 0, color: "var(--wa-color-text-quiet)" }}>
-                      You need your own X developer account and your own app — Crosspost never posts
-                      through a shared or Crosspost-owned account. Set the app's user authentication
-                      permission to <strong>Read and write</strong>, then paste its four values.
-                    </p>
-                  )}
+                    ))}
+                  </div>
+
 
                   <WaCallout variant="neutral">
                     <span slot="icon" />
