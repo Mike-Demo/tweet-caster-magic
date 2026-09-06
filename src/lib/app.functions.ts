@@ -186,14 +186,25 @@ export const saveAutomationSettings = createServerFn({ method: "POST" })
 export const saveXCredentials = createServerFn({ method: "POST" })
   .middleware([requireMfa])
   .inputValidator(
-    (data: { apiKey: string; apiSecret: string; accessToken: string; accessSecret: string }) => {
+    (data: {
+      environment: string;
+      apiKey: string;
+      apiSecret: string;
+      accessToken: string;
+      accessSecret: string;
+    }) => {
       const values = {
+        environment: parseEnvironment(data?.environment),
         apiKey: (data?.apiKey ?? "").trim(),
         apiSecret: (data?.apiSecret ?? "").trim(),
         accessToken: (data?.accessToken ?? "").trim(),
         accessSecret: (data?.accessSecret ?? "").trim(),
       };
-      if (Object.values(values).some((value) => value.length < 10)) {
+      if (
+        [values.apiKey, values.apiSecret, values.accessToken, values.accessSecret].some(
+          (value) => value.length < 10,
+        )
+      ) {
         throw new Error("All four values from your X developer app are required.");
       }
       return values;
@@ -209,6 +220,7 @@ export const saveXCredentials = createServerFn({ method: "POST" })
     const { error } = await supabaseAdmin.from("x_credentials").upsert(
       {
         user_id: context.userId,
+        environment: data.environment,
         api_key_ct: encryptSecret(data.apiKey),
         api_secret_ct: encryptSecret(data.apiSecret),
         access_token_ct: encryptSecret(data.accessToken),
@@ -216,24 +228,86 @@ export const saveXCredentials = createServerFn({ method: "POST" })
         api_key_hint: `${data.apiKey.slice(0, 4)}…${data.apiKey.slice(-4)}`,
         x_username: account.username,
       },
-      { onConflict: "user_id" },
+      { onConflict: "user_id,environment" },
     );
     if (error) throw new Error(error.message);
 
-    return { xUsername: account.username };
+    const { data: profile } = await context.supabase
+      .from("profiles")
+      .select("active_x_environment")
+      .eq("id", context.userId)
+      .maybeSingle();
+
+    if (!profile?.active_x_environment) {
+      await context.supabase
+        .from("profiles")
+        .update({ active_x_environment: data.environment })
+        .eq("id", context.userId);
+    }
+
+    return { xUsername: account.username, environment: data.environment };
   });
 
 export const removeXCredentials = createServerFn({ method: "POST" })
   .middleware([requireMfa])
-  .handler(async ({ context }) => {
+  .inputValidator((data: { environment: string }) => ({
+    environment: parseEnvironment(data?.environment),
+  }))
+  .handler(async ({ data, context }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin
       .from("x_credentials")
       .delete()
-      .eq("user_id", context.userId);
+      .eq("user_id", context.userId)
+      .eq("environment", data.environment);
     if (error) throw new Error(error.message);
+
+    const { data: remaining } = await supabaseAdmin
+      .from("x_credentials")
+      .select("environment")
+      .eq("user_id", context.userId);
+
+    const { data: profile } = await context.supabase
+      .from("profiles")
+      .select("active_x_environment")
+      .eq("id", context.userId)
+      .maybeSingle();
+
+    if (profile?.active_x_environment === data.environment) {
+      const fallback = (remaining ?? [])[0]?.environment ?? null;
+      await context.supabase
+        .from("profiles")
+        .update({ active_x_environment: fallback })
+        .eq("id", context.userId);
+    }
+
     return { ok: true as const };
   });
+
+export const setActiveXEnvironment = createServerFn({ method: "POST" })
+  .middleware([requireMfa])
+  .inputValidator((data: { environment: string }) => ({
+    environment: parseEnvironment(data?.environment),
+  }))
+  .handler(async ({ data, context }) => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: row } = await supabaseAdmin
+      .from("x_credentials")
+      .select("environment")
+      .eq("user_id", context.userId)
+      .eq("environment", data.environment)
+      .maybeSingle();
+    if (!row) throw new Error("Add keys for that environment first.");
+
+    const { error } = await context.supabase
+      .from("profiles")
+      .update({ active_x_environment: data.environment })
+      .eq("id", context.userId);
+    if (error) throw new Error(error.message);
+
+    return { environment: data.environment };
+  });
+
 
 export const syncNow = createServerFn({ method: "POST" })
   .middleware([requireMfa])
