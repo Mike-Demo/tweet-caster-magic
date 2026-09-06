@@ -1,3 +1,82 @@
+# Automated-action / agentic browsing bots
+User-agent: Grokbot
+Disallow: /
+
+User-agent: GrokAgent
+Disallow: /
+
+User-agent: Grok
+Disallow: /
+
+User-agent: OAI-Operator
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: Claude-User
+Disallow: /
+
+User-agent: Perplexity-User
+Disallow: /
+
+User-agent: Browserbase
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# X / xAI / SpaceX crawlers (Twitterbot stays allowed for link previews)
+User-agent: xAI-Bot
+Disallow: /
+
+User-agent: xai-crawler
+Disallow: /
+
+User-agent: X-Bot
+Disallow: /
+
+User-agent: SpaceXBot
+Disallow: /
+
+# Aggressive SEO / backlink scrapers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+User-agent: rogerbot
+Disallow: /
+
+User-agent: Screaming Frog SEO Spider
+Disallow: /
+
+User-agent: SEOkicks
+Disallow: /
+
+User-agent: serpstatbot
+Disallow: /
+
+User-agent: Barkrowler
+Disallow: /
+
+User-agent: ZoominfoBot
+Disallow: /
+
+# Everyone else, including search engines, AI training crawlers and link previews
 User-agent: *
 Allow: /
 Disallow: /app
