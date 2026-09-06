@@ -137,6 +137,8 @@ function Dashboard() {
           </WaButton>
         </header>
 
+        <h1 style={{ margin: 0, fontSize: "var(--wa-font-size-2xl)" }}>Crosspost dashboard</h1>
+
         {error ? <WaCallout variant="danger">{error}</WaCallout> : null}
         {message ? <WaCallout variant="success">{message}</WaCallout> : null}
 
