@@ -70,6 +70,37 @@ export function homeJsonLd(): string {
   });
 }
 
+/** JSON-LD graph for a simple public page such as terms or privacy. */
+export function pageJsonLd(options: {
+  path: string;
+  name: string;
+  description: string;
+}): string {
+  const url = `${SITE_URL}${options.path}`;
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${url}#webpage`,
+        name: options.name,
+        url,
+        description: options.description,
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        publisher: { "@id": `${SITE_URL}/#organization` },
+        about: { "@id": `${SITE_URL}/#webapp` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: options.name, item: url },
+        ],
+      },
+    ],
+  });
+}
+
 /** JSON-LD graph for the open source licenses page. */
 export function licensesJsonLd(licenseNames: readonly string[]): string {
   return JSON.stringify({
