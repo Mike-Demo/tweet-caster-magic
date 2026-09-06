@@ -149,11 +149,13 @@ export function TwoFactorGate({ children }: { children: ReactNode }) {
                 Scan this with Google Authenticator, 1Password, Authy or a similar app, then type
                 the 6-digit code it shows.
               </p>
-              <img
-                src={enrollInfo.qrCode}
-                alt="Authenticator setup QR code"
-                style={{ display: "block", margin: "0 auto", width: "60%", maxWidth: "100%" }}
-              />
+              <div className="wa-cluster wa-justify-content-center">
+                <img
+                  src={enrollInfo.qrCode}
+                  alt="Authenticator setup QR code"
+                  style={{ display: "block", maxWidth: "100%" }}
+                />
+              </div>
               <p style={{ margin: 0, fontSize: "var(--wa-font-size-s)", color: "var(--wa-color-text-quiet)" }}>
                 Can&apos;t scan? Enter this key instead:{" "}
                 <code style={{ wordBreak: "break-all" }}>{enrollInfo.secret}</code>
