@@ -420,6 +420,7 @@ function Dashboard() {
           developer account and your own tweet.app account.
         </p>
       </div>
+      <SiteFooter />
     </>
   );
 }
