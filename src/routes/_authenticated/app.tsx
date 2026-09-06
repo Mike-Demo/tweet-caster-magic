@@ -416,7 +416,10 @@ function Dashboard() {
                       variant="brand"
                       disabled={saveKeys.isPending}
                       onClick={() =>
-                        void run(saveKeys.mutateAsync(), "Keys checked with X and saved.").then(() =>
+                        void run(
+                          saveKeys.mutateAsync(),
+                          `${environmentLabels[environment]} keys checked with X and saved.`,
+                        ).then(() =>
                           setKeys({ apiKey: "", apiSecret: "", accessToken: "", accessSecret: "" }),
                         )
                       }
@@ -424,6 +427,7 @@ function Dashboard() {
                       Check and save
                     </WaButton>
                   </div>
+
                 </div>
               </WaCard>
 
