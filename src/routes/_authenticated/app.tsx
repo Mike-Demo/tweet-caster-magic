@@ -16,7 +16,7 @@ import {
   type QueueItem,
 } from "@/lib/app.functions";
 import { TwoFactorGate, TwoFactorSettings } from "@/components/two-factor-gate";
-import { SITE_URL } from "@/lib/structured-data";
+import { PREVIEW_URL, PUBLISHED_URL, SITE_URL } from "@/lib/structured-data";
 import {
   WaBadge,
   WaButton,
