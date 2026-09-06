@@ -11,10 +11,20 @@ export interface SyncResult {
 }
 
 export async function loadCredentials(userId: string): Promise<XCredentials | null> {
+  const { data: profile, error: profileError } = await supabaseAdmin
+    .from("profiles")
+    .select("active_x_environment")
+    .eq("id", userId)
+    .maybeSingle();
+
+  if (profileError) throw new Error(profileError.message);
+  if (!profile?.active_x_environment) return null;
+
   const { data, error } = await supabaseAdmin
     .from("x_credentials")
     .select("api_key_ct, api_secret_ct, access_token_ct, access_secret_ct")
     .eq("user_id", userId)
+    .eq("environment", profile.active_x_environment)
     .maybeSingle();
 
   if (error) throw new Error(error.message);
@@ -27,6 +37,7 @@ export async function loadCredentials(userId: string): Promise<XCredentials | nu
     accessSecret: decryptSecret(data.access_secret_ct),
   };
 }
+
 
 /** Pulls new tweet.app posts into the queue. Never records the same post twice. */
 export async function importNewPosts(userId: string): Promise<number> {
