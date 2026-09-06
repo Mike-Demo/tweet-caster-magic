@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
-import { verifyCaptcha } from "@/lib/captcha.functions";
+import { getCaptchaSiteKey, verifyCaptcha } from "@/lib/captcha.functions";
 import {
   HCaptcha,
   WaButton,
@@ -15,11 +15,8 @@ import {
 } from "@/design-system/font-awsome-web-awesome-171158";
 import type { HCaptchaHandle } from "@/design-system/font-awsome-web-awesome-171158/webawesome/patterns/hcaptcha";
 
-const HCAPTCHA_SITE_KEY =
-  (import.meta.env["VITE_HCAPTCHA_SITE_KEY"] as string | undefined) ??
-  "10000000-ffff-ffff-ffff-000000000001";
-
 export const Route = createFileRoute("/")({
+  loader: async () => await getCaptchaSiteKey(),
   head: () => ({
     meta: [
       { title: "Crosspost — send your tweet.app posts straight to X" },
@@ -45,6 +42,7 @@ type Mode = "signin" | "signup";
 
 function Landing() {
   const navigate = useNavigate();
+  const { siteKey } = Route.useLoaderData();
   const [mode, setMode] = useState<Mode>("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -203,7 +201,7 @@ function Landing() {
 
               <HCaptcha
                 ref={captchaRef}
-                siteKey={HCAPTCHA_SITE_KEY}
+                siteKey={siteKey}
                 onVerify={(token) => setCaptchaToken(token)}
                 onExpire={() => setCaptchaToken(null)}
                 onError={() => setCaptchaToken(null)}
