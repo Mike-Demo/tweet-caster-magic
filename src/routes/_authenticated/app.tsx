@@ -16,11 +16,13 @@ import {
   type QueueItem,
 } from "@/lib/app.functions";
 import { TwoFactorGate, TwoFactorSettings } from "@/components/two-factor-gate";
+import { SITE_URL } from "@/lib/structured-data";
 import {
   WaBadge,
   WaButton,
   WaCallout,
   WaCard,
+  WaCopyButton,
   WaDivider,
   WaIcon,
   WaSpinner,
