@@ -362,7 +362,17 @@ function Dashboard() {
                   </div>
 
                   <div className="wa-stack wa-gap-2xs">
-                    <strong>Which set of keys are these?</strong>
+                    <strong>Which mode did you set in X?</strong>
+                    <span
+                      style={{
+                        color: "var(--wa-color-text-quiet)",
+                        fontSize: "var(--wa-font-size-s)",
+                      }}
+                    >
+                      Pick the environment your keys came from in the X console. We recommend
+                      testing with Development first, checking that a post goes out as expected, and
+                      only then swapping in your Production keys.
+                    </span>
                     <div className="wa-cluster wa-gap-2xs">
                       {X_ENVIRONMENTS.map((value) => (
                         <WaButton
@@ -375,6 +385,7 @@ function Dashboard() {
                       ))}
                     </div>
                   </div>
+
 
                   <div className="wa-grid" style={{ ["--min-column-size" as string]: "16rem" }}>
 
