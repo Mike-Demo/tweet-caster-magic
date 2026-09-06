@@ -275,7 +275,9 @@ function Dashboard() {
                   </div>
 
 
+                  <WaDetails summary="Key details — what X asks you for">
                   <WaCallout variant="neutral">
+
                     <span slot="icon" />
                     <div className="wa-stack wa-gap-2xs">
                       <span>
