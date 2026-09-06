@@ -22,11 +22,31 @@ export interface QueueItem {
   postedAt: string | null;
 }
 
+export const X_ENVIRONMENTS = ["development", "staging", "production"] as const;
+export type XEnvironment = (typeof X_ENVIRONMENTS)[number];
+
+export interface CredentialSlot {
+  environment: XEnvironment;
+  connected: boolean;
+  hint: string | null;
+  xUsername: string | null;
+}
+
 export interface DashboardData {
   settings: DashboardSettings;
-  credentials: { connected: boolean; hint: string | null; xUsername: string | null };
+  credentials: CredentialSlot[];
+  activeEnvironment: XEnvironment | null;
   posts: QueueItem[];
 }
+
+function parseEnvironment(value: unknown): XEnvironment {
+  const environment = String(value ?? "");
+  if (!X_ENVIRONMENTS.includes(environment as XEnvironment)) {
+    throw new Error("Pick Development, Staging or Production.");
+  }
+  return environment as XEnvironment;
+}
+
 
 const emptySettings: DashboardSettings = {
   tweetUsername: null,
