@@ -5,7 +5,7 @@ Right now no page carries machine-readable "schema" markup, so search engines ha
 ## What gets added
 
 **Home page**
-- A software/web application entry: name Crosspost, what it does, that it's a web app, its price (free to use, people bring their own accounts), and a link to the licenses page.
+- A schema.org `WebApplication` entry: name Crosspost, what it does, that it runs in any modern web browser, its price (free to use, people bring their own accounts), and a link to the licenses page.
 - An organisation/publisher entry for MikeDemo with the site's social profiles, matching the footer links.
 - Explicit "not affiliated with" wording carried into the description, plus links out to the X Developer Terms, X Terms of Service and tweet.app Terms of Service as the governing terms.
 
@@ -22,7 +22,7 @@ Schema markup is a description, not a legal notice — it does not replace the v
 ## Technical notes
 
 - Add JSON-LD via each route's `head()` `scripts` entry (TanStack Router), never a client-side injection: `scripts: [{ type: "application/ld+json", children: JSON.stringify(...) }]`.
-- Home (`src/routes/index.tsx`): `@graph` with `SoftwareApplication` (applicationCategory `BusinessApplication`, `offers` price 0), `Organization` with `sameAs` for LinkedIn / X / Threads / tweet.app, `WebSite`, and `termsOfService` URLs.
+- Home (`src/routes/index.tsx`): `@graph` with `WebApplication` (`applicationCategory: "BusinessApplication"`, `browserRequirements`, `operatingSystem: "Any"`, `offers` price 0), `Organization` with `sameAs` for LinkedIn / X / Threads / tweet.app, `WebSite`, and `termsOfService` URLs.
 - Licenses (`src/routes/licenses.tsx`): `WebPage` + `BreadcrumbList`.
 - Absolute URLs use `https://tweet.mikedemo.dev` (the live custom domain) so the markup validates.
 - The dashboard (`/app`) is disallowed in robots.txt and gets no markup.
