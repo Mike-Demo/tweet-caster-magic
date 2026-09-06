@@ -67,6 +67,20 @@ function Landing() {
     };
   }, [navigate]);
 
+  async function handleGoogle() {
+    setError(null);
+    setNotice(null);
+    const result = await lovable.auth.signInWithOAuth("google", {
+      redirect_uri: window.location.origin,
+    });
+    if (result.error) {
+      setError("Google sign-in could not start. Please try again.");
+      return;
+    }
+    if (result.redirected) return;
+    void navigate({ to: "/app" });
+  }
+
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setError(null);
