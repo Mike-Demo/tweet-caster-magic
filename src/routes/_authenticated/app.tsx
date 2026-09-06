@@ -246,6 +246,39 @@ function Dashboard() {
                     </div>
                   </WaCallout>
 
+                  <div className="wa-stack wa-gap-2xs">
+                    <strong>What X asks you for</strong>
+                    <span
+                      style={{
+                        color: "var(--wa-color-text-quiet)",
+                        fontSize: "var(--wa-font-size-s)",
+                      }}
+                    >
+                      On the app&apos;s <em>User authentication settings</em> screen, choose{" "}
+                      <strong>Read and write</strong> and{" "}
+                      <strong>Web App, Automated App or Bot</strong>, then paste these. Crosspost
+                      never runs X&apos;s sign-in redirect, so the callback address is only there
+                      to satisfy the form — and you can leave &ldquo;Request email from
+                      users&rdquo; off.
+                    </span>
+                    <div className="wa-stack wa-gap-2xs">
+                      {(
+                        [
+                          ["Callback URI / Redirect URL", `${SITE_URL}/x-callback`],
+                          ["Website URL", SITE_URL],
+                          ["Terms of Service", `${SITE_URL}/terms`],
+                          ["Privacy Policy", `${SITE_URL}/privacy`],
+                        ] as const
+                      ).map(([label, value]) => (
+                        <div key={label} className="wa-cluster wa-gap-2xs">
+                          <span style={{ fontSize: "var(--wa-font-size-s)" }}>{label}:</span>
+                          <code style={{ fontSize: "var(--wa-font-size-s)" }}>{value}</code>
+                          <WaCopyButton value={value} copy-label={`Copy ${label}`} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
                   <div className="wa-cluster wa-gap-s" style={{ fontSize: "var(--wa-font-size-s)" }}>
                     {(
                       [
