@@ -27,6 +27,7 @@ type Mode = "signin" | "signup";
 
 function Landing() {
   const navigate = useNavigate();
+  const { siteKey } = Route.useLoaderData();
   const [mode, setMode] = useState<Mode>("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
