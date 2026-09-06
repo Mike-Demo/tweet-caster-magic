@@ -19,6 +19,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Crosspost — tweet.app posts to X" },
       { name: "description", content: "Automatically repost your tweet.app posts to X with your own developer keys." },
       { name: "author", content: "Lovable" },
+      { name: "google-site-verification", content: "RHlwBdxnagu8yjEC1UQ3cV-WcIJ17lGECi8uJYHO6P4" },
       { property: "og:title", content: "Crosspost — tweet.app posts to X" },
       { property: "og:description", content: "Automatically repost your tweet.app posts to X." },
       { property: "og:type", content: "website" },
