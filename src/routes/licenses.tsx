@@ -34,14 +34,26 @@ function Licenses() {
       <WebAwesomeLoader />
       <main style={{ padding: "3rem 1.5rem", maxWidth: "60rem", margin: "0 auto" }}>
         <LicensesPage
-          entries={[
-            ...baseCredits,
+          groups={[
+            { title: "Open source libraries", entries: baseCredits },
             {
-              name: "hCaptcha",
-              author: "Intuition Machines, Inc.",
-              license: "Proprietary service",
-              url: "https://www.hcaptcha.com/",
-              note: "Bot protection on the sign-in and sign-up form.",
+              title: "Services",
+              entries: [
+                {
+                  name: "hCaptcha",
+                  author: "Intuition Machines, Inc.",
+                  license: "Proprietary service",
+                  url: "https://www.hcaptcha.com/",
+                  note: "Bot protection on the sign-in and sign-up form.",
+                },
+                {
+                  name: "tweet.app API",
+                  author: "Operation Bluebird, Inc.",
+                  license: "Public API, used with each person's own account",
+                  url: "https://tweet.app",
+                  note: "Source of the posts this app reposts.",
+                },
+              ],
             },
           ]}
         />
