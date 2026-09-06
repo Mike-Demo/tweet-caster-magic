@@ -65,7 +65,7 @@ export function SiteNav(): ReactElement {
       </Link>
 
       <WaDropdown ref={menuRef}>
-        <WaButton slot="trigger" appearance="outlined" size="s" withCaret>
+        <WaButton slot="trigger" appearance="outlined" size="s" with-caret>
           <WaIcon slot="start" name="bars" /> Menu
         </WaButton>
         <WaDropdownItem value="signin">
