@@ -162,7 +162,7 @@ function Dashboard() {
         {error ? <WaCallout variant="danger">{error}</WaCallout> : null}
         {message ? <WaCallout variant="success">{message}</WaCallout> : null}
 
-        {!data?.credentials.connected || !settings?.tweetUsername ? (
+        {!anyConnected || !settings?.tweetUsername ? (
           <WaCallout variant="brand">
             <WaIcon slot="icon" name="circle-info" />
             Finish the two setup steps below and your posts start flowing to X.
