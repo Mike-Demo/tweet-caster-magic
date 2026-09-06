@@ -2,6 +2,11 @@
 
 export const SITE_URL = "https://tweet.mikedemo.dev";
 
+/** Alternate addresses the app is also reachable at (used for X's callback form only). */
+export const PUBLISHED_URL = "https://tweet-caster-magic.lovable.app";
+export const PREVIEW_URL =
+  "https://id-preview--9af6c804-3537-478f-8b30-c6cbb1e1029e.lovable.app";
+
 const TERMS_URLS: readonly string[] = [
   "https://docs.x.com/developer-terms",
   "https://x.com/en/tos",
