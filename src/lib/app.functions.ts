@@ -68,7 +68,7 @@ export const getDashboard = createServerFn({ method: "GET" })
       supabase
         .from("profiles")
         .select(
-          "tweet_username, tweet_display_name, tweet_avatar_url, auto_post, skip_replies, skip_quotes, long_post_mode, last_synced_at",
+          "tweet_username, tweet_display_name, tweet_avatar_url, auto_post, skip_replies, skip_quotes, long_post_mode, last_synced_at, active_x_environment",
         )
         .eq("id", userId)
         .maybeSingle(),
@@ -81,13 +81,16 @@ export const getDashboard = createServerFn({ method: "GET" })
     ]);
 
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { data: credentials } = await supabaseAdmin
+    const { data: credentialRows } = await supabaseAdmin
       .from("x_credentials")
-      .select("api_key_hint, x_username")
-      .eq("user_id", userId)
-      .maybeSingle();
+      .select("environment, api_key_hint, x_username")
+      .eq("user_id", userId);
 
     const profile = profileResult.data;
+    const activeEnvironment = profile?.active_x_environment
+      ? (profile.active_x_environment as XEnvironment)
+      : null;
+
     return {
       settings: profile
         ? {
@@ -101,11 +104,17 @@ export const getDashboard = createServerFn({ method: "GET" })
             lastSyncedAt: profile.last_synced_at,
           }
         : emptySettings,
-      credentials: {
-        connected: Boolean(credentials),
-        hint: credentials?.api_key_hint ?? null,
-        xUsername: credentials?.x_username ?? null,
-      },
+      activeEnvironment,
+      credentials: X_ENVIRONMENTS.map((environment) => {
+        const row = (credentialRows ?? []).find((item) => item.environment === environment);
+        return {
+          environment,
+          connected: Boolean(row),
+          hint: row?.api_key_hint ?? null,
+          xUsername: row?.x_username ?? null,
+        };
+      }),
+
       posts: (postsResult.data ?? []).map((row) => ({
         id: row.id,
         sourceText: row.source_text,
