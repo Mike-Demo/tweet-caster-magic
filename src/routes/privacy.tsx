@@ -1,4 +1,5 @@
 import { AppFooter } from "@/components/app-footer";
+import { SiteNav } from "@/components/site-nav";
 import { TermageddonPolicy } from "@/components/termageddon-policy";
 import { WebAwesomeLoader } from "@/design-system/font-awsome-web-awesome-171158";
 import { TERMAGEDDON_POLICY_KEYS } from "@/lib/policies";
@@ -41,6 +42,7 @@ function Privacy() {
   return (
     <>
       <WebAwesomeLoader />
+      <SiteNav />
       <main
         className="wa-stack wa-gap-l"
         style={{ padding: "3rem 1.5rem", maxWidth: "48rem", margin: "0 auto" }}

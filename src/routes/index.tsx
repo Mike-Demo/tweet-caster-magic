@@ -1,4 +1,5 @@
 import { AppFooter } from "@/components/app-footer";
+import { SiteNav } from "@/components/site-nav";
 import { SITE_URL, homeJsonLd } from "@/lib/structured-data";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
@@ -18,6 +19,10 @@ import {
 import type { HCaptchaHandle } from "@/design-system/font-awsome-web-awesome-171158/webawesome/patterns/hcaptcha";
 
 export const Route = createFileRoute("/")({
+  validateSearch: (search: Record<string, unknown>): { mode?: Mode } =>
+    search["mode"] === "signup" || search["mode"] === "signin"
+      ? { mode: search["mode"] }
+      : {},
   loader: async () => await getCaptchaSiteKey(),
   head: () => ({
     meta: [
@@ -48,7 +53,8 @@ type Mode = "signin" | "signup";
 function Landing() {
   const navigate = useNavigate();
   const { siteKey } = Route.useLoaderData();
-  const [mode, setMode] = useState<Mode>("signin");
+  const search = Route.useSearch();
+  const [mode, setMode] = useState<Mode>(search.mode ?? "signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
@@ -56,6 +62,10 @@ function Landing() {
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const captchaRef = useRef<HCaptchaHandle | null>(null);
+
+  useEffect(() => {
+    if (search.mode) setMode(search.mode);
+  }, [search.mode]);
 
   useEffect(() => {
     let active = true;
@@ -125,6 +135,7 @@ function Landing() {
   return (
     <>
       <WebAwesomeLoader />
+      <SiteNav />
       <main className="wa-stack wa-gap-2xl" style={{ padding: "3rem 1.5rem", maxWidth: "68rem", margin: "0 auto" }}>
         <section className="wa-grid" style={{ ["--min-column-size" as string]: "22rem", gap: "3rem", alignItems: "center" }}>
           <div className="wa-stack wa-gap-l">
