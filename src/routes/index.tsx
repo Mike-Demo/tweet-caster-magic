@@ -6,6 +6,7 @@ import { lovable } from "@/integrations/lovable";
 import { getCaptchaSiteKey, verifyCaptcha } from "@/lib/captcha.functions";
 import {
   HCaptcha,
+  SiteFooter,
   WaButton,
   WaCallout,
   WaCard,
