@@ -5,7 +5,7 @@ Right now no page carries machine-readable "schema" markup, so search engines ha
 ## What gets added
 
 **Home page**
-- A software/web application entry: name Crosspost, what it does, that it's a web app, its price (free to use, people bring their own accounts), and a link to the licenses page.
+- A schema.org `WebApplication` entry: name Crosspost, what it does, that it runs in any modern web browser, its price (free to use, people bring their own accounts), and a link to the licenses page.
 - An organisation/publisher entry for MikeDemo with the site's social profiles, matching the footer links.
 - Explicit "not affiliated with" wording carried into the description, plus links out to the X Developer Terms, X Terms of Service and tweet.app Terms of Service as the governing terms.
 
