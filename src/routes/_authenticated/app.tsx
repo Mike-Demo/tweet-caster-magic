@@ -405,6 +405,19 @@ function Dashboard() {
             </div>
           </WaTabPanel>
         </WaTabGroup>
+        <p
+          style={{
+            marginTop: "2.5rem",
+            fontSize: "0.85rem",
+            lineHeight: 1.6,
+            color: "var(--wa-color-text-quiet)",
+            textAlign: "center",
+          }}
+        >
+          Crosspost is an independent service and is not affiliated with, endorsed by, or
+          sponsored by X Corp. or Operation Bluebird, Inc. Using Crosspost requires your own X
+          developer account and your own tweet.app account.
+        </p>
       </div>
     </>
   );
