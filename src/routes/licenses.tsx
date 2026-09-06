@@ -1,4 +1,5 @@
 import { AppFooter } from "@/components/app-footer";
+import { SiteNav } from "@/components/site-nav";
 import { createFileRoute } from "@tanstack/react-router";
 
 import {
@@ -43,6 +44,7 @@ function Licenses() {
   return (
     <>
       <WebAwesomeLoader />
+      <SiteNav />
       <main style={{ padding: "3rem 1.5rem", maxWidth: "60rem", margin: "0 auto" }}>
         <LicensesPage
           groups={[

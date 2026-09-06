@@ -1,4 +1,5 @@
 import { AppFooter } from "@/components/app-footer";
+import { SiteNav } from "@/components/site-nav";
 import { SITE_URL, homeJsonLd } from "@/lib/structured-data";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
@@ -125,6 +126,7 @@ function Landing() {
   return (
     <>
       <WebAwesomeLoader />
+      <SiteNav />
       <main className="wa-stack wa-gap-2xl" style={{ padding: "3rem 1.5rem", maxWidth: "68rem", margin: "0 auto" }}>
         <section className="wa-grid" style={{ ["--min-column-size" as string]: "22rem", gap: "3rem", alignItems: "center" }}>
           <div className="wa-stack wa-gap-l">
