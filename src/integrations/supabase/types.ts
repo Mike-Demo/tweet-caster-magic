@@ -14,7 +14,129 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          auto_post: boolean
+          created_at: string
+          id: string
+          last_synced_at: string | null
+          long_post_mode: string
+          skip_quotes: boolean
+          skip_replies: boolean
+          tweet_avatar_url: string | null
+          tweet_display_name: string | null
+          tweet_username: string | null
+          updated_at: string
+          watch_since: string | null
+        }
+        Insert: {
+          auto_post?: boolean
+          created_at?: string
+          id: string
+          last_synced_at?: string | null
+          long_post_mode?: string
+          skip_quotes?: boolean
+          skip_replies?: boolean
+          tweet_avatar_url?: string | null
+          tweet_display_name?: string | null
+          tweet_username?: string | null
+          updated_at?: string
+          watch_since?: string | null
+        }
+        Update: {
+          auto_post?: boolean
+          created_at?: string
+          id?: string
+          last_synced_at?: string | null
+          long_post_mode?: string
+          skip_quotes?: boolean
+          skip_replies?: boolean
+          tweet_avatar_url?: string | null
+          tweet_display_name?: string | null
+          tweet_username?: string | null
+          updated_at?: string
+          watch_since?: string | null
+        }
+        Relationships: []
+      }
+      synced_posts: {
+        Row: {
+          created_at: string
+          error: string | null
+          id: string
+          posted_at: string | null
+          source_created_at: string
+          source_post_id: string
+          source_text: string
+          status: string
+          updated_at: string
+          user_id: string
+          x_post_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          error?: string | null
+          id?: string
+          posted_at?: string | null
+          source_created_at: string
+          source_post_id: string
+          source_text: string
+          status?: string
+          updated_at?: string
+          user_id: string
+          x_post_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          error?: string | null
+          id?: string
+          posted_at?: string | null
+          source_created_at?: string
+          source_post_id?: string
+          source_text?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+          x_post_id?: string | null
+        }
+        Relationships: []
+      }
+      x_credentials: {
+        Row: {
+          access_secret_ct: string
+          access_token_ct: string
+          api_key_ct: string
+          api_key_hint: string
+          api_secret_ct: string
+          created_at: string
+          updated_at: string
+          user_id: string
+          x_username: string | null
+        }
+        Insert: {
+          access_secret_ct: string
+          access_token_ct: string
+          api_key_ct: string
+          api_key_hint: string
+          api_secret_ct: string
+          created_at?: string
+          updated_at?: string
+          user_id: string
+          x_username?: string | null
+        }
+        Update: {
+          access_secret_ct?: string
+          access_token_ct?: string
+          api_key_ct?: string
+          api_key_hint?: string
+          api_secret_ct?: string
+          created_at?: string
+          updated_at?: string
+          user_id?: string
+          x_username?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
