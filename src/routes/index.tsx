@@ -15,28 +15,10 @@ import {
 } from "@/design-system/font-awsome-web-awesome-171158";
 import type { HCaptchaHandle } from "@/design-system/font-awsome-web-awesome-171158/webawesome/patterns/hcaptcha";
 
-const HCAPTCHA_SITE_KEY =
-  (import.meta.env["VITE_HCAPTCHA_SITE_KEY"] as string | undefined) ??
-  "10000000-ffff-ffff-ffff-000000000001";
-
 export const Route = createFileRoute("/")({
+  loader: async () => await getCaptchaSiteKey(),
   head: () => ({
-    meta: [
-      { title: "Crosspost — send your tweet.app posts straight to X" },
-      {
-        name: "description",
-        content:
-          "Connect your tweet.app account and your own X developer keys, then let every new post go out to X automatically or after a quick review.",
-      },
-      { property: "og:title", content: "Crosspost — tweet.app to X, automatically" },
-      {
-        property: "og:description",
-        content:
-          "Watch a tweet.app account and repost everything new to X with your own developer keys.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
+...
   }),
   component: Landing,
 });
