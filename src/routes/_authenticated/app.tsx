@@ -501,8 +501,22 @@ function Dashboard() {
         >
           Crosspost is an independent service and is not affiliated with, endorsed by, or
           sponsored by X Corp. or Operation Bluebird, Inc. Using Crosspost requires your own X
-          developer account and your own tweet.app account.
+          developer account and your own tweet.app account, and you remain responsible for
+          following the{" "}
+          <a href="https://docs.x.com/developer-terms" target="_blank" rel="noreferrer">
+            X Developer Terms
+          </a>
+          , the{" "}
+          <a href="https://x.com/en/tos" target="_blank" rel="noreferrer">
+            X Terms of Service
+          </a>
+          , and the{" "}
+          <a href="https://tweet.app/terms-of-service/" target="_blank" rel="noreferrer">
+            tweet.app Terms of Service
+          </a>
+          .
         </p>
+
       </div>
       <SiteFooter />
     </>
