@@ -6,6 +6,7 @@ import {
   WebAwesomeLoader,
 } from "@/design-system/font-awsome-web-awesome-171158";
 import { baseCredits } from "@/design-system/font-awsome-web-awesome-171158/webawesome/patterns/licenses";
+import { SITE_URL, licensesJsonLd } from "@/lib/structured-data";
 
 export const Route = createFileRoute("/licenses")({
   head: () => ({
@@ -22,7 +23,17 @@ export const Route = createFileRoute("/licenses")({
         content: "Credits for the open source software and services behind Crosspost.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: `${SITE_URL}/licenses` },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/licenses` }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: licensesJsonLd([
+          ...new Set(baseCredits.map((entry) => entry.license)),
+        ]),
+      },
     ],
   }),
   component: Licenses,
