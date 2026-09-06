@@ -235,25 +235,23 @@ function Landing() {
           </WaCard>
         </section>
 
-        <footer
+        <p
           style={{
             maxWidth: "60rem",
             margin: "3rem auto 0",
-            padding: "0 1rem 2rem",
             fontSize: "0.85rem",
             lineHeight: 1.6,
             color: "var(--wa-color-text-quiet)",
             textAlign: "center",
           }}
         >
-          <p style={{ margin: 0 }}>
-            Crosspost is an independent service and is not affiliated with, endorsed by, or
-            sponsored by X Corp. or Operation Bluebird, Inc. To use Crosspost you need your own
-            X developer account and your own tweet.app account.
-          </p>
-        </footer>
+          Crosspost is an independent service and is not affiliated with, endorsed by, or
+          sponsored by X Corp. or Operation Bluebird, Inc. To use Crosspost you need your own
+          X developer account and your own tweet.app account.
+        </p>
       </main>
 
+      <SiteFooter />
     </>
   );
 }
