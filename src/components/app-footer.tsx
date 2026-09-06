@@ -11,8 +11,9 @@ export function AppFooter(): ReactElement {
     <>
       <p
         style={{
-          maxWidth: "60rem",
-          margin: "var(--wa-space-2xl) auto var(--wa-space-m)",
+          marginBlockStart: "var(--wa-space-2xl)",
+          marginBlockEnd: "var(--wa-space-m)",
+          marginInline: "auto",
           paddingInline: "var(--wa-space-l)",
           fontSize: "var(--wa-font-size-s)",
           lineHeight: "var(--wa-line-height-expanded)",
