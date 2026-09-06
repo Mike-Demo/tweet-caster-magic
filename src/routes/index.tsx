@@ -141,6 +141,28 @@ function Landing() {
               {error ? <WaCallout variant="danger">{error}</WaCallout> : null}
               {notice ? <WaCallout variant="success">{notice}</WaCallout> : null}
 
+              <WaButton
+                type="button"
+                appearance="outlined"
+                onClick={() => {
+                  void handleGoogle();
+                }}
+              >
+                <WaIcon slot="start" name="google" family="brands" /> Continue with Google
+              </WaButton>
+
+              <span
+                style={{
+                  textAlign: "center",
+                  color: "var(--wa-color-text-quiet)",
+                  fontSize: "0.9rem",
+                }}
+              >
+                or use your email
+              </span>
+
+
+
               <label className="wa-stack wa-gap-2xs">
                 <span>Email</span>
                 <input
