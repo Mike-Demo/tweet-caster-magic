@@ -4,7 +4,7 @@ A small tool where someone signs in, points at their tweet.app username, connect
 
 ## What people will see
 
-1. **Sign in / sign up** with email and password. Everything below is private per person.
+1. **Sign in / sign up** with email and password, with an hCaptcha check on the form to block bots. Everything below is private per person.
 2. **Setup page**
    - tweet.app username to watch (verified live against the public profile endpoint, showing name, avatar and bio so they know it's the right account).
    - Their own X developer keys: API key, API secret, access token, access token secret. Stored encrypted, never shown again after saving (only a masked hint), with a "Test connection" button and a short guide on where to get them.
@@ -22,6 +22,7 @@ A small tool where someone signs in, points at their tweet.app username, connect
 ## Technical notes
 
 - Enable Lovable Cloud for auth, database and scheduled work.
+- hCaptcha on the auth form: site key in the client widget, secret key stored server-side and the token verified in a server function before sign-in or sign-up proceeds. Requires an hCaptcha account (free) to get the two keys.
 - Tables (all row-level-secured to the owner): `profiles`/settings (watched username, auto-post flags, filters), `x_credentials` (four values encrypted at rest with a server-side key, never selectable by the browser), `synced_posts` (tweet.app post id, text, created_at, status, x_post_id, error, unique per user + post id).
 - Source: `GET https://api.tweet.app/api/posts` returns a global feed with `nextCursor`; filter on `authorUsername`, page backwards until older than the last seen timestamp. No per-user endpoint exists. `GET /api/users/by-username/{name}` validates the account.
 - Publishing: `POST https://api.x.com/2/tweets` signed with OAuth 1.0a user-context (HMAC-SHA1) built server-side from the stored keys — this is what "bring your own X developer account" requires; there is no per-user X connector available in this workspace.
