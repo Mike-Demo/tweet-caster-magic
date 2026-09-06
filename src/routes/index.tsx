@@ -19,6 +19,10 @@ import {
 import type { HCaptchaHandle } from "@/design-system/font-awsome-web-awesome-171158/webawesome/patterns/hcaptcha";
 
 export const Route = createFileRoute("/")({
+  validateSearch: (search: Record<string, unknown>): { mode?: Mode } =>
+    search["mode"] === "signup" || search["mode"] === "signin"
+      ? { mode: search["mode"] }
+      : {},
   loader: async () => await getCaptchaSiteKey(),
   head: () => ({
     meta: [
