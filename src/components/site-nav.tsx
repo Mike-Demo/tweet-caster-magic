@@ -2,11 +2,13 @@ import { useEffect, useRef, type ReactElement } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 
 import {
+  WaBadge,
   WaButton,
   WaDropdown,
   WaDropdownItem,
   WaIcon,
 } from "@/design-system/font-awsome-web-awesome-171158";
+
 
 type NavTarget = "/" | "/terms" | "/privacy" | "/licenses";
 
