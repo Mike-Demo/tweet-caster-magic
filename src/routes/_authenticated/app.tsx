@@ -311,10 +311,13 @@ function Dashboard() {
                   >
                     Skip quote posts
                   </WaSwitch>
-                  <label className="wa-stack wa-gap-2xs" style={{ maxWidth: "22rem" }}>
+                  <label className="wa-stack wa-gap-2xs" style={{ maxWidth: "22rem" }} htmlFor="long-post-mode">
                     <span>Posts longer than X allows</span>
                     <select
+                      id="long-post-mode"
+                      name="longPostMode"
                       value={settings?.longPostMode ?? "truncate"}
+
                       onChange={(event) =>
                         void run(
                           saveAutomationSettings({
