@@ -22,7 +22,18 @@ export const Route = createFileRoute("/licenses")({
         content: "Credits for the open source software and services behind Crosspost.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: `${SITE_URL}/licenses` },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/licenses` }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: licensesJsonLd([
+          ...new Set(baseCredits.map((entry) => entry.license)),
+          "MIT",
+        ]),
+      },
     ],
   }),
   component: Licenses,
