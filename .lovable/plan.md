@@ -4,7 +4,7 @@ A small tool where someone signs in, points at their tweet.app username, connect
 
 ## What people will see
 
-1. **Sign in / sign up** with email and password. Everything below is private per person.
+1. **Sign in / sign up** with email and password, with an hCaptcha check on the form to block bots. Everything below is private per person.
 2. **Setup page**
    - tweet.app username to watch (verified live against the public profile endpoint, showing name, avatar and bio so they know it's the right account).
    - Their own X developer keys: API key, API secret, access token, access token secret. Stored encrypted, never shown again after saving (only a masked hint), with a "Test connection" button and a short guide on where to get them.
