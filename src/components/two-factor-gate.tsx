@@ -183,7 +183,7 @@ export function TwoFactorGate({ children }: { children: ReactNode }) {
             />
           </label>
 
-          <WaButton type="submit" variant="brand" disabled={busy || code.length !== 6}>
+          <WaButton type="submit" variant="brand" disabled={busy}>
             {busy ? <WaSpinner slot="start" /> : null}
             {setup ? "Confirm and continue" : "Verify"}
           </WaButton>
