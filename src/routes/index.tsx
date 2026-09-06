@@ -33,8 +33,11 @@ export const Route = createFileRoute("/")({
           "Watch a tweet.app account and repost everything new to X with your own developer keys.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE_URL },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: SITE_URL }],
+    scripts: [{ type: "application/ld+json", children: homeJsonLd() }],
   }),
   component: Landing,
 });
