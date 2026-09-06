@@ -53,7 +53,8 @@ type Mode = "signin" | "signup";
 function Landing() {
   const navigate = useNavigate();
   const { siteKey } = Route.useLoaderData();
-  const [mode, setMode] = useState<Mode>("signin");
+  const search = Route.useSearch();
+  const [mode, setMode] = useState<Mode>(search.mode ?? "signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
@@ -61,6 +62,10 @@ function Landing() {
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const captchaRef = useRef<HCaptchaHandle | null>(null);
+
+  useEffect(() => {
+    if (search.mode) setMode(search.mode);
+  }, [search.mode]);
 
   useEffect(() => {
     let active = true;
