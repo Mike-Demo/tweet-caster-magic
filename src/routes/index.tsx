@@ -12,6 +12,7 @@ import {
   WaSpinner,
   WebAwesomeLoader,
 } from "@/design-system/font-awsome-web-awesome-171158";
+import type { HCaptchaHandle } from "@/design-system/font-awsome-web-awesome-171158/webawesome/patterns/hcaptcha";
 
 const HCAPTCHA_SITE_KEY =
   (import.meta.env["VITE_HCAPTCHA_SITE_KEY"] as string | undefined) ??
@@ -50,7 +51,7 @@ function Landing() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
-  const captchaRef = useRef<{ reset: () => void } | null>(null);
+  const captchaRef = useRef<HCaptchaHandle | null>(null);
 
   useEffect(() => {
     let active = true;
