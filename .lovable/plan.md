@@ -28,7 +28,7 @@ Under "2. Your X developer keys", a short "What X asks you for" section listing 
 
 ## What I need from you
 
-The privacy page needs a real contact address for data questions. Tell me the address and I'll put it in; otherwise I'll write "contact us through the site" as a placeholder and flag it.
+Send me the Termageddon embed codes (or the policy URLs) for your other project's terms of service and privacy policy, and I'll use those exact policies on these two pages instead of writing new wording.
 
 ## Technical notes
 
