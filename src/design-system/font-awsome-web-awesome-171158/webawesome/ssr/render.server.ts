@@ -49,13 +49,19 @@
 
 /** Renders a string of <wa-*> HTML to declarative-shadow-DOM markup. */
 export async function renderWebAwesomeMarkup(html: string): Promise<string> {
-  // Imported lazily and by string specifier so the module only resolves when a
+  // Imported lazily and by computed specifier so the module only resolves when a
   // project has actually installed the packages, and never enters a client or
-  // edge bundle by accident.
-  await import(/* @vite-ignore */ "@awesome.me/webawesome/dist/ssr/all.js");
-  const { renderString } = (await import(
-    /* @vite-ignore */ "@awesome.me/webawesome/dist/ssr/render-string.js"
-  )) as { renderString: (markup: string) => string };
+  // edge bundle by accident. The specifiers are built at runtime so TypeScript
+  // does not require the optional package's type declarations to be present.
+  const base = "@awesome.me/webawesome/dist/ssr";
+  const load = (specifier: string): Promise<unknown> =>
+    import(/* @vite-ignore */ specifier);
+
+  await load(`${base}/all.js`);
+  const { renderString } = (await load(`${base}/render-string.js`)) as {
+    renderString: (markup: string) => string;
+  };
 
   return renderString(html);
 }
+
