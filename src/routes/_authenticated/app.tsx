@@ -16,7 +16,7 @@ import {
   type QueueItem,
 } from "@/lib/app.functions";
 import { TwoFactorGate, TwoFactorSettings } from "@/components/two-factor-gate";
-import { SITE_URL } from "@/lib/structured-data";
+import { PREVIEW_URL, PUBLISHED_URL, SITE_URL } from "@/lib/structured-data";
 import {
   WaBadge,
   WaButton,
@@ -258,15 +258,17 @@ function Dashboard() {
                     >
                       On the app&apos;s <em>User authentication settings</em> screen, choose{" "}
                       <strong>Read and write</strong> and{" "}
-                      <strong>Web App, Automated App or Bot</strong>, then paste these. Crosspost
-                      never runs X&apos;s sign-in redirect, so the callback address is only there
-                      to satisfy the form — and you can leave &ldquo;Request email from
-                      users&rdquo; off.
+                      <strong>Web App, Automated App or Bot</strong>, then paste these. X accepts
+                      several callback addresses — add the backups too. Crosspost never runs
+                      X&apos;s sign-in redirect, so none of them are used for posting, and you can
+                      leave &ldquo;Request email from users&rdquo; off.
                     </span>
                     <div className="wa-stack wa-gap-2xs">
                       {(
                         [
                           ["Callback URI / Redirect URL", `${SITE_URL}/x-callback`],
+                          ["Callback URI (backup)", `${PUBLISHED_URL}/x-callback`],
+                          ["Callback URI (preview)", `${PREVIEW_URL}/x-callback`],
                           ["Website URL", SITE_URL],
                           ["Terms of Service", `${SITE_URL}/terms`],
                           ["Privacy Policy", `${SITE_URL}/privacy`],
