@@ -66,7 +66,7 @@ function Licenses() {
           ]}
         />
       </main>
-      <SiteFooter />
+      <AppFooter />
     </>
   );
 }

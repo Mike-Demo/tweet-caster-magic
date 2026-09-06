@@ -241,37 +241,9 @@ function Landing() {
           </WaCard>
         </section>
 
-        <p
-          style={{
-            maxWidth: "60rem",
-            margin: "3rem auto 0",
-            fontSize: "0.85rem",
-            lineHeight: 1.6,
-            color: "var(--wa-color-text-quiet)",
-            textAlign: "center",
-          }}
-        >
-          Crosspost is an independent service and is not affiliated with, endorsed by, or
-          sponsored by X Corp. or Operation Bluebird, Inc. To use Crosspost you need your own
-          X developer account and your own tweet.app account, and you remain responsible for
-          following the{" "}
-          <a href="https://docs.x.com/developer-terms" target="_blank" rel="noreferrer">
-            X Developer Terms
-          </a>
-          , the{" "}
-          <a href="https://x.com/en/tos" target="_blank" rel="noreferrer">
-            X Terms of Service
-          </a>
-          , and the{" "}
-          <a href="https://tweet.app/terms-of-service/" target="_blank" rel="noreferrer">
-            tweet.app Terms of Service
-          </a>
-          .
-        </p>
-
       </main>
 
-      <SiteFooter />
+      <AppFooter />
     </>
   );
 }
