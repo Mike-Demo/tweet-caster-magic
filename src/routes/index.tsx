@@ -126,7 +126,7 @@ function Landing() {
                 "Automatic posting on a schedule, or a review queue you control.",
                 "Skip replies or quote posts, and never send the same post twice.",
               ].map((line) => (
-                <li key={line} className="wa-cluster wa-gap-s" style={{ alignItems: "start" }}>
+                <li key={line} style={{ display: "flex", gap: "0.5rem", alignItems: "start" }}>
                   <WaIcon name="circle-check" style={{ color: "var(--wa-color-success-fill-loud)", marginTop: "0.2rem" }} />
                   <span>{line}</span>
                 </li>
