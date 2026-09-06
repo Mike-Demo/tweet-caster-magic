@@ -232,20 +232,20 @@ export const saveXCredentials = createServerFn({ method: "POST" })
     );
     if (error) throw new Error(error.message);
 
-    const { data: profile } = await context.supabase
-      .from("profiles")
-      .select("active_x_environment")
-      .eq("id", context.userId)
-      .maybeSingle();
+    // Only one set of keys is kept; saving replaces any set stored under another mode.
+    await supabaseAdmin
+      .from("x_credentials")
+      .delete()
+      .eq("user_id", context.userId)
+      .neq("environment", data.environment);
 
-    if (!profile?.active_x_environment) {
-      await context.supabase
-        .from("profiles")
-        .update({ active_x_environment: data.environment })
-        .eq("id", context.userId);
-    }
+    await context.supabase
+      .from("profiles")
+      .update({ active_x_environment: data.environment })
+      .eq("id", context.userId);
 
     return { xUsername: account.username, environment: data.environment };
+
   });
 
 export const removeXCredentials = createServerFn({ method: "POST" })
