@@ -11,7 +11,6 @@ import {
   saveAutomationSettings,
   saveSourceAccount,
   saveXCredentials,
-  setActiveXEnvironment,
   setPostStatus,
   syncNow,
   X_ENVIRONMENTS,
@@ -27,6 +26,7 @@ import {
   WaCallout,
   WaCard,
   WaCopyButton,
+  WaDetails,
   WaDivider,
   WaIcon,
   WaSpinner,
@@ -104,6 +104,10 @@ function Dashboard() {
     if (dashboard.data?.settings.tweetUsername) setUsername(dashboard.data.settings.tweetUsername);
   }, [dashboard.data?.settings.tweetUsername]);
 
+  useEffect(() => {
+    if (dashboard.data?.activeEnvironment) setEnvironment(dashboard.data.activeEnvironment);
+  }, [dashboard.data?.activeEnvironment]);
+
   const saveAccount = useMutation({
     mutationFn: (value: string) => saveSourceAccount({ data: { username: value } }),
   });
@@ -128,7 +132,7 @@ function Dashboard() {
   const history = posts.filter((post) => post.status !== "pending");
   const slots = data?.credentials ?? [];
   const anyConnected = slots.some((slot) => slot.connected);
-  const activeEnvironment = data?.activeEnvironment ?? null;
+  const connectedSlot = slots.find((slot) => slot.connected) ?? null;
   const environmentLabels: Record<XEnvironment, string> = {
     development: "Development",
     staging: "Staging",
