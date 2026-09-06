@@ -48,8 +48,16 @@ export const Route = createFileRoute("/_authenticated/app")({
       { name: "twitter:card", content: "summary" },
     ],
   }),
-  component: Dashboard,
+  component: ProtectedDashboard,
 });
+
+function ProtectedDashboard() {
+  return (
+    <TwoFactorGate>
+      <Dashboard />
+    </TwoFactorGate>
+  );
+}
 
 function statusVariant(status: string): "neutral" | "success" | "warning" | "danger" {
   if (status === "posted") return "success";
