@@ -224,15 +224,18 @@ function Dashboard() {
                         ["accessSecret", "Access token secret"],
                       ] as const
                     ).map(([field, label]) => (
-                      <label key={field} className="wa-stack wa-gap-2xs">
+                      <label key={field} className="wa-stack wa-gap-2xs" htmlFor={`x-cred-${field}`}>
                         <span>{label}</span>
                         <input
+                          id={`x-cred-${field}`}
+                          name={field}
                           type="password"
                           autoComplete="off"
                           value={keys[field]}
                           onChange={(event) => setKeys({ ...keys, [field]: event.target.value })}
                         />
                       </label>
+
                     ))}
                   </div>
                   <div>
