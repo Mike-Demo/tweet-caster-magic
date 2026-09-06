@@ -360,6 +360,8 @@ function Dashboard() {
                       </a>
                     ))}
                   </div>
+                  </WaDetails>
+
 
                   <div className="wa-stack wa-gap-2xs">
                     <strong>Which mode did you set in X?</strong>
