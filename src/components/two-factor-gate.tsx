@@ -163,10 +163,13 @@ export function TwoFactorGate({ children }: { children: ReactNode }) {
 
           {error ? <WaCallout variant="danger">{error}</WaCallout> : null}
 
-          <label className="wa-stack wa-gap-2xs">
+          <label className="wa-stack wa-gap-2xs" htmlFor="totp-code">
             <span>6-digit code</span>
             <input
+              id="totp-code"
+              name="totpCode"
               inputMode="numeric"
+
               autoComplete="one-time-code"
               pattern="[0-9]{6}"
               maxLength={6}

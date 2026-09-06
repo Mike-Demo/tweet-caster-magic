@@ -177,9 +177,11 @@ function Landing() {
 
 
 
-              <label className="wa-stack wa-gap-2xs">
+              <label className="wa-stack wa-gap-2xs" htmlFor="auth-email">
                 <span>Email</span>
                 <input
+                  id="auth-email"
+                  name="email"
                   type="email"
                   required
                   autoComplete="email"
@@ -188,9 +190,11 @@ function Landing() {
                 />
               </label>
 
-              <label className="wa-stack wa-gap-2xs">
+              <label className="wa-stack wa-gap-2xs" htmlFor="auth-password">
                 <span>Password</span>
                 <input
+                  id="auth-password"
+                  name="password"
                   type="password"
                   required
                   minLength={8}
@@ -199,6 +203,7 @@ function Landing() {
                   onChange={(event) => setPassword(event.target.value)}
                 />
               </label>
+
 
               <HCaptcha
                 ref={captchaRef}

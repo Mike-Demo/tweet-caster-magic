@@ -160,14 +160,17 @@ function Dashboard() {
                 <div className="wa-stack wa-gap-m">
                   <h2 style={{ margin: 0 }}>1. The tweet.app account to watch</h2>
                   <div className="wa-cluster wa-gap-s" style={{ alignItems: "end" }}>
-                    <label className="wa-stack wa-gap-2xs" style={{ flex: "1 1 16rem" }}>
+                    <label className="wa-stack wa-gap-2xs" style={{ flex: "1 1 16rem" }} htmlFor="tweet-username">
                       <span>Username</span>
                       <input
+                        id="tweet-username"
+                        name="tweetUsername"
                         value={username}
                         placeholder="demo"
                         onChange={(event) => setUsername(event.target.value)}
                       />
                     </label>
+
                     <WaButton
                       variant="brand"
                       disabled={saveAccount.isPending}
@@ -221,15 +224,18 @@ function Dashboard() {
                         ["accessSecret", "Access token secret"],
                       ] as const
                     ).map(([field, label]) => (
-                      <label key={field} className="wa-stack wa-gap-2xs">
+                      <label key={field} className="wa-stack wa-gap-2xs" htmlFor={`x-cred-${field}`}>
                         <span>{label}</span>
                         <input
+                          id={`x-cred-${field}`}
+                          name={field}
                           type="password"
                           autoComplete="off"
                           value={keys[field]}
                           onChange={(event) => setKeys({ ...keys, [field]: event.target.value })}
                         />
                       </label>
+
                     ))}
                   </div>
                   <div>
@@ -305,10 +311,13 @@ function Dashboard() {
                   >
                     Skip quote posts
                   </WaSwitch>
-                  <label className="wa-stack wa-gap-2xs" style={{ maxWidth: "22rem" }}>
+                  <label className="wa-stack wa-gap-2xs" style={{ maxWidth: "22rem" }} htmlFor="long-post-mode">
                     <span>Posts longer than X allows</span>
                     <select
+                      id="long-post-mode"
+                      name="longPostMode"
                       value={settings?.longPostMode ?? "truncate"}
+
                       onChange={(event) =>
                         void run(
                           saveAutomationSettings({
