@@ -4,7 +4,9 @@ Your site currently has one simple crawler rules file: everyone allowed, the pri
 
 ## What gets blocked
 
-- AI training and content-scraping crawlers: GPTBot, ClaudeBot, anthropic-ai, Google-Extended, Applebot-Extended, CCBot, Bytespider, Meta-ExternalAgent, Diffbot, Omgili, Timpi, Amazonbot, PerplexityBot, cohere-ai, ImagesiftBot, Webzio, ICC-Crawler, PetalBot, and similar.
+- Automated-action bots that browse and act on pages rather than just read them: Grokbot, GrokAgent, OpenAI Operator, ChatGPT-User agent traffic, Claude-User agent traffic, Perplexity-User, Browserbase, Bytespider agent modes, and similar agentic browsers. Ordinary AI training and content crawlers (GPTBot, ClaudeBot, Google-Extended, CCBot, Applebot-Extended, PerplexityBot and the like) stay allowed.
+- All X / xAI / SpaceX crawlers beyond the single one needed for link previews and API use: Twitterbot stays allowed so shared links render; xAI, Grok, X-Bot, and SpaceX-operated crawlers are blocked.
+
 - Aggressive SEO and backlink scrapers: AhrefsBot, SemrushBot, MJ12bot, DotBot, BLEXBot, DataForSeoBot, rogerbot, Screaming Frog, SEOkicks, serpstatbot, Barkrowler, ZoominfoBot.
 - The private dashboard stays disallowed for everyone.
 
