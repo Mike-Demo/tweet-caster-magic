@@ -186,7 +186,7 @@ function Landing() {
 
               <HCaptcha
                 ref={captchaRef}
-                siteKey={HCAPTCHA_SITE_KEY}
+                siteKey={siteKey}
                 onVerify={(token) => setCaptchaToken(token)}
                 onExpire={() => setCaptchaToken(null)}
                 onError={() => setCaptchaToken(null)}
