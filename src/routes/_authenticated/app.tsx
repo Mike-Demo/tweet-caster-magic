@@ -210,20 +210,45 @@ function Dashboard() {
                     </div>
                   ) : (
                     <p style={{ margin: 0, color: "var(--wa-color-text-quiet)" }}>
-                      Create an app in the X developer portal with Read and write permission, then
-                      paste its four values. They are encrypted and never sent to your browser again.
+                      Create an app in the X developer console, set its user authentication
+                      permissions to <strong>Read and write</strong>, then paste its four values.
+                      They are encrypted and never sent to your browser again.
                     </p>
                   )}
+
+                  <WaCallout variant="neutral">
+                    <span slot="icon" />
+                    <div className="wa-stack wa-gap-2xs">
+                      <span>
+                        In the X console, open <strong>Keys &amp; Tokens</strong>. The Consumer Key
+                        and Secret Key are the first two values below.
+                      </span>
+                      <span>
+                        Under <strong>OAuth 1.0 Keys</strong>, generate the Access Token and Secret.
+                        If you change the permission to Read and write afterwards, regenerate them —
+                        otherwise posting is refused.
+                      </span>
+                      <span>The Bearer Token is not needed here; it can only read, never post.</span>
+                    </div>
+                  </WaCallout>
 
                   <div className="wa-grid" style={{ ["--min-column-size" as string]: "16rem" }}>
                     {(
                       [
-                        ["apiKey", "API key"],
-                        ["apiSecret", "API key secret"],
-                        ["accessToken", "Access token"],
-                        ["accessSecret", "Access token secret"],
+                        ["apiKey", "API key", "Consumer Key in the X console"],
+                        ["apiSecret", "API key secret", "Secret Key in the X console"],
+                        [
+                          "accessToken",
+                          "Access token",
+                          "Under OAuth 1.0 Keys — generate after setting Read and write",
+                        ],
+                        [
+                          "accessSecret",
+                          "Access token secret",
+                          "Shown once alongside the access token",
+                        ],
                       ] as const
-                    ).map(([field, label]) => (
+                    ).map(([field, label, hint]) => (
                       <label key={field} className="wa-stack wa-gap-2xs" htmlFor={`x-cred-${field}`}>
                         <span>{label}</span>
                         <input
@@ -234,10 +259,12 @@ function Dashboard() {
                           value={keys[field]}
                           onChange={(event) => setKeys({ ...keys, [field]: event.target.value })}
                         />
+                        <small style={{ color: "var(--wa-color-text-quiet)" }}>{hint}</small>
                       </label>
 
                     ))}
                   </div>
+
                   <div>
                     <WaButton
                       variant="brand"
