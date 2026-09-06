@@ -1,4 +1,5 @@
 import { AppFooter } from "@/components/app-footer";
+import { SITE_URL, homeJsonLd } from "@/lib/structured-data";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
