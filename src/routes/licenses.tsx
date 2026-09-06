@@ -1,8 +1,8 @@
+import { AppFooter } from "@/components/app-footer";
 import { createFileRoute } from "@tanstack/react-router";
 
 import {
   LicensesPage,
-  SiteFooter,
   WebAwesomeLoader,
 } from "@/design-system/font-awsome-web-awesome-171158";
 import { baseCredits } from "@/design-system/font-awsome-web-awesome-171158/webawesome/patterns/licenses";
@@ -66,7 +66,7 @@ function Licenses() {
           ]}
         />
       </main>
-      <SiteFooter />
+      <AppFooter />
     </>
   );
 }
