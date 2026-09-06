@@ -15,6 +15,7 @@ import {
   type QueueItem,
 } from "@/lib/app.functions";
 import {
+  SiteFooter,
   WaBadge,
   WaButton,
   WaCallout,
