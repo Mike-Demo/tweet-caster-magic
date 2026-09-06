@@ -2,11 +2,13 @@ import { useEffect, useRef, type ReactElement } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 
 import {
+  WaBadge,
   WaButton,
   WaDropdown,
   WaDropdownItem,
   WaIcon,
 } from "@/design-system/font-awsome-web-awesome-171158";
+
 
 type NavTarget = "/" | "/terms" | "/privacy" | "/licenses";
 
@@ -62,6 +64,10 @@ export function SiteNav(): ReactElement {
         }}
       >
         <WaIcon name="repeat" /> Crosspost
+        <WaBadge variant="neutral" appearance="outlined" pill>
+          Beta
+        </WaBadge>
+
       </Link>
 
       <WaDropdown ref={menuRef}>
