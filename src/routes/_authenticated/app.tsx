@@ -15,6 +15,7 @@ import {
   type QueueItem,
 } from "@/lib/app.functions";
 import {
+  SiteFooter,
   WaBadge,
   WaButton,
   WaCallout,
@@ -419,6 +420,7 @@ function Dashboard() {
           developer account and your own tweet.app account.
         </p>
       </div>
+      <SiteFooter />
     </>
   );
 }
