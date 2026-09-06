@@ -88,6 +88,10 @@ export function TwoFactorGate({ children }: { children: ReactNode }) {
   async function handleVerify(event: React.FormEvent) {
     event.preventDefault();
     if (!factorId) return;
+    if (code.trim().length !== 6) {
+      setError("Enter the full 6-digit code from your authenticator app.");
+      return;
+    }
     setBusy(true);
     setError(null);
     try {
@@ -145,11 +149,13 @@ export function TwoFactorGate({ children }: { children: ReactNode }) {
                 Scan this with Google Authenticator, 1Password, Authy or a similar app, then type
                 the 6-digit code it shows.
               </p>
-              <div
-                aria-label="Setup QR code"
-                style={{ display: "grid", placeItems: "center" }}
-                dangerouslySetInnerHTML={{ __html: enrollInfo.qrCode }}
-              />
+              <div className="wa-cluster wa-justify-content-center">
+                <img
+                  src={enrollInfo.qrCode}
+                  alt="Authenticator setup QR code"
+                  style={{ display: "block", maxWidth: "100%" }}
+                />
+              </div>
               <p style={{ margin: 0, fontSize: "var(--wa-font-size-s)", color: "var(--wa-color-text-quiet)" }}>
                 Can&apos;t scan? Enter this key instead:{" "}
                 <code style={{ wordBreak: "break-all" }}>{enrollInfo.secret}</code>
@@ -179,7 +185,7 @@ export function TwoFactorGate({ children }: { children: ReactNode }) {
             />
           </label>
 
-          <WaButton type="submit" variant="brand" disabled={busy || code.length !== 6}>
+          <WaButton type="submit" variant="brand" disabled={busy}>
             {busy ? <WaSpinner slot="start" /> : null}
             {setup ? "Confirm and continue" : "Verify"}
           </WaButton>
