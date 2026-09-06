@@ -7,6 +7,7 @@ import {
   WaCallout,
   WaCard,
   WaSpinner,
+  WebAwesomeLoader,
 } from "@/design-system/font-awsome-web-awesome-171158";
 
 type Stage = "checking" | "enroll" | "challenge" | "ready";
@@ -126,7 +127,9 @@ export function TwoFactorGate({ children }: { children: ReactNode }) {
   const setup = stage === "enroll" && enrollInfo !== null;
 
   return (
-    <main
+    <>
+      <WebAwesomeLoader />
+      <main
       className="wa-stack wa-gap-l"
       style={{ padding: "3rem 1.5rem", maxWidth: "34rem", margin: "0 auto" }}
     >
@@ -189,6 +192,51 @@ export function TwoFactorGate({ children }: { children: ReactNode }) {
           </WaButton>
         </form>
       </WaCard>
-    </main>
+      </main>
+    </>
+  );
+}
+
+/** Dashboard panel showing that two-factor is active, with a reset path. */
+export function TwoFactorSettings() {
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleReset() {
+    setBusy(true);
+    setError(null);
+    try {
+      const { data: factors } = await supabase.auth.mfa.listFactors();
+      for (const factor of factors?.all ?? []) {
+        await supabase.auth.mfa.unenroll({ factorId: factor.id });
+      }
+      await supabase.auth.refreshSession();
+      window.location.reload();
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "Could not reset two-factor.");
+      setBusy(false);
+    }
+  }
+
+  return (
+    <WaCard>
+      <div className="wa-stack wa-gap-s">
+        <h2 style={{ margin: 0, fontSize: "1.05rem" }}>Two-factor authentication</h2>
+        <p style={{ margin: 0, color: "var(--wa-color-text-quiet)" }}>
+          Active. Every sign-in asks for a code from your authenticator app.
+        </p>
+        {error ? <WaCallout variant="danger">{error}</WaCallout> : null}
+        <WaButton
+          appearance="outlined"
+          disabled={busy}
+          onClick={() => {
+            void handleReset();
+          }}
+        >
+          {busy ? <WaSpinner slot="start" /> : null}
+          Set up a new device
+        </WaButton>
+      </div>
+    </WaCard>
   );
 }
