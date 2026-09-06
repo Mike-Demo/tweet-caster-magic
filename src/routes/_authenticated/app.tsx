@@ -14,6 +14,7 @@ import {
   syncNow,
   type QueueItem,
 } from "@/lib/app.functions";
+import { TwoFactorGate, TwoFactorSettings } from "@/components/two-factor-gate";
 import {
   SiteFooter,
   WaBadge,
@@ -48,8 +49,16 @@ export const Route = createFileRoute("/_authenticated/app")({
       { name: "twitter:card", content: "summary" },
     ],
   }),
-  component: Dashboard,
+  component: ProtectedDashboard,
 });
+
+function ProtectedDashboard() {
+  return (
+    <TwoFactorGate>
+      <Dashboard />
+    </TwoFactorGate>
+  );
+}
 
 function statusVariant(status: string): "neutral" | "success" | "warning" | "danger" {
   if (status === "posted") return "success";
@@ -406,6 +415,7 @@ function Dashboard() {
             </div>
           </WaTabPanel>
         </WaTabGroup>
+        <TwoFactorSettings />
         <p
           style={{
             marginTop: "2.5rem",
