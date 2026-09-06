@@ -53,6 +53,14 @@ function Licenses() {
                   url: "https://tweet.app",
                   note: "Source of the posts this app reposts.",
                 },
+                {
+                  name: "X API",
+                  author: "X Corp.",
+                  license: "X Developer Agreement and Policy",
+                  url: "https://developer.x.com/en/developer-terms/agreement-and-policy",
+                  note: "Posts are published to X using each person's own X developer account and keys. This app is not affiliated with X Corp.",
+                },
+
               ],
             },
           ]}
