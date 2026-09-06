@@ -14,7 +14,7 @@ import {
   syncNow,
   type QueueItem,
 } from "@/lib/app.functions";
-import { TwoFactorGate } from "@/components/two-factor-gate";
+import { TwoFactorGate, TwoFactorSettings } from "@/components/two-factor-gate";
 import {
   SiteFooter,
   WaBadge,
@@ -415,6 +415,7 @@ function Dashboard() {
             </div>
           </WaTabPanel>
         </WaTabGroup>
+        <TwoFactorSettings />
         <p
           style={{
             marginTop: "2.5rem",
