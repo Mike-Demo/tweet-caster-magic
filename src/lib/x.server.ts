@@ -59,7 +59,7 @@ function buildAuthorizationHeader(
   const signingKey = `${percentEncode(credentials.apiSecret)}&${percentEncode(credentials.accessSecret)}`;
   const signature = createHmac("sha1", signingKey).update(baseString).digest("base64");
 
-  const headerParams = { ...oauthParams, oauth_signature: signature };
+  const headerParams: Record<string, string> = { ...oauthParams, oauth_signature: signature };
   return `OAuth ${Object.keys(headerParams)
     .sort()
     .map((key) => `${percentEncode(key)}="${percentEncode(headerParams[key] ?? "")}"`)
