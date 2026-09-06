@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { requireMfa } from "@/lib/mfa-middleware";
 
 export interface DashboardSettings {
   tweetUsername: string | null;
@@ -40,7 +40,7 @@ const emptySettings: DashboardSettings = {
 };
 
 export const getDashboard = createServerFn({ method: "GET" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMfa])
   .handler(async ({ context }): Promise<DashboardData> => {
     const { supabase, userId } = context;
 
@@ -99,7 +99,7 @@ export const getDashboard = createServerFn({ method: "GET" })
   });
 
 export const saveSourceAccount = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMfa])
   .inputValidator((data: { username: string }) => {
     const username = (data?.username ?? "").trim().replace(/^@/, "");
     if (!/^[A-Za-z0-9_.-]{1,40}$/.test(username)) throw new Error("That username doesn't look right.");
@@ -126,7 +126,7 @@ export const saveSourceAccount = createServerFn({ method: "POST" })
   });
 
 export const saveAutomationSettings = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMfa])
   .inputValidator(
     (data: {
       autoPost: boolean;
@@ -155,7 +155,7 @@ export const saveAutomationSettings = createServerFn({ method: "POST" })
   });
 
 export const saveXCredentials = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMfa])
   .inputValidator(
     (data: { apiKey: string; apiSecret: string; accessToken: string; accessSecret: string }) => {
       const values = {
@@ -195,7 +195,7 @@ export const saveXCredentials = createServerFn({ method: "POST" })
   });
 
 export const removeXCredentials = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMfa])
   .handler(async ({ context }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin
@@ -207,14 +207,14 @@ export const removeXCredentials = createServerFn({ method: "POST" })
   });
 
 export const syncNow = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMfa])
   .handler(async ({ context }) => {
     const { syncAndMaybePublish } = await import("./sync.server");
     return syncAndMaybePublish(context.userId);
   });
 
 export const postNow = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMfa])
   .inputValidator((data: { id: string }) => {
     if (!data?.id) throw new Error("Missing post.");
     return { id: data.id };
@@ -260,7 +260,7 @@ export const postNow = createServerFn({ method: "POST" })
   });
 
 export const setPostStatus = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMfa])
   .inputValidator((data: { id: string; status: string }) => {
     if (!data?.id) throw new Error("Missing post.");
     const status = data.status === "skipped" ? "skipped" : "pending";
