@@ -62,6 +62,10 @@ export function SiteNav(): ReactElement {
         }}
       >
         <WaIcon name="repeat" /> Crosspost
+        <WaBadge variant="neutral" appearance="outlined" pill>
+          Beta
+        </WaBadge>
+
       </Link>
 
       <WaDropdown ref={menuRef}>
