@@ -126,6 +126,15 @@ function Dashboard() {
   const posts = data?.posts ?? [];
   const pending = posts.filter((post) => post.status === "pending");
   const history = posts.filter((post) => post.status !== "pending");
+  const slots = data?.credentials ?? [];
+  const anyConnected = slots.some((slot) => slot.connected);
+  const activeEnvironment = data?.activeEnvironment ?? null;
+  const environmentLabels: Record<XEnvironment, string> = {
+    development: "Development",
+    staging: "Staging",
+    production: "Production",
+  };
+
 
   return (
     <>
