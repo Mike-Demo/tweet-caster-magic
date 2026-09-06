@@ -22,7 +22,7 @@ Schema markup is a description, not a legal notice — it does not replace the v
 ## Technical notes
 
 - Add JSON-LD via each route's `head()` `scripts` entry (TanStack Router), never a client-side injection: `scripts: [{ type: "application/ld+json", children: JSON.stringify(...) }]`.
-- Home (`src/routes/index.tsx`): `@graph` with `SoftwareApplication` (applicationCategory `BusinessApplication`, `offers` price 0), `Organization` with `sameAs` for LinkedIn / X / Threads / tweet.app, `WebSite`, and `termsOfService` URLs.
+- Home (`src/routes/index.tsx`): `@graph` with `WebApplication` (`applicationCategory: "BusinessApplication"`, `browserRequirements`, `operatingSystem: "Any"`, `offers` price 0), `Organization` with `sameAs` for LinkedIn / X / Threads / tweet.app, `WebSite`, and `termsOfService` URLs.
 - Licenses (`src/routes/licenses.tsx`): `WebPage` + `BreadcrumbList`.
 - Absolute URLs use `https://tweet.mikedemo.dev` (the live custom domain) so the markup validates.
 - The dashboard (`/app`) is disallowed in robots.txt and gets no markup.
