@@ -88,6 +88,10 @@ export function TwoFactorGate({ children }: { children: ReactNode }) {
   async function handleVerify(event: React.FormEvent) {
     event.preventDefault();
     if (!factorId) return;
+    if (code.trim().length !== 6) {
+      setError("Enter the full 6-digit code from your authenticator app.");
+      return;
+    }
     setBusy(true);
     setError(null);
     try {
