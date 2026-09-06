@@ -361,7 +361,23 @@ function Dashboard() {
                     ))}
                   </div>
 
+                  <div className="wa-stack wa-gap-2xs">
+                    <strong>Which set of keys are these?</strong>
+                    <div className="wa-cluster wa-gap-2xs">
+                      {X_ENVIRONMENTS.map((value) => (
+                        <WaButton
+                          key={value}
+                          appearance={environment === value ? "filled" : "outlined"}
+                          onClick={() => setEnvironment(value)}
+                        >
+                          {environmentLabels[value]}
+                        </WaButton>
+                      ))}
+                    </div>
+                  </div>
+
                   <div className="wa-grid" style={{ ["--min-column-size" as string]: "16rem" }}>
+
                     {(
                       [
                         ["apiKey", "API key", "Consumer Key in the X console"],
