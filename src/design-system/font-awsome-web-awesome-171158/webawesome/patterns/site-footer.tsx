@@ -31,6 +31,12 @@ export const DEFAULT_SOCIAL_LINKS: readonly SiteFooterSocialLink[] = [
     text: "X",
   },
   {
+    label: "@demo on tweet.app",
+    href: "https://app.tweet.app/post/92206629-1525-4a74-8f51-39e226fc9e75",
+    icon: "twitter",
+    text: "tweet.app",
+  },
+  {
     label: "MikeDemo on Threads",
     href: "https://www.threads.com/@mdemop",
     icon: "threads",
