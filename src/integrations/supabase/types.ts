@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       profiles: {
         Row: {
+          active_x_environment: string | null
           auto_post: boolean
           created_at: string
           id: string
@@ -30,6 +31,7 @@ export type Database = {
           watch_since: string | null
         }
         Insert: {
+          active_x_environment?: string | null
           auto_post?: boolean
           created_at?: string
           id: string
@@ -44,6 +46,7 @@ export type Database = {
           watch_since?: string | null
         }
         Update: {
+          active_x_environment?: string | null
           auto_post?: boolean
           created_at?: string
           id?: string
@@ -109,6 +112,7 @@ export type Database = {
           api_key_hint: string
           api_secret_ct: string
           created_at: string
+          environment: string
           updated_at: string
           user_id: string
           x_username: string | null
@@ -120,6 +124,7 @@ export type Database = {
           api_key_hint: string
           api_secret_ct: string
           created_at?: string
+          environment?: string
           updated_at?: string
           user_id: string
           x_username?: string | null
@@ -131,6 +136,7 @@ export type Database = {
           api_key_hint?: string
           api_secret_ct?: string
           created_at?: string
+          environment?: string
           updated_at?: string
           user_id?: string
           x_username?: string | null
