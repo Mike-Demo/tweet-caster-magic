@@ -118,8 +118,8 @@ export function TwoFactorGate({ children }: { children: ReactNode }) {
 
   if (stage === "checking") {
     return (
-      <div style={{ display: "grid", placeItems: "center", minHeight: "60vh" }}>
-        <WaSpinner style={{ fontSize: "2rem" }} />
+      <div style={{ display: "grid", placeItems: "center", minHeight: "60vh", padding: "var(--wa-space-3xl)" }}>
+        <WaSpinner style={{ fontSize: "var(--wa-font-size-2xl)" }} />
       </div>
     );
   }
@@ -131,11 +131,11 @@ export function TwoFactorGate({ children }: { children: ReactNode }) {
       <WebAwesomeLoader />
       <main
       className="wa-stack wa-gap-l"
-      style={{ padding: "3rem 1.5rem", maxWidth: "34rem", margin: "0 auto" }}
+      style={{ padding: "var(--wa-space-3xl) var(--wa-space-l)", maxWidth: "34rem", margin: "0 auto" }}
     >
       <WaCard>
         <form className="wa-stack wa-gap-m" onSubmit={handleVerify}>
-          <h1 style={{ margin: 0, fontSize: "1.5rem" }}>
+          <h1 style={{ margin: 0, fontSize: "var(--wa-font-size-xl)" }}>
             {setup ? "Set up your authenticator" : "Enter your 6-digit code"}
           </h1>
 
@@ -150,7 +150,7 @@ export function TwoFactorGate({ children }: { children: ReactNode }) {
                 style={{ display: "grid", placeItems: "center" }}
                 dangerouslySetInnerHTML={{ __html: enrollInfo.qrCode }}
               />
-              <p style={{ margin: 0, fontSize: "0.85rem", color: "var(--wa-color-text-quiet)" }}>
+              <p style={{ margin: 0, fontSize: "var(--wa-font-size-s)", color: "var(--wa-color-text-quiet)" }}>
                 Can&apos;t scan? Enter this key instead:{" "}
                 <code style={{ wordBreak: "break-all" }}>{enrollInfo.secret}</code>
               </p>
@@ -221,7 +221,7 @@ export function TwoFactorSettings() {
   return (
     <WaCard>
       <div className="wa-stack wa-gap-s">
-        <h2 style={{ margin: 0, fontSize: "1.05rem" }}>Two-factor authentication</h2>
+        <h2 style={{ margin: 0, fontSize: "var(--wa-font-size-l)" }}>Two-factor authentication</h2>
         <p style={{ margin: 0, color: "var(--wa-color-text-quiet)" }}>
           Active. Every sign-in asks for a code from your authenticator app.
         </p>
