@@ -98,6 +98,8 @@ function Dashboard() {
   const [username, setUsername] = useState("");
   const [keys, setKeys] = useState({ apiKey: "", apiSecret: "", accessToken: "", accessSecret: "" });
 
+  const [environment, setEnvironment] = useState<XEnvironment>("production");
+
   useEffect(() => {
     if (dashboard.data?.settings.tweetUsername) setUsername(dashboard.data.settings.tweetUsername);
   }, [dashboard.data?.settings.tweetUsername]);
@@ -105,8 +107,11 @@ function Dashboard() {
   const saveAccount = useMutation({
     mutationFn: (value: string) => saveSourceAccount({ data: { username: value } }),
   });
-  const saveKeys = useMutation({ mutationFn: () => saveXCredentials({ data: keys }) });
+  const saveKeys = useMutation({
+    mutationFn: () => saveXCredentials({ data: { ...keys, environment } }),
+  });
   const sync = useMutation({ mutationFn: () => syncNow() });
+
 
   if (dashboard.isLoading) {
     return (
