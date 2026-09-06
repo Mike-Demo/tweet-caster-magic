@@ -160,14 +160,17 @@ function Dashboard() {
                 <div className="wa-stack wa-gap-m">
                   <h2 style={{ margin: 0 }}>1. The tweet.app account to watch</h2>
                   <div className="wa-cluster wa-gap-s" style={{ alignItems: "end" }}>
-                    <label className="wa-stack wa-gap-2xs" style={{ flex: "1 1 16rem" }}>
+                    <label className="wa-stack wa-gap-2xs" style={{ flex: "1 1 16rem" }} htmlFor="tweet-username">
                       <span>Username</span>
                       <input
+                        id="tweet-username"
+                        name="tweetUsername"
                         value={username}
                         placeholder="demo"
                         onChange={(event) => setUsername(event.target.value)}
                       />
                     </label>
+
                     <WaButton
                       variant="brand"
                       disabled={saveAccount.isPending}
