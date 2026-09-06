@@ -210,9 +210,9 @@ function Dashboard() {
                     </div>
                   ) : (
                     <p style={{ margin: 0, color: "var(--wa-color-text-quiet)" }}>
-                      Create an app in the X developer console, set its user authentication
-                      permissions to <strong>Read and write</strong>, then paste its four values.
-                      They are encrypted and never sent to your browser again.
+                      You need your own X developer account and your own app — Crosspost never posts
+                      through a shared or Crosspost-owned account. Set the app's user authentication
+                      permission to <strong>Read and write</strong>, then paste its four values.
                     </p>
                   )}
 
@@ -220,17 +220,52 @@ function Dashboard() {
                     <span slot="icon" />
                     <div className="wa-stack wa-gap-2xs">
                       <span>
-                        In the X console, open <strong>Keys &amp; Tokens</strong>. The Consumer Key
-                        and Secret Key are the first two values below.
+                        The Access Token and Secret act as <strong>you</strong>: anything Crosspost
+                        sends appears as a post from the account that owns the app.
                       </span>
                       <span>
-                        Under <strong>OAuth 1.0 Keys</strong>, generate the Access Token and Secret.
-                        If you change the permission to Read and write afterwards, regenerate them —
-                        otherwise posting is refused.
+                        In the X console, open <strong>Keys &amp; Tokens</strong>. The Consumer Key
+                        and Secret Key are the first two values below. Under{" "}
+                        <strong>OAuth 1.0 Keys</strong>, generate the Access Token and Secret after
+                        setting Read and write — if you change the permission afterwards, regenerate
+                        them or posting is refused.
                       </span>
-                      <span>The Bearer Token is not needed here; it can only read, never post.</span>
+                      <span>
+                        The Bearer Token is not used here; it can only read public data, never post.
+                      </span>
+                      <span>
+                        X shows these values only once. Keep them in a password manager —
+                        regenerating replaces the old ones.
+                      </span>
+                      <span>
+                        Crosspost stores the four values encrypted, uses them only to publish the
+                        posts you approve (or all of them if you turn on automatic posting), and
+                        never sends them back to your browser. Removing the keys stops all posting
+                        immediately.
+                      </span>
                     </div>
                   </WaCallout>
+
+                  <div className="wa-cluster wa-gap-s" style={{ fontSize: "var(--wa-font-size-s)" }}>
+                    {(
+                      [
+                        ["https://console.x.com", "Developer Console"],
+                        ["https://docs.x.com/x-api/getting-started/getting-access", "Getting access"],
+                        [
+                          "https://docs.x.com/resources/fundamentals/authentication/overview",
+                          "Authentication overview",
+                        ],
+                        [
+                          "https://docs.x.com/resources/fundamentals/authentication/oauth-1-0a/api-key-and-secret",
+                          "OAuth 1.0a keys",
+                        ],
+                      ] as const
+                    ).map(([href, label]) => (
+                      <a key={href} href={href} target="_blank" rel="noreferrer">
+                        {label}
+                      </a>
+                    ))}
+                  </div>
 
                   <div className="wa-grid" style={{ ["--min-column-size" as string]: "16rem" }}>
                     {(
@@ -240,7 +275,7 @@ function Dashboard() {
                         [
                           "accessToken",
                           "Access token",
-                          "Under OAuth 1.0 Keys — generate after setting Read and write",
+                          "Under OAuth 1.0 Keys — posts as your own account",
                         ],
                         [
                           "accessSecret",
@@ -249,6 +284,7 @@ function Dashboard() {
                         ],
                       ] as const
                     ).map(([field, label, hint]) => (
+
                       <label key={field} className="wa-stack wa-gap-2xs" htmlFor={`x-cred-${field}`}>
                         <span>{label}</span>
                         <input
