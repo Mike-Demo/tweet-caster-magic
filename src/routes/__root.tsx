@@ -29,6 +29,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "preconnect", href: "https://cdn.jsdelivr.net", crossOrigin: "anonymous" },
+      { rel: "dns-prefetch", href: "https://cdn.jsdelivr.net" },
       { rel: "stylesheet", href: WEB_AWESOME_STYLE_URL },
       { rel: "stylesheet", href: FONT_AWESOME_STYLE_URL },
       { rel: "stylesheet", href: appCss },
@@ -55,6 +57,9 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
         {children}
         <Scripts />
       </body>

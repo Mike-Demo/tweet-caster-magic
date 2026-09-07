@@ -5,7 +5,7 @@ import {
   WaBadge,
   WaCard,
 } from "@/design-system/font-awsome-web-awesome-171158";
-import { SITE_URL, pageJsonLd } from "@/lib/structured-data";
+import { SITE_URL, changelogJsonLd } from "@/lib/structured-data";
 import { createFileRoute } from "@tanstack/react-router";
 
 const TITLE = "Changelog — Crosspost";
@@ -27,14 +27,7 @@ export const Route = createFileRoute("/changelog")({
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/changelog` }],
     scripts: [
-      {
-        type: "application/ld+json",
-        children: pageJsonLd({
-          path: "/changelog",
-          name: "Changelog",
-          description: DESCRIPTION,
-        }),
-      },
+      { type: "application/ld+json", children: changelogJsonLd(ENTRIES) },
     ],
   }),
   component: Changelog,
@@ -55,6 +48,18 @@ interface Entry {
 }
 
 const ENTRIES: readonly Entry[] = [
+  {
+    date: "2026-09-07",
+    title: "Faster pages and a few polish items",
+    kind: "Improved",
+    notes: [
+      "Light or dark now follows your device by default, and the logo's arrows switch to white in dark mode.",
+      "The footer carries switches for appearance and the design system's server-rendered mode.",
+      "Pages load ahead of time when you open the menu, so moving between pages is near-instant.",
+      "Added a keyboard 'Skip to content' shortcut and a proper page for addresses that don't exist.",
+      "Signing in with Google now completes correctly instead of returning to the home page.",
+    ],
+  },
   {
     date: "2026-09-07",
     title: "tweet.app now needs your own connection",
@@ -121,9 +126,9 @@ function Changelog() {
     <>
       <AppWebAwesomeLoader />
       <SiteNav />
-      <main
+      <main id="main-content"
         className="wa-stack wa-gap-l"
-        style={{ padding: "3rem 1.5rem", maxWidth: "48rem", margin: "0 auto" }}
+        style={{ paddingBlock: "var(--wa-space-3xl)", paddingInline: "var(--wa-space-l)", maxWidth: "48rem", marginInline: "auto" }}
       >
         <h1 style={{ margin: 0 }}>Changelog</h1>
         <p style={{ margin: 0, color: "var(--wa-color-text-quiet)" }}>
