@@ -28,9 +28,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      // Warm up the origins the first paint depends on before the CSS and
+      // element definitions are requested.
+      { rel: "preconnect", href: "https://cdn.jsdelivr.net", crossOrigin: "anonymous" },
+      { rel: "preconnect", href: "https://esm.sh", crossOrigin: "anonymous" },
+      { rel: "dns-prefetch", href: "https://cdn.jsdelivr.net" },
+      { rel: "dns-prefetch", href: "https://esm.sh" },
+      { rel: "preconnect", href: SUPABASE_ORIGIN, crossOrigin: "anonymous" },
+
+      { rel: "preload", as: "style", href: WEB_AWESOME_STYLE_URL },
+      { rel: "preload", as: "style", href: FONT_AWESOME_STYLE_URL },
       { rel: "stylesheet", href: WEB_AWESOME_STYLE_URL },
       { rel: "stylesheet", href: FONT_AWESOME_STYLE_URL },
       { rel: "stylesheet", href: appCss },
+
 
       { rel: "icon", href: "/favicon.png", type: "image/png" },
       { rel: "icon", href: "/icon-192.png", type: "image/png", sizes: "192x192" },
