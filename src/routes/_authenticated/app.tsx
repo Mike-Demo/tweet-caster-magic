@@ -146,7 +146,7 @@ function Dashboard() {
       <div className="wa-stack wa-gap-l" style={{ maxWidth: "64rem", margin: "0 auto", padding: "2rem 1.25rem 4rem" }}>
         <header className="wa-cluster" style={{ justifyContent: "space-between", alignItems: "center" }}>
           <span className="wa-cluster wa-gap-xs" style={{ fontWeight: 700, fontSize: "1.15rem" }}>
-            <WaIcon name="repeat" /> Crosspost
+            <BrandMark /> Crosspost
           </span>
           <WaButton
             appearance="outlined"
