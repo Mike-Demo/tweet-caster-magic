@@ -15,6 +15,9 @@ import { WEB_AWESOME_HTML_CLASSES } from "@/design-system/font-awsome-web-awesom
 
 import appCss from "../styles.css?url";
 
+const SUPABASE_ORIGIN = import.meta.env["VITE_SUPABASE_URL"] as string;
+
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
