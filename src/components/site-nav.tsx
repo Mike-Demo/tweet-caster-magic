@@ -1,5 +1,5 @@
 import { useEffect, useRef, type ReactElement } from "react";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate, useRouter } from "@tanstack/react-router";
 
 import {
   WaButton,
@@ -26,6 +26,7 @@ const PAGES: ReadonlyArray<{ to: NavTarget; label: string; icon: string }> = [
  */
 export function SiteNav(): ReactElement {
   const navigate = useNavigate();
+  const router = useRouter();
   const menuRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -41,9 +42,18 @@ export function SiteNav(): ReactElement {
       }
       void navigate({ to: value as NavTarget });
     }
+    // Opening the menu is a strong hint the visitor is about to change page,
+    // so fetch those routes now instead of after the click.
+    function handleShow() {
+      for (const page of PAGES) void router.preloadRoute({ to: page.to });
+    }
     menu.addEventListener("wa-select", handleSelect);
-    return () => menu.removeEventListener("wa-select", handleSelect);
-  }, [navigate]);
+    menu.addEventListener("wa-show", handleShow);
+    return () => {
+      menu.removeEventListener("wa-select", handleSelect);
+      menu.removeEventListener("wa-show", handleShow);
+    };
+  }, [navigate, router]);
 
   return (
     <header
