@@ -46,6 +46,7 @@ export const Route = createFileRoute("/_authenticated/app")({
   head: () => ({
     meta: [
       { title: "Your crossposting dashboard | Crosspost" },
+      { name: "robots", content: "noindex, nofollow" },
       {
         name: "description",
         content:
