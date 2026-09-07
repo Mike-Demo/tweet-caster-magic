@@ -161,8 +161,12 @@ export const saveSourceAccount = createServerFn({ method: "POST" })
   })
   .handler(async ({ data, context }) => {
     const { fetchTweetAppProfile } = await import("./tweetApp.server");
-    const profile = await fetchTweetAppProfile(data.username);
+    const { loadTweetAppToken } = await import("./sync.server");
+    const token = await loadTweetAppToken(context.userId);
+    if (!token) throw new Error("Connect your tweet.app account first.");
+    const profile = await fetchTweetAppProfile(data.username, token);
     if (!profile) throw new Error(`No tweet.app account found for @${data.username}.`);
+
 
     const { error } = await context.supabase
       .from("profiles")
