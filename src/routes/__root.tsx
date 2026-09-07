@@ -12,6 +12,7 @@ import {
   WEB_AWESOME_STYLE_URL,
 } from "@/design-system/font-awsome-web-awesome-171158/webawesome/cdn";
 import { WEB_AWESOME_HTML_CLASSES } from "@/design-system/font-awsome-web-awesome-171158/webawesome/setup";
+import { PREFERENCES_BOOTSTRAP_SCRIPT } from "@/lib/client-preferences";
 
 import appCss from "../styles.css?url";
 
@@ -38,6 +39,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
       { rel: "manifest", href: "/manifest.webmanifest" },
     ],
+    scripts: [{ children: PREFERENCES_BOOTSTRAP_SCRIPT }],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -45,7 +47,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={WEB_AWESOME_HTML_CLASSES}>
+    // The head bootstrap script sets the appearance class and SSR flag on
+    // <html> before hydration, so React must not "correct" them back.
+    <html lang="en" className={WEB_AWESOME_HTML_CLASSES} suppressHydrationWarning>
+
       <head>
         <HeadContent />
       </head>

@@ -1,9 +1,9 @@
+import { AppWebAwesomeLoader } from "@/components/app-webawesome-loader";
 import { AppFooter } from "@/components/app-footer";
 import { SiteNav } from "@/components/site-nav";
 import {
   WaBadge,
   WaCard,
-  WebAwesomeLoader,
 } from "@/design-system/font-awsome-web-awesome-171158";
 import { SITE_URL, pageJsonLd } from "@/lib/structured-data";
 import { createFileRoute } from "@tanstack/react-router";
@@ -119,7 +119,7 @@ function badgeVariant(kind: Entry["kind"]): "brand" | "success" | "warning" | "n
 function Changelog() {
   return (
     <>
-      <WebAwesomeLoader />
+      <AppWebAwesomeLoader />
       <SiteNav />
       <main
         className="wa-stack wa-gap-l"

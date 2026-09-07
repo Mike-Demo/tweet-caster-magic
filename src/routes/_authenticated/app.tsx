@@ -1,3 +1,4 @@
+import { AppWebAwesomeLoader } from "@/components/app-webawesome-loader";
 import { AppFooter } from "@/components/app-footer";
 import { BrandMark } from "@/components/brand-mark";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
@@ -39,7 +40,6 @@ import {
   WaTab,
   WaTabGroup,
   WaTabPanel,
-  WebAwesomeLoader,
 } from "@/design-system/font-awsome-web-awesome-171158";
 
 export const Route = createFileRoute("/_authenticated/app")({
@@ -156,7 +156,7 @@ function Dashboard() {
 
   return (
     <>
-      <WebAwesomeLoader />
+      <AppWebAwesomeLoader />
       <div className="wa-stack wa-gap-l" style={{ maxWidth: "64rem", margin: "0 auto", padding: "2rem 1.25rem 4rem" }}>
         <header className="wa-cluster" style={{ justifyContent: "space-between", alignItems: "center" }}>
           <span className="wa-cluster wa-gap-xs" style={{ fontWeight: 700, fontSize: "1.15rem" }}>
