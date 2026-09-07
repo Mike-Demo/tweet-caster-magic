@@ -26,18 +26,13 @@ export default defineConfig(({ command, mode }) => {
       mockupPreviewPlugin(),
       tsConfigPaths({ projects: ["./tsconfig.json"] }),
       ...(useCloudflare ? [cloudflare({ viteEnvironment: { name: "ssr" } })] : []),
-      tanstackStart({
-        // Fully static public pages are rendered once at build time.
-        // "/" reads the captcha key per request and "/app" is per-user, so
-        // discovery stays off and this list is exhaustive.
-        pages: [
-          { path: "/terms" },
-          { path: "/privacy" },
-          { path: "/licenses" },
-          { path: "/changelog" },
-        ],
-        prerender: { enabled: true, autoStaticPathsDiscovery: false },
-      }),
+      // Note: build-time prerendering of the static public pages
+      // (/terms, /privacy, /licenses, /changelog) is not enabled — the
+      // prerender pass boots a Node preview server that the Cloudflare
+      // Workers build output does not provide, so it fails the build.
+      // Those pages are still server-rendered per request and cached.
+      tanstackStart(),
+
 
       viteReact(),
       ...(mode === "development" ? [componentTagger()] : []),
