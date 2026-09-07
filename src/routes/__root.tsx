@@ -47,7 +47,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={WEB_AWESOME_HTML_CLASSES}>
+    // The head bootstrap script sets the appearance class and SSR flag on
+    // <html> before hydration, so React must not "correct" them back.
+    <html lang="en" className={WEB_AWESOME_HTML_CLASSES} suppressHydrationWarning>
+
       <head>
         <HeadContent />
       </head>
