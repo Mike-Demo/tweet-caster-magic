@@ -151,6 +151,14 @@ function Changelog() {
                   <li key={note}>{note}</li>
                 ))}
               </ul>
+              {entry.source ? (
+                <p style={{ margin: 0, fontSize: "var(--wa-font-size-s)" }}>
+                  “{entry.source.quote}” —{" "}
+                  <a href={entry.source.href} target="_blank" rel="noopener noreferrer">
+                    {entry.source.label}
+                  </a>
+                </p>
+              ) : null}
             </div>
           </WaCard>
         ))}
