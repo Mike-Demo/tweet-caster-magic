@@ -13,7 +13,7 @@ import { WaCallout } from "@/design-system/font-awsome-web-awesome-171158/webawe
 import { WaCard } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/card";
 import { WaIcon } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/icon";
 import { WaSpinner } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/spinner";
-import { WebAwesomeLoader } from "@/design-system/font-awsome-web-awesome-171158/webawesome/setup";
+import { DesignSystemLoader } from "@/components/design-system-loader";
 import type { HCaptchaHandle } from "@/design-system/font-awsome-web-awesome-171158/webawesome/patterns/hcaptcha";
 
 export const Route = createFileRoute("/")({
@@ -134,7 +134,7 @@ function Landing() {
 
   return (
     <>
-      <WebAwesomeLoader />
+      <DesignSystemLoader />
       <SiteNav />
       <main className="wa-stack wa-gap-2xl" style={{ padding: "3rem 1.5rem", maxWidth: "68rem", margin: "0 auto" }}>
         <WaCallout variant="warning">

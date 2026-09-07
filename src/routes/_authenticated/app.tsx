@@ -38,7 +38,7 @@ import { WaSwitch } from "@/design-system/font-awsome-web-awesome-171158/webawes
 import { WaTab } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/tab";
 import { WaTabGroup } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/tab-group";
 import { WaTabPanel } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/tab-panel";
-import { WebAwesomeLoader } from "@/design-system/font-awsome-web-awesome-171158/webawesome/setup";
+import { DesignSystemLoader } from "@/components/design-system-loader";
 
 export const Route = createFileRoute("/_authenticated/app")({
   head: () => ({
@@ -154,7 +154,7 @@ function Dashboard() {
 
   return (
     <>
-      <WebAwesomeLoader />
+      <DesignSystemLoader />
       <div className="wa-stack wa-gap-l" style={{ maxWidth: "64rem", margin: "0 auto", padding: "2rem 1.25rem 4rem" }}>
         <header className="wa-cluster" style={{ justifyContent: "space-between", alignItems: "center" }}>
           <span className="wa-cluster wa-gap-xs" style={{ fontWeight: 700, fontSize: "1.15rem" }}>

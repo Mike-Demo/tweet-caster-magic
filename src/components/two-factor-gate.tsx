@@ -6,7 +6,7 @@ import { WaButton } from "@/design-system/font-awsome-web-awesome-171158/webawes
 import { WaCallout } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/callout";
 import { WaCard } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/card";
 import { WaSpinner } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/spinner";
-import { WebAwesomeLoader } from "@/design-system/font-awsome-web-awesome-171158/webawesome/setup";
+import { DesignSystemLoader } from "@/components/design-system-loader";
 
 type Stage = "checking" | "enroll" | "challenge" | "ready";
 
@@ -130,7 +130,7 @@ export function TwoFactorGate({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <WebAwesomeLoader />
+      <DesignSystemLoader />
       <main
       className="wa-stack wa-gap-l"
       style={{ padding: "var(--wa-space-3xl) var(--wa-space-l)", maxWidth: "34rem", margin: "0 auto" }}
