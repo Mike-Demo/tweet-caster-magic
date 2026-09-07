@@ -354,7 +354,7 @@ function Dashboard() {
 
               <WaCard>
                 <div className="wa-stack wa-gap-m">
-                  <h2 style={{ margin: 0 }}>2. Your X developer keys</h2>
+                  <h2 style={{ margin: 0 }}>3. Your X developer keys</h2>
                   <p style={{ margin: 0, color: "var(--wa-color-text-quiet)" }}>
                     You need your own X developer account and your own app — Crosspost never posts
                     through a shared or Crosspost-owned account. Set the app&apos;s user
