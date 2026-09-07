@@ -224,8 +224,16 @@ export async function runScheduledSync(): Promise<{ users: number; posted: numbe
 
   if (error) throw new Error(error.message);
 
+  // People whose tweet.app connection is broken are skipped until they reconnect.
+  const { data: paused } = await supabaseAdmin
+    .from("tweet_app_credentials")
+    .select("user_id")
+    .eq("needs_reconnect", true);
+  const pausedIds = new Set((paused ?? []).map((row) => row.user_id));
+
   let posted = 0;
   for (const profile of profiles ?? []) {
+    if (pausedIds.has(profile.id)) continue;
     try {
       const result = await syncAndMaybePublish(profile.id);
       posted += result.posted;
@@ -233,6 +241,7 @@ export async function runScheduledSync(): Promise<{ users: number; posted: numbe
       console.error("scheduled sync failed", profile.id, cause);
     }
   }
+
 
   return { users: profiles?.length ?? 0, posted };
 }
