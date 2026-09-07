@@ -10,7 +10,7 @@ Rebuild the site mark to match the icon you made in the Icon Wizard: the square 
 
 ## What I need from you
 
-If the Icon Wizard lets you download the finished SVG, send it and I'll use that exact file. Otherwise I'll recreate the composition from the same two free Font Awesome icons — visually equivalent, since both pieces come from the same library.
+Nothing — the wizard's download is paywalled, so I'll recreate the composition from the same two free Font Awesome icons. Visually equivalent, since both pieces come from the same library.
 
 ## Technical notes
 
