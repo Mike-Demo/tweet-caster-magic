@@ -145,6 +145,8 @@ function Dashboard() {
   const slots = data?.credentials ?? [];
   const anyConnected = slots.some((slot) => slot.connected);
   const connectedSlot = slots.find((slot) => slot.connected) ?? null;
+  const tweetApp = data?.tweetApp ?? { connected: false, hint: null, needsReconnect: false };
+
   const environmentLabels: Record<XEnvironment, string> = {
     development: "Development",
     staging: "Staging",
