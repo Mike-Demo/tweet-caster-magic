@@ -7,6 +7,11 @@ Crosspost is an independent service and is not affiliated with, endorsed by, or 
 ## Pages
 
 - [Home](/): What Crosspost does, current service status, and sign in or register.
+- [Setup guide](/docs/setup): Connect tweet.app, choose the account to watch, add X keys, pick behaviour.
+- [Posting](/docs/posting): Automatic vs review-first, replies, quotes, long posts, waiting queue and history.
+- [Tokens and keys](/docs/tokens): The four OAuth 1.0a X values, the tweet.app access token, and how both are stored.
+- [Troubleshooting](/docs/troubleshooting): Fixes for 401 errors, rejected keys, missing posts, rate limits and sign-in problems.
+
 - [Changelog](/changelog): Dated update history with notes on what changed and why.
 - [Terms of Service](/terms): The terms that apply to using Crosspost.
 - [Privacy Policy](/privacy): What data is stored, how it is protected, and how to remove it.
