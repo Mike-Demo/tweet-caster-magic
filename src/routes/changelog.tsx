@@ -40,11 +40,18 @@ export const Route = createFileRoute("/changelog")({
   component: Changelog,
 });
 
+interface Source {
+  readonly label: string;
+  readonly quote: string;
+  readonly href: string;
+}
+
 interface Entry {
   readonly date: string;
   readonly title: string;
   readonly kind: "Status" | "New" | "Improved" | "Fixed";
   readonly notes: readonly string[];
+  readonly source?: Source;
 }
 
 const ENTRIES: readonly Entry[] = [
@@ -58,6 +65,11 @@ const ENTRIES: readonly Entry[] = [
       "Your token is stored encrypted and never sent back to your browser; clearing it stops all reading immediately.",
       "Errors now read in plain language, and automatic posting pauses instead of retrying every hour when a connection is broken.",
     ],
+    source: {
+      label: "@punkrokk on tweet.app",
+      quote: "2.) API locked down. No more (intentionally) public APIs ATM.",
+      href: "https://app.tweet.app/post/13b0e028-7164-429f-9045-9c264d741298",
+    },
   },
   {
     date: "2026-09-05",
