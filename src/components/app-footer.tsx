@@ -36,9 +36,11 @@ export function AppFooter(): ReactElement {
         <a href="https://tweet.app/terms-of-service/" target="_blank" rel="noreferrer">
           tweet.app Terms of Service
         </a>
-        .
+        .{" "}
+        <a href="/changelog">Changelog</a>.
       </p>
       <SiteFooter />
+
     </>
   );
 }
