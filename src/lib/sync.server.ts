@@ -40,6 +40,27 @@ export async function loadCredentials(userId: string): Promise<XCredentials | nu
 }
 
 
+/** Reads the person's own tweet.app access token, decrypted for server use. */
+export async function loadTweetAppToken(userId: string): Promise<string | null> {
+  const { data, error } = await supabaseAdmin
+    .from("tweet_app_credentials")
+    .select("token_ct")
+    .eq("user_id", userId)
+    .maybeSingle();
+
+  if (error) throw new Error(error.message);
+  if (!data) return null;
+  return decryptSecret(data.token_ct);
+}
+
+/** Flags a connection as needing to be reconnected, so we stop retrying it. */
+export async function markTweetAppReconnect(userId: string, needed: boolean): Promise<void> {
+  await supabaseAdmin
+    .from("tweet_app_credentials")
+    .update({ needs_reconnect: needed, updated_at: new Date().toISOString() })
+    .eq("user_id", userId);
+}
+
 /** Pulls new tweet.app posts into the queue. Never records the same post twice. */
 export async function importNewPosts(userId: string): Promise<number> {
   const { data: profile, error } = await supabaseAdmin
@@ -51,8 +72,27 @@ export async function importNewPosts(userId: string): Promise<number> {
   if (error) throw new Error(error.message);
   if (!profile?.tweet_username) return 0;
 
+  const token = await loadTweetAppToken(userId);
+  if (!token) {
+    throw new TweetAppAuthError(
+      401,
+      "Connect your tweet.app account first — tweet.app now requires a token to read posts.",
+      true,
+    );
+  }
+
   const since = profile.last_synced_at ?? profile.watch_since ?? new Date().toISOString();
-  const posts = await fetchPostsByAuthor(profile.tweet_username, since);
+  let posts;
+  try {
+    posts = await fetchPostsByAuthor(profile.tweet_username, since, token);
+    await markTweetAppReconnect(userId, false);
+  } catch (cause) {
+    if (cause instanceof TweetAppAuthError && cause.needsReconnect) {
+      await markTweetAppReconnect(userId, true);
+    }
+    throw cause;
+  }
+
 
   const rows = posts
     .filter((post) => !(profile.skip_replies && post.isReply))
