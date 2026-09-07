@@ -2,13 +2,10 @@ import type { ReactElement } from "react";
 
 import { WaIcon } from "@/design-system/font-awsome-web-awesome-171158";
 
-/** Exact brand colours requested for the mark (not theme tokens). */
-const BIRD_COLOR = "#1D9BF0";
-const ARROW_COLOR = "#000000";
-
 /**
  * Crosspost mark: the repeat arrows with a small bird centred inside.
- * Composed from the two Font Awesome Free icons used in the concept.
+ * Colours are fixed brand values (see .brand-mark-* in styles.css); the
+ * arrows flip to white in dark mode.
  */
 export function BrandMark(): ReactElement {
   return (
@@ -16,8 +13,9 @@ export function BrandMark(): ReactElement {
       aria-hidden="true"
       style={{ position: "relative", display: "inline-flex", lineHeight: 1 }}
     >
-      <WaIcon name="retweet" style={{ color: ARROW_COLOR }} />
+      <WaIcon className="brand-mark-arrows" name="retweet" />
       <WaIcon
+        className="brand-mark-bird"
         name="dove"
         style={{
           position: "absolute",
@@ -25,9 +23,9 @@ export function BrandMark(): ReactElement {
           left: "50%",
           transform: "translate(-50%, -50%)",
           fontSize: "0.4em",
-          color: BIRD_COLOR,
         }}
       />
     </span>
   );
 }
+
