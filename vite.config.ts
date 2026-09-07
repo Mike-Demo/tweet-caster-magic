@@ -26,7 +26,19 @@ export default defineConfig(({ command, mode }) => {
       mockupPreviewPlugin(),
       tsConfigPaths({ projects: ["./tsconfig.json"] }),
       ...(useCloudflare ? [cloudflare({ viteEnvironment: { name: "ssr" } })] : []),
-      tanstackStart(),
+      tanstackStart({
+        // Fully static public pages are rendered once at build time.
+        // "/" reads the captcha key per request and "/app" is per-user, so
+        // discovery stays off and this list is exhaustive.
+        pages: [
+          { path: "/terms" },
+          { path: "/privacy" },
+          { path: "/licenses" },
+          { path: "/changelog" },
+        ],
+        prerender: { enabled: true, autoStaticPathsDiscovery: false },
+      }),
+
       viteReact(),
       ...(mode === "development" ? [componentTagger()] : []),
     ],
