@@ -5,3 +5,30 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* Brand mark: exact requested colours; arrows invert in dark mode. */
+.brand-mark-arrows {
+  color: #000000;
+}
+
+.brand-mark-bird {
+  color: #1d9bf0;
+}
+
+html.wa-dark .brand-mark-arrows {
+  color: #ffffff;
+}
+
+.brand-mark {
+  position: relative;
+  display: inline-flex;
+  line-height: 1;
+}
+
+.brand-mark-bird {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.4em;
+}
