@@ -1,8 +1,9 @@
-import { useEffect, useRef, type ReactElement } from "react";
+import { Fragment, useEffect, useRef, type ReactElement } from "react";
 import { Link, useNavigate, useRouter } from "@tanstack/react-router";
 
 import {
   WaButton,
+  WaDivider,
   WaDropdown,
   WaDropdownItem,
   WaIcon,
@@ -11,18 +12,53 @@ import { BrandMark } from "@/components/brand-mark";
 
 type NavTarget = "/" | "/changelog" | "/terms" | "/privacy" | "/licenses";
 
-const PAGES: ReadonlyArray<{ to: NavTarget; label: string; icon: string }> = [
-  { to: "/", label: "Home", icon: "house" },
-  { to: "/changelog", label: "Changelog", icon: "clock-rotate-left" },
-  { to: "/terms", label: "Terms of Service", icon: "file-lines" },
-  { to: "/privacy", label: "Privacy Policy", icon: "shield-halved" },
-  { to: "/licenses", label: "Licenses", icon: "scale-balanced" },
+interface NavItem {
+  readonly href: string;
+  readonly label: string;
+  readonly icon: string;
+}
+
+interface NavGroup {
+  readonly title: string;
+  readonly items: ReadonlyArray<NavItem>;
+}
+
+const GROUPS: ReadonlyArray<NavGroup> = [
+  {
+    title: "Account",
+    items: [
+      { href: "/?mode=signin", label: "Log in", icon: "right-to-bracket" },
+      { href: "/?mode=signup", label: "Register", icon: "user-plus" },
+    ],
+  },
+  {
+    title: "Site",
+    items: [
+      { href: "/", label: "Home", icon: "house" },
+      { href: "/changelog", label: "Changelog", icon: "clock-rotate-left" },
+    ],
+  },
+  {
+    title: "Legal",
+    items: [
+      { href: "/terms", label: "Terms of Service", icon: "file-lines" },
+      { href: "/privacy", label: "Privacy Policy", icon: "shield-halved" },
+      { href: "/licenses", label: "Licenses", icon: "scale-balanced" },
+    ],
+  },
 ];
 
+const ROUTES: ReadonlyArray<NavTarget> = [
+  "/",
+  "/changelog",
+  "/terms",
+  "/privacy",
+  "/licenses",
+];
 
 /**
- * Site header: brand link plus a menu with sign in, register and the
- * public pages. Placement only — components keep their own styling.
+ * Site header: brand link plus a grouped Web Awesome dropdown menu whose
+ * items are real links. Selection is routed client-side.
  */
 export function SiteNav(): ReactElement {
   const navigate = useNavigate();
@@ -34,18 +70,21 @@ export function SiteNav(): ReactElement {
     if (!menu) return;
     function handleSelect(event: Event) {
       const item = (event as CustomEvent<{ item: HTMLElement }>).detail?.item;
-      const value = item?.getAttribute("value");
-      if (!value) return;
-      if (value === "signin" || value === "signup") {
-        void navigate({ to: "/", search: { mode: value } });
+      const href = item?.getAttribute("href");
+      if (!href) return;
+      event.preventDefault();
+      const [path, query] = href.split("?");
+      const mode = query ? new URLSearchParams(query).get("mode") : null;
+      if (mode === "signin" || mode === "signup") {
+        void navigate({ to: "/", search: { mode } });
         return;
       }
-      void navigate({ to: value as NavTarget });
+      void navigate({ to: (path || "/") as NavTarget });
     }
     // Opening the menu is a strong hint the visitor is about to change page,
     // so fetch those routes now instead of after the click.
     function handleShow() {
-      for (const page of PAGES) void router.preloadRoute({ to: page.to });
+      for (const to of ROUTES) void router.preloadRoute({ to });
     }
     menu.addEventListener("wa-select", handleSelect);
     menu.addEventListener("wa-show", handleShow);
@@ -81,16 +120,17 @@ export function SiteNav(): ReactElement {
         <WaButton slot="trigger" appearance="outlined" size="s" with-caret>
           <WaIcon slot="start" name="bars" /> Menu
         </WaButton>
-        <WaDropdownItem value="signin">
-          <WaIcon slot="icon" name="right-to-bracket" /> Log in
-        </WaDropdownItem>
-        <WaDropdownItem value="signup">
-          <WaIcon slot="icon" name="user-plus" /> Register
-        </WaDropdownItem>
-        {PAGES.map((page) => (
-          <WaDropdownItem key={page.to} value={page.to}>
-            <WaIcon slot="icon" name={page.icon} /> {page.label}
-          </WaDropdownItem>
+        {GROUPS.map((group, index) => (
+          <Fragment key={group.title}>
+            {index > 0 ? <WaDivider /> : null}
+            <h2>{group.title}</h2>
+
+            {group.items.map((item) => (
+              <WaDropdownItem key={item.href} href={item.href}>
+                <WaIcon slot="icon" name={item.icon} /> {item.label}
+              </WaDropdownItem>
+            ))}
+          </Fragment>
         ))}
       </WaDropdown>
     </header>

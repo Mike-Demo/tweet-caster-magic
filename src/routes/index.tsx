@@ -195,15 +195,15 @@ function Landing() {
           <a href="/changelog">changelog</a>.
         </WaCallout>
 
-        <section className="wa-grid" style={{ ["--min-column-size" as string]: "22rem", gap: "3rem", alignItems: "center" }}>
+        <section className="wa-grid" style={{ ["--min-column-size" as string]: "22rem", gap: "var(--wa-space-2xl)", alignItems: "center" }}>
           <div className="wa-stack wa-gap-l">
             <span className="wa-cluster wa-gap-xs" style={{ color: "var(--wa-color-brand-fill-loud)", fontWeight: "var(--wa-font-weight-semibold)" }}>
               <WaIcon name="repeat" /> tweet.app → X
             </span>
-            <h1 style={{ fontSize: "clamp(2.2rem, 5vw, 3.4rem)", lineHeight: 1.05, margin: 0 }}>
+            <h1 style={{ fontSize: "var(--wa-font-size-4xl)", lineHeight: "var(--wa-line-height-condensed)", margin: 0 }}>
               Post once on tweet.app. Land on X automatically.
             </h1>
-            <p style={{ fontSize: "1.15rem", color: "var(--wa-color-text-quiet)", maxWidth: "34rem" }}>
+            <p style={{ fontSize: "var(--wa-font-size-l)", color: "var(--wa-color-text-quiet)", maxWidth: "34rem" }}>
               Point us at your tweet.app handle, paste the keys from your own X developer app,
               and every new post goes out on your behalf — instantly, or after you approve it.
             </p>
