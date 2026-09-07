@@ -194,7 +194,134 @@ function Dashboard() {
             <div className="wa-stack wa-gap-l" style={{ paddingTop: "1rem" }}>
               <WaCard>
                 <div className="wa-stack wa-gap-m">
-                  <h2 style={{ margin: 0 }}>1. The tweet.app account to watch</h2>
+                  <h2 style={{ margin: 0 }}>1. Connect your tweet.app account</h2>
+                  <p style={{ margin: 0, color: "var(--wa-color-text-quiet)" }}>
+                    tweet.app now requires a signed-in token before it will share your posts, so
+                    Crosspost needs your own access token. It is stored encrypted and never sent
+                    back to your browser.
+                  </p>
+
+                  {tweetApp.needsReconnect ? (
+                    <WaCallout variant="warning">
+                      <WaIcon slot="icon" name="triangle-exclamation" />
+                      Your tweet.app connection stopped working. Paste a fresh token to start
+                      posting again — automatic posting is paused until you do.
+                    </WaCallout>
+                  ) : null}
+
+                  <div className="wa-cluster wa-gap-s" style={{ alignItems: "end" }}>
+                    <label
+                      className="wa-stack wa-gap-2xs"
+                      style={{ flex: "1 1 20rem" }}
+                      htmlFor="tweet-token"
+                    >
+                      <span>tweet.app access token</span>
+                      <input
+                        id="tweet-token"
+                        name="tweetToken"
+                        type="password"
+                        value={tweetToken}
+                        placeholder="eyJ…"
+                        onChange={(event) => setTweetToken(event.target.value)}
+                      />
+                    </label>
+                    <WaButton
+                      variant="brand"
+                      disabled={saveToken.isPending}
+                      onClick={() =>
+                        void run(saveToken.mutateAsync(), "tweet.app connected.").then(() =>
+                          setTweetToken(""),
+                        )
+                      }
+                    >
+                      Save token
+                    </WaButton>
+                  </div>
+
+                  {tweetApp.connected ? (
+                    <div
+                      className="wa-cluster wa-gap-s"
+                      style={{ justifyContent: "space-between", alignItems: "center" }}
+                    >
+                      <span className="wa-cluster wa-gap-xs" style={{ alignItems: "center" }}>
+                        <WaBadge variant={tweetApp.needsReconnect ? "warning" : "success"}>
+                          {tweetApp.needsReconnect ? "Needs reconnecting" : "Connected"}
+                        </WaBadge>
+                        <span
+                          style={{
+                            color: "var(--wa-color-text-quiet)",
+                            fontSize: "var(--wa-font-size-s)",
+                          }}
+                        >
+                          token {tweetApp.hint ?? ""}
+                        </span>
+                      </span>
+                      <span className="wa-cluster wa-gap-xs">
+                        <WaButton
+                          appearance="outlined"
+                          disabled={testToken.isPending}
+                          onClick={() =>
+                            void testToken
+                              .mutateAsync()
+                              .then((result) => {
+                                setError(null);
+                                setMessage(result.message);
+                                void refresh();
+                              })
+                              .catch((cause: unknown) => {
+                                setMessage(null);
+                                setError(
+                                  cause instanceof Error ? cause.message : "Test failed.",
+                                );
+                              })
+                          }
+                        >
+                          Test connection
+                        </WaButton>
+                        <WaButton
+                          appearance="outlined"
+                          variant="danger"
+                          onClick={() =>
+                            void run(clearTweetAppToken(), "tweet.app token removed.")
+                          }
+                        >
+                          Clear token
+                        </WaButton>
+                      </span>
+                    </div>
+                  ) : (
+                    <span style={{ color: "var(--wa-color-text-quiet)" }}>
+                      No tweet.app token saved yet.
+                    </span>
+                  )}
+
+                  <WaDetails summary="How to find your tweet.app token">
+                    <div className="wa-stack wa-gap-2xs">
+                      <span>
+                        1. Sign in at tweet.app in Chrome, open developer tools (F12), go to the{" "}
+                        <strong>Network</strong> tab, tick <strong>Preserve log</strong> and filter
+                        to <strong>Fetch/XHR</strong>.
+                      </span>
+                      <span>
+                        2. Reload your feed and click any request to{" "}
+                        <code>api.tweet.app/api/…</code>.
+                      </span>
+                      <span>
+                        3. Under <strong>Request Headers</strong>, copy the value after{" "}
+                        <code>Authorization: Bearer</code> and paste it above.
+                      </span>
+                      <span>
+                        Tokens expire. If posting stops, come back here and paste a fresh one.
+                      </span>
+                    </div>
+                  </WaDetails>
+                </div>
+              </WaCard>
+
+              <WaCard>
+                <div className="wa-stack wa-gap-m">
+                  <h2 style={{ margin: 0 }}>2. The tweet.app account to watch</h2>
+
                   <div className="wa-cluster wa-gap-s" style={{ alignItems: "end" }}>
                     <label className="wa-stack wa-gap-2xs" style={{ flex: "1 1 16rem" }} htmlFor="tweet-username">
                       <span>Username</span>
