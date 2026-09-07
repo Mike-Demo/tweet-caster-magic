@@ -576,7 +576,7 @@ function Dashboard() {
 
               <WaCard>
                 <div className="wa-stack wa-gap-m">
-                  <h2 style={{ margin: 0 }}>3. How it should behave</h2>
+                  <h2 style={{ margin: 0 }}>4. How it should behave</h2>
                   <WaSwitch
                     checked={settings?.autoPost ?? false}
                     onWaChange={(event: { target: HTMLInputElement }) =>
