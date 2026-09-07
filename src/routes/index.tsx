@@ -143,7 +143,16 @@ function Landing() {
           <WaIcon slot="icon" name="triangle-exclamation" />
           <strong>Service status:</strong> tweet.app changed its API and no longer answers public
           requests, so posting may not work until you connect your own tweet.app account in the
-          dashboard. Details on the <a href="/changelog">changelog</a>.
+          dashboard. tweet.app’s{" "}
+          <a
+            href="https://app.tweet.app/post/13b0e028-7164-429f-9045-9c264d741298"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @punkrokk announced
+          </a>{" "}
+          it: “2.) API locked down. No more (intentionally) public APIs ATM.” Details on the{" "}
+          <a href="/changelog">changelog</a>.
         </WaCallout>
 
         <section className="wa-grid" style={{ ["--min-column-size" as string]: "22rem", gap: "3rem", alignItems: "center" }}>
