@@ -7,6 +7,7 @@ import {
   WaDropdownItem,
   WaIcon,
 } from "@/design-system/font-awsome-web-awesome-171158";
+import { BrandMark } from "@/components/brand-mark";
 
 type NavTarget = "/" | "/terms" | "/privacy" | "/licenses";
 
@@ -61,7 +62,7 @@ export function SiteNav(): ReactElement {
           color: "var(--wa-color-text-normal)",
         }}
       >
-        <WaIcon name="repeat" /> Crosspost
+        <BrandMark /> Crosspost
       </Link>
 
       <WaDropdown ref={menuRef}>
