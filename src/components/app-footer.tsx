@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 
-import { SiteFooter } from "@/design-system/font-awsome-web-awesome-171158/webawesome/patterns/site-footer";
+import { SiteFooter } from "@/design-system/font-awsome-web-awesome-171158";
 
 /**
  * Standard footer plus the legal disclaimer shown on every page.

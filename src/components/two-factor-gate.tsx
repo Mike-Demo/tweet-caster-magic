@@ -2,11 +2,13 @@ import { useCallback, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 
 import { supabase } from "@/integrations/supabase/client";
-import { WaButton } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/button";
-import { WaCallout } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/callout";
-import { WaCard } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/card";
-import { WaSpinner } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/spinner";
-import { DesignSystemLoader } from "@/components/design-system-loader";
+import {
+  WaButton,
+  WaCallout,
+  WaCard,
+  WaSpinner,
+  WebAwesomeLoader,
+} from "@/design-system/font-awsome-web-awesome-171158";
 
 type Stage = "checking" | "enroll" | "challenge" | "ready";
 
@@ -130,7 +132,7 @@ export function TwoFactorGate({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <DesignSystemLoader />
+      <WebAwesomeLoader />
       <main
       className="wa-stack wa-gap-l"
       style={{ padding: "var(--wa-space-3xl) var(--wa-space-l)", maxWidth: "34rem", margin: "0 auto" }}

@@ -1,10 +1,12 @@
 import { useEffect, useRef, type ReactElement } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 
-import { WaButton } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/button";
-import { WaDropdown } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/dropdown";
-import { WaDropdownItem } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/dropdown-item";
-import { WaIcon } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/icon";
+import {
+  WaButton,
+  WaDropdown,
+  WaDropdownItem,
+  WaIcon,
+} from "@/design-system/font-awsome-web-awesome-171158";
 import { BrandMark } from "@/components/brand-mark";
 
 type NavTarget = "/" | "/changelog" | "/terms" | "/privacy" | "/licenses";

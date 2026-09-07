@@ -1,7 +1,7 @@
 import { AppFooter } from "@/components/app-footer";
 import { SiteNav } from "@/components/site-nav";
 import { TermageddonPolicy } from "@/components/termageddon-policy";
-import { DesignSystemLoader } from "@/components/design-system-loader";
+import { WebAwesomeLoader } from "@/design-system/font-awsome-web-awesome-171158";
 import { TERMAGEDDON_POLICY_KEYS } from "@/lib/policies";
 import { SITE_URL, pageJsonLd } from "@/lib/structured-data";
 import { createFileRoute } from "@tanstack/react-router";
@@ -43,7 +43,7 @@ function Terms() {
 
   return (
     <>
-      <DesignSystemLoader />
+      <WebAwesomeLoader />
       <SiteNav />
       <main
         className="wa-stack wa-gap-l"

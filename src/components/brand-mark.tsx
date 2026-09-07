@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 
-import { WaIcon } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/icon";
+import { WaIcon } from "@/design-system/font-awsome-web-awesome-171158";
 
 /** Exact brand colours requested for the mark (not theme tokens). */
 const BIRD_COLOR = "#1D9BF0";

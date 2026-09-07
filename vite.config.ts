@@ -26,14 +26,7 @@ export default defineConfig(({ command, mode }) => {
       mockupPreviewPlugin(),
       tsConfigPaths({ projects: ["./tsconfig.json"] }),
       ...(useCloudflare ? [cloudflare({ viteEnvironment: { name: "ssr" } })] : []),
-      // Note: build-time prerendering of the static public pages
-      // (/terms, /privacy, /licenses, /changelog) is not enabled — the
-      // prerender pass boots a Node preview server that the Cloudflare
-      // Workers build output does not provide, so it fails the build.
-      // Those pages are still server-rendered per request and cached.
       tanstackStart(),
-
-
       viteReact(),
       ...(mode === "development" ? [componentTagger()] : []),
     ],
