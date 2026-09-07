@@ -123,19 +123,8 @@ export function SiteNav(): ReactElement {
         {GROUPS.map((group, index) => (
           <Fragment key={group.title}>
             {index > 0 ? <WaDivider /> : null}
-            <span
-              className="wa-cluster"
-              style={{
-                paddingBlock: "var(--wa-space-2xs)",
-                paddingInline: "var(--wa-space-m)",
-                fontSize: "var(--wa-font-size-2xs)",
-                fontWeight: "var(--wa-font-weight-semibold)",
-                textTransform: "uppercase",
-                color: "var(--wa-color-text-quiet)",
-              }}
-            >
-              {group.title}
-            </span>
+            <h2>{group.title}</h2>
+
             {group.items.map((item) => (
               <WaDropdownItem key={item.href} href={item.href}>
                 <WaIcon slot="icon" name={item.icon} /> {item.label}
