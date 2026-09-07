@@ -89,10 +89,19 @@ export const getDashboard = createServerFn({ method: "GET" })
     ]);
 
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { data: credentialRows } = await supabaseAdmin
-      .from("x_credentials")
-      .select("environment, api_key_hint, x_username")
-      .eq("user_id", userId);
+    const [{ data: credentialRows }, { data: tweetAppRow }] = await Promise.all([
+      supabaseAdmin
+        .from("x_credentials")
+        .select("environment, api_key_hint, x_username")
+        .eq("user_id", userId),
+      supabaseAdmin
+        .from("tweet_app_credentials")
+        .select("token_hint, needs_reconnect")
+        .eq("user_id", userId)
+        .maybeSingle(),
+    ]);
+
+
 
     const profile = profileResult.data;
     const activeEnvironment = profile?.active_x_environment
