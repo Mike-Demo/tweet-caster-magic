@@ -138,3 +138,49 @@ export function licensesJsonLd(licenseNames: readonly string[]): string {
     ],
   });
 }
+
+/** JSON-LD graph for the changelog, including its dated entries. */
+export function changelogJsonLd(
+  entries: readonly { date: string; title: string; notes: readonly string[] }[],
+): string {
+  const url = `${SITE_URL}/changelog`;
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${url}#webpage`,
+        name: "Changelog",
+        url,
+        description:
+          "Update history for Crosspost: service status, new features, and notes on what changed and why.",
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        publisher: { "@id": `${SITE_URL}/#organization` },
+        about: { "@id": `${SITE_URL}/#webapp` },
+        mainEntity: {
+          "@type": "ItemList",
+          itemListOrder: "https://schema.org/ItemListOrderDescending",
+          numberOfItems: entries.length,
+          itemListElement: entries.map((entry, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            item: {
+              "@type": "CreativeWork",
+              name: entry.title,
+              datePublished: entry.date,
+              text: entry.notes.join(" "),
+              url,
+            },
+          })),
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "Changelog", item: url },
+        ],
+      },
+    ],
+  });
+}
