@@ -178,7 +178,7 @@ function Landing() {
     <>
       <AppWebAwesomeLoader />
       <SiteNav />
-      <main className="wa-stack wa-gap-2xl" style={{ padding: "3rem 1.5rem", maxWidth: "68rem", margin: "0 auto" }}>
+      <main id="main-content" className="wa-stack wa-gap-2xl" style={{ padding: "3rem 1.5rem", maxWidth: "68rem", margin: "0 auto" }}>
         <WaCallout variant="warning">
           <WaIcon slot="icon" name="triangle-exclamation" />
           <strong>Service status:</strong> tweet.app changed its API and no longer answers public

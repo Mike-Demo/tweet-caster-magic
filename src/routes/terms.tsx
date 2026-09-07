@@ -45,7 +45,7 @@ function Terms() {
     <>
       <AppWebAwesomeLoader />
       <SiteNav />
-      <main
+      <main id="main-content"
         className="wa-stack wa-gap-l"
         style={{ padding: "3rem 1.5rem", maxWidth: "48rem", margin: "0 auto" }}
       >

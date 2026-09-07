@@ -47,7 +47,7 @@ function Licenses() {
     <>
       <AppWebAwesomeLoader />
       <SiteNav />
-      <main style={{ padding: "3rem 1.5rem", maxWidth: "60rem", margin: "0 auto" }}>
+      <main id="main-content" style={{ padding: "3rem 1.5rem", maxWidth: "60rem", margin: "0 auto" }}>
         <LicensesPage
           groups={[
             { title: "Open source libraries", entries: baseCredits },
