@@ -50,12 +50,13 @@ export function storeAppearance(appearance: Appearance): void {
   }
 }
 
+/** Server-rendered mode is on unless this device has explicitly turned it off. */
 export function readSsrPreference(): boolean {
-  if (!isBrowser()) return false;
+  if (!isBrowser()) return true;
   try {
-    return window.localStorage.getItem(WA_SSR_STORAGE_KEY) === "on";
+    return window.localStorage.getItem(WA_SSR_STORAGE_KEY) !== "off";
   } catch {
-    return false;
+    return true;
   }
 }
 
@@ -78,5 +79,5 @@ var stored=localStorage.getItem(${JSON.stringify(APPEARANCE_STORAGE_KEY)});
 var dark=stored?stored==="dark":window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;
 root.classList.toggle("wa-dark",!!dark);
 root.classList.toggle("wa-light",!dark);
-if(localStorage.getItem(${JSON.stringify(WA_SSR_STORAGE_KEY)})==="on"){root.setAttribute("data-wa-ssr","");}
+if(localStorage.getItem(${JSON.stringify(WA_SSR_STORAGE_KEY)})!=="off"){root.setAttribute("data-wa-ssr","");}
 }catch(e){}})();`;

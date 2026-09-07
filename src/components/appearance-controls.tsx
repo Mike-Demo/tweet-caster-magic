@@ -44,7 +44,7 @@ function useSwitch(
 export function AppearanceControls(): ReactElement {
   const [ready, setReady] = useState(false);
   const [appearance, setAppearance] = useState<Appearance>("light");
-  const [ssrMode, setSsrMode] = useState(false);
+  const [ssrMode, setSsrMode] = useState(true);
 
   useEffect(() => {
     setAppearance(resolveAppearance());

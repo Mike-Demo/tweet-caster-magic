@@ -291,25 +291,20 @@ function Landing() {
                 {mode === "signin" ? "Sign in" : "Create account"}
               </WaButton>
 
-              <button
+              <WaButton
                 type="button"
+                variant="brand"
+                appearance="plain"
                 onClick={() => {
                   setMode(mode === "signin" ? "signup" : "signin");
                   setError(null);
                   setNotice(null);
                 }}
-                style={{
-                  background: "none",
-                  border: "none",
-                  color: "var(--wa-color-brand-fill-loud)",
-                  cursor: "pointer",
-                  padding: 0,
-                }}
               >
                 {mode === "signin"
                   ? "New here? Create an account"
                   : "Already have an account? Sign in"}
-              </button>
+              </WaButton>
             </form>
           </WaCard>
         </section>
