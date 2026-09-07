@@ -120,6 +120,11 @@ function Dashboard() {
     mutationFn: () => saveXCredentials({ data: { ...keys, environment } }),
   });
   const sync = useMutation({ mutationFn: () => syncNow() });
+  const saveToken = useMutation({
+    mutationFn: () => saveTweetAppToken({ data: { token: tweetToken } }),
+  });
+  const testToken = useMutation({ mutationFn: () => testTweetAppConnection() });
+
 
 
   if (dashboard.isLoading) {
