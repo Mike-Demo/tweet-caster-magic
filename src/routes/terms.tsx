@@ -47,7 +47,7 @@ function Terms() {
       <SiteNav />
       <main id="main-content"
         className="wa-stack wa-gap-l"
-        style={{ padding: "3rem 1.5rem", maxWidth: "48rem", margin: "0 auto" }}
+        style={{ paddingBlock: "var(--wa-space-3xl)", paddingInline: "var(--wa-space-l)", maxWidth: "48rem", marginInline: "auto" }}
       >
         <h1 style={{ margin: 0 }}>Terms of Service</h1>
 
