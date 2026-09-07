@@ -2,10 +2,8 @@ import { AppFooter } from "@/components/app-footer";
 import { SiteNav } from "@/components/site-nav";
 import { createFileRoute } from "@tanstack/react-router";
 
-import {
-  LicensesPage,
-  WebAwesomeLoader,
-} from "@/design-system/font-awsome-web-awesome-171158";
+import { LicensesPage } from "@/design-system/font-awsome-web-awesome-171158/webawesome/patterns/licenses";
+import { DesignSystemLoader } from "@/components/design-system-loader";
 import { baseCredits } from "@/design-system/font-awsome-web-awesome-171158/webawesome/patterns/licenses";
 import { SITE_URL, licensesJsonLd } from "@/lib/structured-data";
 
@@ -45,7 +43,7 @@ export const Route = createFileRoute("/licenses")({
 function Licenses() {
   return (
     <>
-      <WebAwesomeLoader />
+      <DesignSystemLoader />
       <SiteNav />
       <main style={{ padding: "3rem 1.5rem", maxWidth: "60rem", margin: "0 auto" }}>
         <LicensesPage
