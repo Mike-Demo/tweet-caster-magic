@@ -1,4 +1,5 @@
 import { AppFooter } from "@/components/app-footer";
+import { BrandMark } from "@/components/brand-mark";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
