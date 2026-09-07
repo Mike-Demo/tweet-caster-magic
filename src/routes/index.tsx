@@ -71,9 +71,48 @@ function Landing() {
 
   useEffect(() => {
     let active = true;
-    void supabase.auth.getSession().then(({ data }) => {
+
+    // Full-page Google sign-in returns to this route with the tokens in the
+    // URL (hash on most providers, query string on some). Nothing else in the
+    // app consumes them, so establish the session here before anything else.
+    async function consumeOAuthReturn(): Promise<boolean> {
+      if (typeof window === "undefined") return false;
+      const hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+      const query = new URLSearchParams(window.location.search);
+      const accessToken = hash.get("access_token") ?? query.get("access_token");
+      const refreshToken = hash.get("refresh_token") ?? query.get("refresh_token");
+      const oauthError = hash.get("error_description") ?? query.get("error_description");
+
+      if (oauthError) {
+        setError(oauthError);
+        window.history.replaceState(null, "", window.location.pathname);
+        return false;
+      }
+      if (!accessToken || !refreshToken) return false;
+
+      const { error: sessionError } = await supabase.auth.setSession({
+        access_token: accessToken,
+        refresh_token: refreshToken,
+      });
+      window.history.replaceState(null, "", window.location.pathname);
+      if (sessionError) {
+        setError("Google sign-in could not be completed. Please try again.");
+        return false;
+      }
+      return true;
+    }
+
+    void (async () => {
+      const signedIn = await consumeOAuthReturn();
+      if (!active) return;
+      if (signedIn) {
+        void navigate({ to: "/app" });
+        return;
+      }
+      const { data } = await supabase.auth.getSession();
       if (active && data.session) void navigate({ to: "/app" });
-    });
+    })();
+
     const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_IN" && session) void navigate({ to: "/app" });
     });
@@ -82,6 +121,7 @@ function Landing() {
       sub.subscription.unsubscribe();
     };
   }, [navigate]);
+
 
   async function handleGoogle() {
     setError(null);
