@@ -141,7 +141,7 @@ function Landing() {
       <main className="wa-stack wa-gap-2xl" style={{ padding: "3rem 1.5rem", maxWidth: "68rem", margin: "0 auto" }}>
         <section className="wa-grid" style={{ ["--min-column-size" as string]: "22rem", gap: "3rem", alignItems: "center" }}>
           <div className="wa-stack wa-gap-l">
-            <span className="wa-cluster wa-gap-xs" style={{ color: "var(--wa-color-brand-fill-loud)", fontWeight: 600 }}>
+            <span className="wa-cluster wa-gap-xs" style={{ color: "var(--wa-color-brand-fill-loud)", fontWeight: "var(--wa-font-weight-semibold)" }}>
               <WaIcon name="repeat" /> tweet.app → X
             </span>
             <h1 style={{ fontSize: "clamp(2.2rem, 5vw, 3.4rem)", lineHeight: 1.05, margin: 0 }}>
