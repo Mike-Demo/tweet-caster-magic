@@ -32,12 +32,20 @@ export interface CredentialSlot {
   xUsername: string | null;
 }
 
+export interface TweetAppConnection {
+  connected: boolean;
+  hint: string | null;
+  needsReconnect: boolean;
+}
+
 export interface DashboardData {
   settings: DashboardSettings;
   credentials: CredentialSlot[];
   activeEnvironment: XEnvironment | null;
+  tweetApp: TweetAppConnection;
   posts: QueueItem[];
 }
+
 
 function parseEnvironment(value: unknown): XEnvironment {
   const environment = String(value ?? "");
