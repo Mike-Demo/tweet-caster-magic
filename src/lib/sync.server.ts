@@ -1,7 +1,8 @@
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 import { decryptSecret } from "./crypto.server";
-import { fetchPostsByAuthor } from "./tweetApp.server";
+import { TweetAppAuthError, fetchPostsByAuthor } from "./tweetApp.server";
 import { fitToX, postToX, X_MAX_CHARACTERS, XApiError, type XCredentials } from "./x.server";
+
 
 export interface SyncResult {
   readonly imported: number;
