@@ -104,6 +104,8 @@ function Dashboard() {
   const [keys, setKeys] = useState({ apiKey: "", apiSecret: "", accessToken: "", accessSecret: "" });
 
   const [environment, setEnvironment] = useState<XEnvironment>("production");
+  const [tweetToken, setTweetToken] = useState("");
+
 
   useEffect(() => {
     if (dashboard.data?.settings.tweetUsername) setUsername(dashboard.data.settings.tweetUsername);
