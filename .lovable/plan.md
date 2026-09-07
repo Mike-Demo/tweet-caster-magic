@@ -4,6 +4,8 @@ Rebuild the site mark to match the icon you made in the Icon Wizard: the square 
 
 ## What changes
 
+The bird uses the exact colour #1D9BF0 and the arrows #000000, as you asked. These are fixed brand values rather than theme colours, so the mark keeps them in dark mode too.
+
 - A small reusable brand mark that layers the two Font Awesome Free icons the wizard used — the repeat arrows and the dove — with the bird centred and scaled down inside the loop, matching the attached screenshot.
 - The header replaces the plain repeat arrow with this mark, at the same size as today.
 - The browser tab icon is regenerated from the same composed shape, so the tab and the header match.
