@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactElement } from "react";
+import { Fragment, useEffect, useRef, type ReactElement } from "react";
 import { Link, useNavigate, useRouter } from "@tanstack/react-router";
 
 import {
@@ -121,7 +121,7 @@ export function SiteNav(): ReactElement {
           <WaIcon slot="start" name="bars" /> Menu
         </WaButton>
         {GROUPS.map((group, index) => (
-          <div key={group.title}>
+          <Fragment key={group.title}>
             {index > 0 ? <WaDivider /> : null}
             <span
               className="wa-cluster"
@@ -141,7 +141,7 @@ export function SiteNav(): ReactElement {
                 <WaIcon slot="icon" name={item.icon} /> {item.label}
               </WaDropdownItem>
             ))}
-          </div>
+          </Fragment>
         ))}
       </WaDropdown>
     </header>
