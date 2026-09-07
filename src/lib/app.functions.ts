@@ -132,6 +132,14 @@ export const getDashboard = createServerFn({ method: "GET" })
         };
       }),
 
+      tweetApp: {
+        connected: Boolean(tweetAppRow),
+        hint: tweetAppRow?.token_hint ?? null,
+        needsReconnect: Boolean(tweetAppRow?.needs_reconnect),
+      },
+
+
+
       posts: (postsResult.data ?? []).map((row) => ({
         id: row.id,
         sourceText: row.source_text,
