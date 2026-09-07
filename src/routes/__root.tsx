@@ -12,6 +12,7 @@ import {
   WEB_AWESOME_STYLE_URL,
 } from "@/design-system/font-awsome-web-awesome-171158/webawesome/cdn";
 import { WEB_AWESOME_HTML_CLASSES } from "@/design-system/font-awsome-web-awesome-171158/webawesome/setup";
+import { PREFERENCES_BOOTSTRAP_SCRIPT } from "@/lib/client-preferences";
 
 import appCss from "../styles.css?url";
 

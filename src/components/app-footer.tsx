@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 
+import { AppearanceControls } from "@/components/appearance-controls";
 import { SiteFooter } from "@/design-system/font-awsome-web-awesome-171158";
 
 /**
@@ -40,7 +41,7 @@ export function AppFooter(): ReactElement {
         <a href="/changelog">Changelog</a>.
       </p>
       <SiteFooter />
-
+      <AppearanceControls />
     </>
   );
 }
