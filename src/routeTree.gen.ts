@@ -20,6 +20,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/app'
 import { Route as DocsIndexRouteImport } from './routes/docs.index'
+import { Route as DocsPostingRouteImport } from './routes/docs.posting'
 import { Route as DocsSetupRouteImport } from './routes/docs.setup'
 import { Route as Char91__componentChar93PreviewSplatRouteImport } from './routes/[__component].preview.$'
 import { Route as Char91__mockupChar93PreviewSplatRouteImport } from './routes/[__mockup].preview.$'
@@ -79,6 +80,11 @@ const DocsIndexRoute = DocsIndexRouteImport.update({
   path: '/',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsPostingRoute = DocsPostingRouteImport.update({
+  id: '/posting',
+  path: '/posting',
+  getParentRoute: () => DocsRoute,
+} as any)
 const DocsSetupRoute = DocsSetupRouteImport.update({
   id: '/setup',
   path: '/setup',
@@ -112,6 +118,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/app': typeof AuthenticatedAppRoute
+  '/docs/posting': typeof DocsPostingRoute
   '/docs/setup': typeof DocsSetupRoute
   '/docs/': typeof DocsIndexRoute
   '/__component/preview/$': typeof Char91__componentChar93PreviewSplatRoute
@@ -127,6 +134,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/app': typeof AuthenticatedAppRoute
+  '/docs/posting': typeof DocsPostingRoute
   '/docs/setup': typeof DocsSetupRoute
   '/docs': typeof DocsIndexRoute
   '/__component/preview/$': typeof Char91__componentChar93PreviewSplatRoute
@@ -145,6 +153,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/_authenticated/app': typeof AuthenticatedAppRoute
+  '/docs/posting': typeof DocsPostingRoute
   '/docs/setup': typeof DocsSetupRoute
   '/docs/': typeof DocsIndexRoute
   '/__component/preview/$': typeof Char91__componentChar93PreviewSplatRoute
@@ -163,6 +172,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/app'
+    | '/docs/posting'
     | '/docs/setup'
     | '/docs/'
     | '/__component/preview/$'
@@ -178,6 +188,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/app'
+    | '/docs/posting'
     | '/docs/setup'
     | '/docs'
     | '/__component/preview/$'
@@ -195,6 +206,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/_authenticated/app'
+    | '/docs/posting'
     | '/docs/setup'
     | '/docs/'
     | '/__component/preview/$'
@@ -296,6 +308,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsIndexRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/docs/posting': {
+      id: '/docs/posting'
+      path: '/posting'
+      fullPath: '/docs/posting'
+      preLoaderRoute: typeof DocsPostingRouteImport
+      parentRoute: typeof DocsRoute
+    }
     '/docs/setup': {
       id: '/docs/setup'
       path: '/setup'
@@ -339,11 +358,13 @@ const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 interface DocsRouteChildren {
+  DocsPostingRoute: typeof DocsPostingRoute
   DocsSetupRoute: typeof DocsSetupRoute
   DocsIndexRoute: typeof DocsIndexRoute
 }
 
 const DocsRouteChildren: DocsRouteChildren = {
+  DocsPostingRoute: DocsPostingRoute,
   DocsSetupRoute: DocsSetupRoute,
   DocsIndexRoute: DocsIndexRoute,
 }
