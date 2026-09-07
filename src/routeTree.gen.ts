@@ -23,6 +23,7 @@ import { Route as DocsIndexRouteImport } from './routes/docs.index'
 import { Route as DocsPostingRouteImport } from './routes/docs.posting'
 import { Route as DocsSetupRouteImport } from './routes/docs.setup'
 import { Route as DocsTokensRouteImport } from './routes/docs.tokens'
+import { Route as DocsTroubleshootingRouteImport } from './routes/docs.troubleshooting'
 import { Route as Char91__componentChar93PreviewSplatRouteImport } from './routes/[__component].preview.$'
 import { Route as Char91__mockupChar93PreviewSplatRouteImport } from './routes/[__mockup].preview.$'
 import { Route as ApiPublicHooksAutoPostRouteImport } from './routes/api/public/hooks/auto-post'
@@ -96,6 +97,11 @@ const DocsTokensRoute = DocsTokensRouteImport.update({
   path: '/tokens',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsTroubleshootingRoute = DocsTroubleshootingRouteImport.update({
+  id: '/troubleshooting',
+  path: '/troubleshooting',
+  getParentRoute: () => DocsRoute,
+} as any)
 const Char91__componentChar93PreviewSplatRoute =
   Char91__componentChar93PreviewSplatRouteImport.update({
     id: '/__component/preview/$',
@@ -127,6 +133,7 @@ export interface FileRoutesByFullPath {
   '/docs/posting': typeof DocsPostingRoute
   '/docs/setup': typeof DocsSetupRoute
   '/docs/tokens': typeof DocsTokensRoute
+  '/docs/troubleshooting': typeof DocsTroubleshootingRoute
   '/docs/': typeof DocsIndexRoute
   '/__component/preview/$': typeof Char91__componentChar93PreviewSplatRoute
   '/__mockup/preview/$': typeof Char91__mockupChar93PreviewSplatRoute
@@ -144,6 +151,7 @@ export interface FileRoutesByTo {
   '/docs/posting': typeof DocsPostingRoute
   '/docs/setup': typeof DocsSetupRoute
   '/docs/tokens': typeof DocsTokensRoute
+  '/docs/troubleshooting': typeof DocsTroubleshootingRoute
   '/docs': typeof DocsIndexRoute
   '/__component/preview/$': typeof Char91__componentChar93PreviewSplatRoute
   '/__mockup/preview/$': typeof Char91__mockupChar93PreviewSplatRoute
@@ -164,6 +172,7 @@ export interface FileRoutesById {
   '/docs/posting': typeof DocsPostingRoute
   '/docs/setup': typeof DocsSetupRoute
   '/docs/tokens': typeof DocsTokensRoute
+  '/docs/troubleshooting': typeof DocsTroubleshootingRoute
   '/docs/': typeof DocsIndexRoute
   '/__component/preview/$': typeof Char91__componentChar93PreviewSplatRoute
   '/__mockup/preview/$': typeof Char91__mockupChar93PreviewSplatRoute
@@ -184,6 +193,7 @@ export interface FileRouteTypes {
     | '/docs/posting'
     | '/docs/setup'
     | '/docs/tokens'
+    | '/docs/troubleshooting'
     | '/docs/'
     | '/__component/preview/$'
     | '/__mockup/preview/$'
@@ -201,6 +211,7 @@ export interface FileRouteTypes {
     | '/docs/posting'
     | '/docs/setup'
     | '/docs/tokens'
+    | '/docs/troubleshooting'
     | '/docs'
     | '/__component/preview/$'
     | '/__mockup/preview/$'
@@ -220,6 +231,7 @@ export interface FileRouteTypes {
     | '/docs/posting'
     | '/docs/setup'
     | '/docs/tokens'
+    | '/docs/troubleshooting'
     | '/docs/'
     | '/__component/preview/$'
     | '/__mockup/preview/$'
@@ -341,6 +353,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsTokensRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/docs/troubleshooting': {
+      id: '/docs/troubleshooting'
+      path: '/troubleshooting'
+      fullPath: '/docs/troubleshooting'
+      preLoaderRoute: typeof DocsTroubleshootingRouteImport
+      parentRoute: typeof DocsRoute
+    }
     '/__component/preview/$': {
       id: '/__component/preview/$'
       path: '/__component/preview/$'
@@ -380,6 +399,7 @@ interface DocsRouteChildren {
   DocsPostingRoute: typeof DocsPostingRoute
   DocsSetupRoute: typeof DocsSetupRoute
   DocsTokensRoute: typeof DocsTokensRoute
+  DocsTroubleshootingRoute: typeof DocsTroubleshootingRoute
   DocsIndexRoute: typeof DocsIndexRoute
 }
 
@@ -387,6 +407,7 @@ const DocsRouteChildren: DocsRouteChildren = {
   DocsPostingRoute: DocsPostingRoute,
   DocsSetupRoute: DocsSetupRoute,
   DocsTokensRoute: DocsTokensRoute,
+  DocsTroubleshootingRoute: DocsTroubleshootingRoute,
   DocsIndexRoute: DocsIndexRoute,
 }
 
