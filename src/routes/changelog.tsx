@@ -5,7 +5,7 @@ import {
   WaBadge,
   WaCard,
 } from "@/design-system/font-awsome-web-awesome-171158";
-import { SITE_URL, pageJsonLd } from "@/lib/structured-data";
+import { SITE_URL, changelogJsonLd } from "@/lib/structured-data";
 import { createFileRoute } from "@tanstack/react-router";
 
 const TITLE = "Changelog — Crosspost";
@@ -27,14 +27,7 @@ export const Route = createFileRoute("/changelog")({
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/changelog` }],
     scripts: [
-      {
-        type: "application/ld+json",
-        children: pageJsonLd({
-          path: "/changelog",
-          name: "Changelog",
-          description: DESCRIPTION,
-        }),
-      },
+      { type: "application/ld+json", children: changelogJsonLd(ENTRIES) },
     ],
   }),
   component: Changelog,
