@@ -1,6 +1,8 @@
 /**
- * Read-only client for the public tweet.app API. There is no per-author feed
- * endpoint, so we page the global feed and keep the posts we care about.
+ * Client for the tweet.app API. The gateway now requires an OIDC bearer token
+ * on every /api/* call, so each person supplies their own access token.
+ * There is no per-author feed endpoint, so we page the global feed and keep
+ * the posts we care about.
  */
 const API_BASE = "https://api.tweet.app/api";
 
@@ -20,6 +22,40 @@ export interface TweetAppPost {
   readonly isQuote: boolean;
 }
 
+/** Raised when tweet.app rejects or throttles our request. */
+export class TweetAppAuthError extends Error {
+  readonly status: number;
+  readonly needsReconnect: boolean;
+
+  constructor(status: number, message: string, needsReconnect: boolean) {
+    super(message);
+    this.name = "TweetAppAuthError";
+    this.status = status;
+    this.needsReconnect = needsReconnect;
+  }
+}
+
+function describe(status: number): TweetAppAuthError {
+  if (status === 401) {
+    return new TweetAppAuthError(
+      401,
+      "Your tweet.app connection expired — reconnect it on the setup screen.",
+      true,
+    );
+  }
+  if (status === 403) {
+    return new TweetAppAuthError(403, "Your tweet.app account can't read this.", true);
+  }
+  if (status === 429) {
+    return new TweetAppAuthError(429, "tweet.app is rate limiting us — trying again later.", false);
+  }
+  return new TweetAppAuthError(status, `tweet.app request failed (${status}).`, false);
+}
+
+function authHeaders(token: string): HeadersInit {
+  return { Accept: "application/json", Authorization: `Bearer ${token}` };
+}
+
 interface RawPost {
   id?: string;
   text?: string;
@@ -37,12 +73,15 @@ interface FeedResponse {
   nextCursor?: string | null;
 }
 
-export async function fetchTweetAppProfile(username: string): Promise<TweetAppProfile | null> {
-  const response = await fetch(
-    `${API_BASE}/users/by-username/${encodeURIComponent(username)}`,
-    { headers: { Accept: "application/json" } },
-  );
-  if (!response.ok) return null;
+export async function fetchTweetAppProfile(
+  username: string,
+  token: string,
+): Promise<TweetAppProfile | null> {
+  const response = await fetch(`${API_BASE}/users/by-username/${encodeURIComponent(username)}`, {
+    headers: authHeaders(token),
+  });
+  if (response.status === 404) return null;
+  if (!response.ok) throw describe(response.status);
 
   const body = (await response.json()) as {
     success?: boolean;
@@ -85,6 +124,7 @@ function normalize(raw: RawPost): TweetAppPost | null {
 export async function fetchPostsByAuthor(
   username: string,
   sinceIso: string,
+  token: string,
   maxPages = 12,
 ): Promise<TweetAppPost[]> {
   const wanted = username.toLowerCase();
@@ -97,10 +137,8 @@ export async function fetchPostsByAuthor(
     url.searchParams.set("limit", "50");
     if (cursor) url.searchParams.set("cursor", cursor);
 
-    const response = await fetch(url.toString(), { headers: { Accept: "application/json" } });
-    if (!response.ok) {
-      throw new Error(`tweet.app feed request failed (${response.status})`);
-    }
+    const response = await fetch(url.toString(), { headers: authHeaders(token) });
+    if (!response.ok) throw describe(response.status);
 
     const body = (await response.json()) as FeedResponse;
     const posts = body.posts ?? [];

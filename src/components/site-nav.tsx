@@ -9,14 +9,16 @@ import {
 } from "@/design-system/font-awsome-web-awesome-171158";
 import { BrandMark } from "@/components/brand-mark";
 
-type NavTarget = "/" | "/terms" | "/privacy" | "/licenses";
+type NavTarget = "/" | "/changelog" | "/terms" | "/privacy" | "/licenses";
 
 const PAGES: ReadonlyArray<{ to: NavTarget; label: string; icon: string }> = [
   { to: "/", label: "Home", icon: "house" },
+  { to: "/changelog", label: "Changelog", icon: "clock-rotate-left" },
   { to: "/terms", label: "Terms of Service", icon: "file-lines" },
   { to: "/privacy", label: "Privacy Policy", icon: "shield-halved" },
   { to: "/licenses", label: "Licenses", icon: "scale-balanced" },
 ];
+
 
 /**
  * Site header: brand link plus a menu with sign in, register and the

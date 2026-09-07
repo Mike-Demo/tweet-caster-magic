@@ -32,12 +32,20 @@ export interface CredentialSlot {
   xUsername: string | null;
 }
 
+export interface TweetAppConnection {
+  connected: boolean;
+  hint: string | null;
+  needsReconnect: boolean;
+}
+
 export interface DashboardData {
   settings: DashboardSettings;
   credentials: CredentialSlot[];
   activeEnvironment: XEnvironment | null;
+  tweetApp: TweetAppConnection;
   posts: QueueItem[];
 }
+
 
 function parseEnvironment(value: unknown): XEnvironment {
   const environment = String(value ?? "");
@@ -81,10 +89,19 @@ export const getDashboard = createServerFn({ method: "GET" })
     ]);
 
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { data: credentialRows } = await supabaseAdmin
-      .from("x_credentials")
-      .select("environment, api_key_hint, x_username")
-      .eq("user_id", userId);
+    const [{ data: credentialRows }, { data: tweetAppRow }] = await Promise.all([
+      supabaseAdmin
+        .from("x_credentials")
+        .select("environment, api_key_hint, x_username")
+        .eq("user_id", userId),
+      supabaseAdmin
+        .from("tweet_app_credentials")
+        .select("token_hint, needs_reconnect")
+        .eq("user_id", userId)
+        .maybeSingle(),
+    ]);
+
+
 
     const profile = profileResult.data;
     const activeEnvironment = profile?.active_x_environment
@@ -115,6 +132,14 @@ export const getDashboard = createServerFn({ method: "GET" })
         };
       }),
 
+      tweetApp: {
+        connected: Boolean(tweetAppRow),
+        hint: tweetAppRow?.token_hint ?? null,
+        needsReconnect: Boolean(tweetAppRow?.needs_reconnect),
+      },
+
+
+
       posts: (postsResult.data ?? []).map((row) => ({
         id: row.id,
         sourceText: row.source_text,
@@ -136,8 +161,12 @@ export const saveSourceAccount = createServerFn({ method: "POST" })
   })
   .handler(async ({ data, context }) => {
     const { fetchTweetAppProfile } = await import("./tweetApp.server");
-    const profile = await fetchTweetAppProfile(data.username);
+    const { loadTweetAppToken } = await import("./sync.server");
+    const token = await loadTweetAppToken(context.userId);
+    if (!token) throw new Error("Connect your tweet.app account first.");
+    const profile = await fetchTweetAppProfile(data.username, token);
     if (!profile) throw new Error(`No tweet.app account found for @${data.username}.`);
+
 
     const { error } = await context.supabase
       .from("profiles")
@@ -306,6 +335,88 @@ export const setActiveXEnvironment = createServerFn({ method: "POST" })
     if (error) throw new Error(error.message);
 
     return { environment: data.environment };
+  });
+
+export const saveTweetAppToken = createServerFn({ method: "POST" })
+  .middleware([requireMfa])
+  .inputValidator((data: { token: string }) => {
+    const token = (data?.token ?? "").trim().replace(/^Bearer\s+/i, "");
+    if (token.length < 16) throw new Error("That doesn't look like a tweet.app access token.");
+    return { token };
+  })
+  .handler(async ({ data, context }) => {
+    const { fetchTweetAppProfile } = await import("./tweetApp.server");
+    const { encryptSecret } = await import("./crypto.server");
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+
+    const { data: profile } = await context.supabase
+      .from("profiles")
+      .select("tweet_username")
+      .eq("id", context.userId)
+      .maybeSingle();
+
+    // Confirm the token works before storing it.
+    await fetchTweetAppProfile(profile?.tweet_username ?? "demo", data.token);
+
+    const { error } = await supabaseAdmin.from("tweet_app_credentials").upsert(
+      {
+        user_id: context.userId,
+        token_ct: encryptSecret(data.token),
+        token_hint: `${data.token.slice(0, 4)}…${data.token.slice(-4)}`,
+        needs_reconnect: false,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: "user_id" },
+    );
+    if (error) throw new Error(error.message);
+
+    return { ok: true as const };
+  });
+
+export const clearTweetAppToken = createServerFn({ method: "POST" })
+  .middleware([requireMfa])
+  .handler(async ({ context }) => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { error } = await supabaseAdmin
+      .from("tweet_app_credentials")
+      .delete()
+      .eq("user_id", context.userId);
+    if (error) throw new Error(error.message);
+    return { ok: true as const };
+  });
+
+export const testTweetAppConnection = createServerFn({ method: "POST" })
+  .middleware([requireMfa])
+  .handler(async ({ context }) => {
+    const { fetchTweetAppProfile } = await import("./tweetApp.server");
+    const { loadTweetAppToken, markTweetAppReconnect } = await import("./sync.server");
+    const { TweetAppAuthError } = await import("./tweetApp.server");
+
+    const token = await loadTweetAppToken(context.userId);
+    if (!token) throw new Error("Connect your tweet.app account first.");
+
+    const { data: profile } = await context.supabase
+      .from("profiles")
+      .select("tweet_username")
+      .eq("id", context.userId)
+      .maybeSingle();
+
+    try {
+      const result = await fetchTweetAppProfile(profile?.tweet_username ?? "demo", token);
+      await markTweetAppReconnect(context.userId, false);
+      return {
+        ok: true as const,
+        username: result?.username ?? null,
+        message: result
+          ? `Connected — tweet.app answered for @${result.username}.`
+          : "Connected — tweet.app accepted your token.",
+      };
+    } catch (cause) {
+      if (cause instanceof TweetAppAuthError && cause.needsReconnect) {
+        await markTweetAppReconnect(context.userId, true);
+      }
+      throw cause instanceof Error ? cause : new Error("tweet.app test failed.");
+    }
   });
 
 
