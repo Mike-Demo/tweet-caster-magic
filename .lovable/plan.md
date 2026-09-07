@@ -5,6 +5,8 @@
 A status notice goes on the homepage too: a short banner saying posting may not be working right now because tweet.app changed its API, so visitors aren't left guessing.
 
 
+A new "Changelog" page (linked from the menu and footer) lists dated updates with short notes, starting with this tweet.app API change and the recent logo, terms/privacy, and security work.
+
 tweet.app's API used to answer public requests. It doesn't any more. Checked just now:
 
 - `GET https://api.tweet.app/healthz` → `{"ok":true,"role":"gateway","upstreamAuth":"oidc",...}`
