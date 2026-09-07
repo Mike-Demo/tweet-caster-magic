@@ -1,3 +1,4 @@
+import { AppWebAwesomeLoader } from "@/components/app-webawesome-loader";
 import { useCallback, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 
@@ -7,7 +8,6 @@ import {
   WaCallout,
   WaCard,
   WaSpinner,
-  WebAwesomeLoader,
 } from "@/design-system/font-awsome-web-awesome-171158";
 
 type Stage = "checking" | "enroll" | "challenge" | "ready";
@@ -132,7 +132,7 @@ export function TwoFactorGate({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <WebAwesomeLoader />
+      <AppWebAwesomeLoader />
       <main
       className="wa-stack wa-gap-l"
       style={{ padding: "var(--wa-space-3xl) var(--wa-space-l)", maxWidth: "34rem", margin: "0 auto" }}

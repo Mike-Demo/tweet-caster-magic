@@ -1,3 +1,4 @@
+import { AppWebAwesomeLoader } from "@/components/app-webawesome-loader";
 import { AppFooter } from "@/components/app-footer";
 import { SiteNav } from "@/components/site-nav";
 import { SITE_URL, homeJsonLd } from "@/lib/structured-data";
@@ -14,7 +15,6 @@ import {
   WaCard,
   WaIcon,
   WaSpinner,
-  WebAwesomeLoader,
 } from "@/design-system/font-awsome-web-awesome-171158";
 import type { HCaptchaHandle } from "@/design-system/font-awsome-web-awesome-171158/webawesome/patterns/hcaptcha";
 
@@ -176,7 +176,7 @@ function Landing() {
 
   return (
     <>
-      <WebAwesomeLoader />
+      <AppWebAwesomeLoader />
       <SiteNav />
       <main className="wa-stack wa-gap-2xl" style={{ padding: "3rem 1.5rem", maxWidth: "68rem", margin: "0 auto" }}>
         <WaCallout variant="warning">
