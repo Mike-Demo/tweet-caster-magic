@@ -6,18 +6,22 @@ import { useEffect, useState } from "react";
 
 import { supabase } from "@/integrations/supabase/client";
 import {
+  clearTweetAppToken,
   getDashboard,
   postNow,
   removeXCredentials,
   saveAutomationSettings,
   saveSourceAccount,
+  saveTweetAppToken,
   saveXCredentials,
   setPostStatus,
   syncNow,
+  testTweetAppConnection,
   X_ENVIRONMENTS,
   type QueueItem,
   type XEnvironment,
 } from "@/lib/app.functions";
+
 
 import { TwoFactorGate, TwoFactorSettings } from "@/components/two-factor-gate";
 import { PREVIEW_URL, PUBLISHED_URL, SITE_URL } from "@/lib/structured-data";
