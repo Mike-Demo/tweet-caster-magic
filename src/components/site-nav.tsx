@@ -10,7 +10,16 @@ import {
 } from "@/design-system/font-awsome-web-awesome-171158";
 import { BrandMark } from "@/components/brand-mark";
 
-type NavTarget = "/" | "/changelog" | "/terms" | "/privacy" | "/licenses";
+type NavTarget =
+  | "/"
+  | "/changelog"
+  | "/terms"
+  | "/privacy"
+  | "/licenses"
+  | "/docs/setup"
+  | "/docs/posting"
+  | "/docs/tokens"
+  | "/docs/troubleshooting";
 
 interface NavItem {
   readonly href: string;
@@ -29,6 +38,19 @@ const GROUPS: ReadonlyArray<NavGroup> = [
     items: [
       { href: "/?mode=signin", label: "Log in", icon: "right-to-bracket" },
       { href: "/?mode=signup", label: "Register", icon: "user-plus" },
+    ],
+  },
+  {
+    title: "Resources",
+    items: [
+      { href: "/docs/setup", label: "Setup guide", icon: "list-check" },
+      { href: "/docs/posting", label: "Posting", icon: "paper-plane" },
+      { href: "/docs/tokens", label: "Tokens & keys", icon: "key" },
+      {
+        href: "/docs/troubleshooting",
+        label: "Troubleshooting",
+        icon: "life-ring",
+      },
     ],
   },
   {
@@ -54,7 +76,12 @@ const ROUTES: ReadonlyArray<NavTarget> = [
   "/terms",
   "/privacy",
   "/licenses",
+  "/docs/setup",
+  "/docs/posting",
+  "/docs/tokens",
+  "/docs/troubleshooting",
 ];
+
 
 /**
  * Site header: brand link plus a grouped Web Awesome dropdown menu whose

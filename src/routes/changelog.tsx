@@ -50,6 +50,16 @@ interface Entry {
 const ENTRIES: readonly Entry[] = [
   {
     date: "2026-09-07",
+    title: "Documentation pages",
+    kind: "New",
+    notes: [
+      "Four guides were published: Setup, Posting, Tokens & keys, and Troubleshooting.",
+      "They are linked from the Resources section of the menu and cross-link to each other.",
+    ],
+  },
+  {
+
+    date: "2026-09-07",
     title: "Faster pages and a few polish items",
     kind: "Improved",
     notes: [
