@@ -1,10 +1,8 @@
 import { AppFooter } from "@/components/app-footer";
 import { SiteNav } from "@/components/site-nav";
-import {
-  WaBadge,
-  WaCard,
-  WebAwesomeLoader,
-} from "@/design-system/font-awsome-web-awesome-171158";
+import { WaBadge } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/badge";
+import { WaCard } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/card";
+import { WebAwesomeLoader } from "@/design-system/font-awsome-web-awesome-171158/webawesome/setup";
 import { SITE_URL, pageJsonLd } from "@/lib/structured-data";
 import { createFileRoute } from "@tanstack/react-router";
 

@@ -7,15 +7,13 @@ import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
 import { getCaptchaSiteKey, verifyCaptcha } from "@/lib/captcha.functions";
-import {
-  HCaptcha,
-  WaButton,
-  WaCallout,
-  WaCard,
-  WaIcon,
-  WaSpinner,
-  WebAwesomeLoader,
-} from "@/design-system/font-awsome-web-awesome-171158";
+import { HCaptcha } from "@/design-system/font-awsome-web-awesome-171158/webawesome/patterns/hcaptcha";
+import { WaButton } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/button";
+import { WaCallout } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/callout";
+import { WaCard } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/card";
+import { WaIcon } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/icon";
+import { WaSpinner } from "@/design-system/font-awsome-web-awesome-171158/webawesome/react/spinner";
+import { WebAwesomeLoader } from "@/design-system/font-awsome-web-awesome-171158/webawesome/setup";
 import type { HCaptchaHandle } from "@/design-system/font-awsome-web-awesome-171158/webawesome/patterns/hcaptcha";
 
 export const Route = createFileRoute("/")({
