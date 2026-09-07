@@ -139,6 +139,13 @@ function Landing() {
       <WebAwesomeLoader />
       <SiteNav />
       <main className="wa-stack wa-gap-2xl" style={{ padding: "3rem 1.5rem", maxWidth: "68rem", margin: "0 auto" }}>
+        <WaCallout variant="warning">
+          <WaIcon slot="icon" name="triangle-exclamation" />
+          <strong>Service status:</strong> tweet.app changed its API and no longer answers public
+          requests, so posting may not work until you connect your own tweet.app account in the
+          dashboard. Details on the <a href="/changelog">changelog</a>.
+        </WaCallout>
+
         <section className="wa-grid" style={{ ["--min-column-size" as string]: "22rem", gap: "3rem", alignItems: "center" }}>
           <div className="wa-stack wa-gap-l">
             <span className="wa-cluster wa-gap-xs" style={{ color: "var(--wa-color-brand-fill-loud)", fontWeight: "var(--wa-font-weight-semibold)" }}>
