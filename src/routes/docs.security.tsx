@@ -200,6 +200,53 @@ function SecurityDocs(): ReactElement {
 
       <WaCard>
         <div className="wa-stack wa-gap-s">
+          <h2 style={{ margin: 0, fontSize: "var(--wa-font-size-l)" }}>Checked every day</h2>
+          <p style={{ margin: 0 }}>
+            Crosspost is scanned automatically once a day by Lovable. The scan looks for data left
+            open to the public, missing per-account rules, keys accidentally exposed in the app, and
+            known problems in the software libraries it depends on. Anything it finds is reported to
+            us and fixed; dated fixes appear on the{" "}
+            <Link to="/changelog">changelog</Link>.
+          </p>
+          <p style={{ margin: 0 }}>
+            You can read how the scan works in{" "}
+            <a
+              href="https://docs.lovable.dev/features/security"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Lovable's security documentation
+            </a>
+            .
+          </p>
+        </div>
+      </WaCard>
+
+      <WaCard>
+        <div className="wa-stack wa-gap-s">
+          <h2 style={{ margin: 0, fontSize: "var(--wa-font-size-l)" }}>Other people's policies</h2>
+          <p style={{ margin: 0 }}>
+            Crosspost sits between two services with their own rules on your data:
+          </p>
+          <ul style={{ margin: 0 }}>
+            <li>
+              <a href="https://tweet.app/privacy/" target="_blank" rel="noreferrer">
+                tweet.app Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/en/privacy" target="_blank" rel="noreferrer">
+                X Privacy Policy
+              </a>
+            </li>
+          </ul>
+        </div>
+      </WaCard>
+
+
+
+      <WaCard>
+        <div className="wa-stack wa-gap-s">
           <h2 style={{ margin: 0, fontSize: "var(--wa-font-size-l)" }}>Reporting a problem</h2>
           <p style={{ margin: 0 }}>
             If you think you have found a security issue, please report it privately rather than
