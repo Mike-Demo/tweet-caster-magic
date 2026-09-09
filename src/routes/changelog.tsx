@@ -49,6 +49,15 @@ interface Entry {
 
 const ENTRIES: readonly Entry[] = [
   {
+    date: "2026-09-09",
+    title: "Security page",
+    kind: "New",
+    notes: [
+      "A new Security guide explains what is stored, how keys are encrypted, who can use them, and how to delete them.",
+      "A short summary of the same now sits on the home page, and the guide links to Lovable's own security documentation.",
+    ],
+  },
+  {
     date: "2026-09-07",
     title: "Documentation pages",
     kind: "New",

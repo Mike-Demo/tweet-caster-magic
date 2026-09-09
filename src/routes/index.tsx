@@ -2,7 +2,7 @@ import { AppWebAwesomeLoader } from "@/components/app-webawesome-loader";
 import { AppFooter } from "@/components/app-footer";
 import { SiteNav } from "@/components/site-nav";
 import { SITE_URL, homeJsonLd } from "@/lib/structured-data";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
 import { supabase } from "@/integrations/supabase/client";
@@ -307,6 +307,20 @@ function Landing() {
               </WaButton>
             </form>
           </WaCard>
+        </section>
+
+        <section className="wa-stack wa-gap-s">
+          <h2 className="wa-cluster wa-gap-xs" style={{ margin: 0, alignItems: "center" }}>
+            <WaIcon name="lock" /> Your keys stay yours
+          </h2>
+          <ul className="wa-stack wa-gap-2xs" style={{ margin: 0 }}>
+            <li>Your X keys and tweet.app token are encrypted before they are stored.</li>
+            <li>Only our server code can unlock them — no browser ever reads them back.</li>
+            <li>You can clear them from the dashboard at any time.</li>
+          </ul>
+          <p style={{ margin: 0 }}>
+            <Link to="/docs/security">Read the full security page</Link>
+          </p>
         </section>
 
       </main>
