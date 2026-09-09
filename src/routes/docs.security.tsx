@@ -50,7 +50,7 @@ const FURTHER_READING: readonly ExternalLink[] = [
   {
     href: "https://docs.lovable.dev/features/security",
     label: "Lovable — Security",
-    note: "How apps built on Lovable are checked and protected.",
+    note: "How apps built on Lovable are checked and protected, including the automatic scan.",
   },
   {
     href: "https://docs.lovable.dev/features/cloud",
@@ -62,7 +62,23 @@ const FURTHER_READING: readonly ExternalLink[] = [
     label: "Lovable Trust Center",
     note: "Platform-level security and compliance information.",
   },
+  {
+    href: "https://lovable.dev/products/tweet-caster-magic",
+    label: "Crosspost on Lovable",
+    note: "The public listing for this project.",
+  },
+  {
+    href: "https://tweet.app/privacy/",
+    label: "tweet.app Privacy Policy",
+    note: "How tweet.app handles the account Crosspost watches.",
+  },
+  {
+    href: "https://x.com/en/privacy",
+    label: "X Privacy Policy",
+    note: "How X handles the account Crosspost posts to.",
+  },
 ];
+
 
 function SecurityDocs(): ReactElement {
   return (
