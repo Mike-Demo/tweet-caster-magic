@@ -156,7 +156,8 @@ export function SiteNav(): ReactElement {
             <div
               role="presentation"
               style={{
-                padding: "var(--wa-space-2xs) var(--wa-space-m)",
+                paddingBlock: "var(--wa-space-2xs)",
+                paddingInline: "var(--wa-space-m)",
                 fontSize: "var(--wa-font-size-xs)",
                 fontWeight: "var(--wa-font-weight-semibold)",
                 color: "var(--wa-color-text-quiet)",
