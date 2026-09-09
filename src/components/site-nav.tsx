@@ -153,7 +153,17 @@ export function SiteNav(): ReactElement {
         {GROUPS.map((group, index) => (
           <Fragment key={group.title}>
             {index > 0 ? <WaDivider /> : null}
-            <h2>{group.title}</h2>
+            <div
+              role="presentation"
+              style={{
+                padding: "var(--wa-space-2xs) var(--wa-space-m)",
+                fontSize: "var(--wa-font-size-xs)",
+                fontWeight: "var(--wa-font-weight-semibold)",
+                color: "var(--wa-color-text-quiet)",
+              }}
+            >
+              {group.title}
+            </div>
 
             {group.items.map((item) => (
               <WaDropdownItem key={item.href} href={item.href}>
