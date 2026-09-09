@@ -15,6 +15,7 @@ const TABS = [
   { to: "/docs/posting", label: "Posting", icon: "paper-plane" },
   { to: "/docs/tokens", label: "Tokens & keys", icon: "key" },
   { to: "/docs/troubleshooting", label: "Troubleshooting", icon: "life-ring" },
+  { to: "/docs/security", label: "Security", icon: "lock" },
 ] as const;
 
 function DocsLayout(): ReactElement {

@@ -11,6 +11,7 @@ Crosspost is an independent service and is not affiliated with, endorsed by, or 
 - [Posting](/docs/posting): Automatic vs review-first, replies, quotes, long posts, waiting queue and history.
 - [Tokens and keys](/docs/tokens): The four OAuth 1.0a X values, the tweet.app access token, and how both are stored.
 - [Troubleshooting](/docs/troubleshooting): Fixes for 401 errors, rejected keys, missing posts, rate limits and sign-in problems.
+- [Security](/docs/security): Where keys and tokens are stored, how they are encrypted, who can use them, and how to delete them.
 
 - [Changelog](/changelog): Dated update history with notes on what changed and why.
 - [Terms of Service](/terms): The terms that apply to using Crosspost.
