@@ -188,8 +188,8 @@ function SecurityDocs(): ReactElement {
           <p style={{ margin: 0 }}>
             If you think you have found a security issue, please report it privately rather than
             posting it publicly — a direct message to{" "}
-            <a href="https://x.com/mikedemo" target="_blank" rel="noreferrer">
-              @mikedemo on X
+            <a href="https://app.tweet.app/demo" target="_blank" rel="noreferrer">
+              @demo on tweet.app
             </a>{" "}
             reaches us. Include enough detail to reproduce it, and give us a chance to fix it before
             sharing it more widely.
