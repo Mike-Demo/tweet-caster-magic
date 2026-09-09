@@ -19,7 +19,8 @@ type NavTarget =
   | "/docs/setup"
   | "/docs/posting"
   | "/docs/tokens"
-  | "/docs/troubleshooting";
+  | "/docs/troubleshooting"
+  | "/docs/security";
 
 interface NavItem {
   readonly href: string;
@@ -51,6 +52,7 @@ const GROUPS: ReadonlyArray<NavGroup> = [
         label: "Troubleshooting",
         icon: "life-ring",
       },
+      { href: "/docs/security", label: "Security", icon: "lock" },
     ],
   },
   {
@@ -80,6 +82,7 @@ const ROUTES: ReadonlyArray<NavTarget> = [
   "/docs/posting",
   "/docs/tokens",
   "/docs/troubleshooting",
+  "/docs/security",
 ];
 
 

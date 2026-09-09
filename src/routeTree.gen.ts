@@ -21,6 +21,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/app'
 import { Route as DocsIndexRouteImport } from './routes/docs.index'
 import { Route as DocsPostingRouteImport } from './routes/docs.posting'
+import { Route as DocsSecurityRouteImport } from './routes/docs.security'
 import { Route as DocsSetupRouteImport } from './routes/docs.setup'
 import { Route as DocsTokensRouteImport } from './routes/docs.tokens'
 import { Route as DocsTroubleshootingRouteImport } from './routes/docs.troubleshooting'
@@ -87,6 +88,11 @@ const DocsPostingRoute = DocsPostingRouteImport.update({
   path: '/posting',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsSecurityRoute = DocsSecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => DocsRoute,
+} as any)
 const DocsSetupRoute = DocsSetupRouteImport.update({
   id: '/setup',
   path: '/setup',
@@ -131,6 +137,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/app': typeof AuthenticatedAppRoute
   '/docs/posting': typeof DocsPostingRoute
+  '/docs/security': typeof DocsSecurityRoute
   '/docs/setup': typeof DocsSetupRoute
   '/docs/tokens': typeof DocsTokensRoute
   '/docs/troubleshooting': typeof DocsTroubleshootingRoute
@@ -149,6 +156,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/app': typeof AuthenticatedAppRoute
   '/docs/posting': typeof DocsPostingRoute
+  '/docs/security': typeof DocsSecurityRoute
   '/docs/setup': typeof DocsSetupRoute
   '/docs/tokens': typeof DocsTokensRoute
   '/docs/troubleshooting': typeof DocsTroubleshootingRoute
@@ -170,6 +178,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/_authenticated/app': typeof AuthenticatedAppRoute
   '/docs/posting': typeof DocsPostingRoute
+  '/docs/security': typeof DocsSecurityRoute
   '/docs/setup': typeof DocsSetupRoute
   '/docs/tokens': typeof DocsTokensRoute
   '/docs/troubleshooting': typeof DocsTroubleshootingRoute
@@ -191,6 +200,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/app'
     | '/docs/posting'
+    | '/docs/security'
     | '/docs/setup'
     | '/docs/tokens'
     | '/docs/troubleshooting'
@@ -209,6 +219,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/app'
     | '/docs/posting'
+    | '/docs/security'
     | '/docs/setup'
     | '/docs/tokens'
     | '/docs/troubleshooting'
@@ -229,6 +240,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/_authenticated/app'
     | '/docs/posting'
+    | '/docs/security'
     | '/docs/setup'
     | '/docs/tokens'
     | '/docs/troubleshooting'
@@ -339,6 +351,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsPostingRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/docs/security': {
+      id: '/docs/security'
+      path: '/security'
+      fullPath: '/docs/security'
+      preLoaderRoute: typeof DocsSecurityRouteImport
+      parentRoute: typeof DocsRoute
+    }
     '/docs/setup': {
       id: '/docs/setup'
       path: '/setup'
@@ -397,6 +416,7 @@ const AuthenticatedRouteRouteWithChildren =
 
 interface DocsRouteChildren {
   DocsPostingRoute: typeof DocsPostingRoute
+  DocsSecurityRoute: typeof DocsSecurityRoute
   DocsSetupRoute: typeof DocsSetupRoute
   DocsTokensRoute: typeof DocsTokensRoute
   DocsTroubleshootingRoute: typeof DocsTroubleshootingRoute
@@ -405,6 +425,7 @@ interface DocsRouteChildren {
 
 const DocsRouteChildren: DocsRouteChildren = {
   DocsPostingRoute: DocsPostingRoute,
+  DocsSecurityRoute: DocsSecurityRoute,
   DocsSetupRoute: DocsSetupRoute,
   DocsTokensRoute: DocsTokensRoute,
   DocsTroubleshootingRoute: DocsTroubleshootingRoute,
