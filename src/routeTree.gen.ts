@@ -18,6 +18,7 @@ import { Route as LicensesRouteImport } from './routes/licenses'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as DotwellKnownAgentDotjsonRouteImport } from './routes/[.]well-known.agent[.]json'
 import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/app'
 import { Route as DocsIndexRouteImport } from './routes/docs.index'
 import { Route as DocsPostingRouteImport } from './routes/docs.posting'
@@ -73,6 +74,12 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DotwellKnownAgentDotjsonRoute =
+  DotwellKnownAgentDotjsonRouteImport.update({
+    id: '/.well-known/agent.json',
+    path: '/.well-known/agent.json',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AuthenticatedAppRoute = AuthenticatedAppRouteImport.update({
   id: '/app',
   path: '/app',
@@ -135,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/.well-known/agent.json': typeof DotwellKnownAgentDotjsonRoute
   '/app': typeof AuthenticatedAppRoute
   '/docs/posting': typeof DocsPostingRoute
   '/docs/security': typeof DocsSecurityRoute
@@ -154,6 +162,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/.well-known/agent.json': typeof DotwellKnownAgentDotjsonRoute
   '/app': typeof AuthenticatedAppRoute
   '/docs/posting': typeof DocsPostingRoute
   '/docs/security': typeof DocsSecurityRoute
@@ -176,6 +185,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/.well-known/agent.json': typeof DotwellKnownAgentDotjsonRoute
   '/_authenticated/app': typeof AuthenticatedAppRoute
   '/docs/posting': typeof DocsPostingRoute
   '/docs/security': typeof DocsSecurityRoute
@@ -198,6 +208,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
+    | '/.well-known/agent.json'
     | '/app'
     | '/docs/posting'
     | '/docs/security'
@@ -217,6 +228,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
+    | '/.well-known/agent.json'
     | '/app'
     | '/docs/posting'
     | '/docs/security'
@@ -238,6 +250,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
+    | '/.well-known/agent.json'
     | '/_authenticated/app'
     | '/docs/posting'
     | '/docs/security'
@@ -260,6 +273,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  DotwellKnownAgentDotjsonRoute: typeof DotwellKnownAgentDotjsonRoute
   Char91__componentChar93PreviewSplatRoute: typeof Char91__componentChar93PreviewSplatRoute
   Char91__mockupChar93PreviewSplatRoute: typeof Char91__mockupChar93PreviewSplatRoute
   ApiPublicHooksAutoPostRoute: typeof ApiPublicHooksAutoPostRoute
@@ -328,6 +342,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.well-known/agent.json': {
+      id: '/.well-known/agent.json'
+      path: '/.well-known/agent.json'
+      fullPath: '/.well-known/agent.json'
+      preLoaderRoute: typeof DotwellKnownAgentDotjsonRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/app': {
@@ -444,6 +465,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  DotwellKnownAgentDotjsonRoute: DotwellKnownAgentDotjsonRoute,
   Char91__componentChar93PreviewSplatRoute:
     Char91__componentChar93PreviewSplatRoute,
   Char91__mockupChar93PreviewSplatRoute: Char91__mockupChar93PreviewSplatRoute,
