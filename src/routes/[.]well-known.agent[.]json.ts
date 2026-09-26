@@ -11,7 +11,24 @@ const AGENT_CARD = {
   version: "1.0.0",
   documentationUrl: `${SITE}/docs/setup`,
   capabilities: { streaming: false, pushNotifications: false },
-  skills: [],
+  defaultInputModes: ["text"],
+  defaultOutputModes: ["text"],
+  skills: [
+    {
+      id: "read-documentation",
+      name: "Read Crosspost documentation",
+      description:
+        "Read the public setup, posting, tokens, security, and troubleshooting docs plus the changelog to understand how Crosspost watches a tweet.app account and reposts new posts to X.",
+      tags: ["docs", "read"],
+    },
+    {
+      id: "browse-public-pages",
+      name: "Browse public pages",
+      description:
+        "Browse and index Crosspost's public informational pages (home, docs, licenses, changelog, privacy, terms). Signing in, saving keys, and posting are for people only.",
+      tags: ["browse", "read"],
+    },
+  ],
   links: {
     llms: `${SITE}/llms.txt`,
     sitemap: `${SITE}/sitemap.xml`,
