@@ -17,3 +17,9 @@ Crosspost is an independent service and is not affiliated with, endorsed by, or 
 - [Terms of Service](/terms): The terms that apply to using Crosspost.
 - [Privacy Policy](/privacy): What data is stored, how it is protected, and how to remove it.
 - [Licenses](/licenses): Credits and licenses for the open source software behind Crosspost.
+
+## Agent policy
+
+- [Agent card](/.well-known/agent.json): Machine-readable summary of the service and its links.
+- Crosspost has no public API. Signing in, saving keys and posting are for people only.
+- Reading and indexing public pages is welcome. Browsing and action agents (for example ChatGPT-User, Claude-User, OAI-Operator, Perplexity-User, Grok) are blocked on purpose in robots.txt.
