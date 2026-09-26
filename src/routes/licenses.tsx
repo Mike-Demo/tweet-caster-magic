@@ -50,7 +50,19 @@ function Licenses() {
       <main id="main-content" style={{ paddingBlock: "var(--wa-space-3xl)", paddingInline: "var(--wa-space-l)", maxWidth: "60rem", marginInline: "auto" }}>
         <LicensesPage
           groups={[
-            { title: "Open source libraries", entries: baseCredits },
+            {
+              title: "Open source libraries",
+              entries: [
+                ...baseCredits,
+                {
+                  name: "Supabase",
+                  author: "Supabase, Inc.",
+                  license: "MIT (client libraries)",
+                  url: "https://github.com/supabase/supabase-js/blob/master/LICENSE",
+                  note: "Accounts and sign-in.",
+                },
+              ],
+            },
             {
               title: "Services",
               entries: [
