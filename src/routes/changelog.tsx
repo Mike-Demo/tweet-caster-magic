@@ -49,6 +49,15 @@ interface Entry {
 
 const ENTRIES: readonly Entry[] = [
   {
+    date: "2026-09-26",
+    title: "Agent card and agent policy",
+    kind: "New",
+    notes: [
+      "A machine-readable agent card now lives at /.well-known/agent.json, linking the docs, terms, privacy and sitemap.",
+      "llms.txt and robots.txt now state the policy plainly: reading and indexing are welcome, browsing and action agents are blocked on purpose, and there is no public API.",
+    ],
+  },
+  {
     date: "2026-09-09",
     title: "Security page",
     kind: "New",

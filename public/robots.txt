@@ -1,3 +1,7 @@
+# Policy: reading and indexing are welcome. Browsing/action agents are blocked
+# deliberately — Crosspost has no public API and posting is for people only.
+# Agent card: https://tweet.mikedemo.dev/.well-known/agent.json
+
 # Automated-action / agentic browsing bots
 User-agent: Grokbot
 Disallow: /
