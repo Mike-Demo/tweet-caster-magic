@@ -23,7 +23,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
         httpEquiv: "Content-Security-Policy",
-        content: "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://esm.sh https://js.hcaptcha.com https://hcaptcha.com https://*.hcaptcha.com https://app.termageddon.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://hcaptcha.com https://*.hcaptcha.com; img-src 'self' data: https://cdn.jsdelivr.net https://app.aikido.dev; font-src 'self' data: https://cdn.jsdelivr.net; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://cdn.jsdelivr.net https://app.termageddon.com https://hcaptcha.com https://*.hcaptcha.com; frame-src https://hcaptcha.com https://*.hcaptcha.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'",
+        content: "default-src 'self'; script-src 'self' 'unsafe-inline' https://umami-lite.view.fast https://cdn.jsdelivr.net https://esm.sh https://js.hcaptcha.com https://hcaptcha.com https://*.hcaptcha.com https://app.termageddon.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://hcaptcha.com https://*.hcaptcha.com; img-src 'self' data: https://cdn.jsdelivr.net https://app.aikido.dev; font-src 'self' data: https://cdn.jsdelivr.net; connect-src 'self' https://umami-lite.view.fast https://*.supabase.co wss://*.supabase.co https://cdn.jsdelivr.net https://app.termageddon.com https://hcaptcha.com https://*.hcaptcha.com; frame-src https://hcaptcha.com https://*.hcaptcha.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'",
       },
       { name: "author", content: "MikeDemo" },
       { name: "google-site-verification", content: "RHlwBdxnagu8yjEC1UQ3cV-WcIJ17lGECi8uJYHO6P4" },
@@ -59,6 +59,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
       <head>
         <HeadContent />
+        <script defer src="https://umami-lite.view.fast/tracker.js" data-website-id="627e6b2b-a61f-4530-8ac5-78a8581a263f"></script>
       </head>
       <body>
         <a className="skip-link" href="#main-content">
