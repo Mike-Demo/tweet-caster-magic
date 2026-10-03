@@ -44,7 +44,10 @@ export const Route = createFileRoute("/")({
       { property: "og:image", content: `${SITE_URL}/og-cover.png` },
       { name: "twitter:image", content: `${SITE_URL}/og-cover.png` },
     ],
-    links: [{ rel: "canonical", href: SITE_URL }],
+    links: [
+      { rel: "canonical", href: SITE_URL },
+      { rel: "alternate", type: "text/markdown", href: `${SITE_URL}/index.md` },
+    ],
     scripts: [{ type: "application/ld+json", children: homeJsonLd() }],
   }),
   component: Landing,

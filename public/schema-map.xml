@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemaMap xmlns="https://nlweb.ai/schema-map">
+  <feed url="https://tweet.mikedemo.dev/sitemap.xml" type="sitemap" description="All public pages on tweet.mikedemo.dev" />
+  <feed url="https://tweet.mikedemo.dev/llms.txt" type="llms-txt" description="Navigation index of Crosspost documentation" />
+  <feed url="https://tweet.mikedemo.dev/docs/llms.txt" type="llms-txt" description="Scoped documentation index" />
+  <feed url="https://tweet.mikedemo.dev/.well-known/ard.json" type="ard" description="Agentic Resource Discovery catalog" />
+  <feed url="https://tweet.mikedemo.dev/.well-known/agent-skills/index.json" type="agent-skills" description="Agent skills index" />
+</schemaMap>

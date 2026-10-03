@@ -23,7 +23,10 @@ export const Route = createFileRoute("/privacy")({
       { property: "og:image", content: `${SITE_URL}/og-cover.png` },
       { name: "twitter:image", content: `${SITE_URL}/og-cover.png` },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/privacy` }],
+    links: [
+      { rel: "canonical", href: `${SITE_URL}/privacy` },
+      { rel: "alternate", type: "text/markdown", href: `${SITE_URL}/privacy.md` },
+    ],
     scripts: [
       {
         type: "application/ld+json",

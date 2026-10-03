@@ -29,7 +29,10 @@ export const Route = createFileRoute("/licenses")({
       { property: "og:image", content: `${SITE_URL}/og-cover.png` },
       { name: "twitter:image", content: `${SITE_URL}/og-cover.png` },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/licenses` }],
+    links: [
+      { rel: "canonical", href: `${SITE_URL}/licenses` },
+      { rel: "alternate", type: "text/markdown", href: `${SITE_URL}/licenses.md` },
+    ],
     scripts: [
       {
         type: "application/ld+json",

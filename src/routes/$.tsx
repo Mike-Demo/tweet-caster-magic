@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { AppFooter } from "@/components/app-footer";
 import { AppWebAwesomeLoader } from "@/components/app-webawesome-loader";
@@ -17,6 +17,11 @@ const LINKS = [
 ] as const;
 
 export const Route = createFileRoute("/$")({
+  // Throw notFound() so the server responds with HTTP 404 instead of 200.
+  loader: () => {
+    throw notFound();
+  },
+  notFoundComponent: NotFound,
   head: () => ({
     meta: [
       { title: TITLE },

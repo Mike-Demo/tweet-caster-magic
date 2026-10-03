@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "read-docs",
+      "description": "Read the public setup, posting, tokens, security, and troubleshooting docs plus the changelog to understand how Crosspost watches a tweet.app account and reposts new posts to X.",
+      "type": "skill-md",
+      "url": "https://tweet.mikedemo.dev/skills/read-docs/SKILL.md",
+      "digest": "sha256:dd7528c5f2c461bed5905636f47720573cbc853f99d78efabd35eead08f24be2"
+    },
+    {
+      "name": "browse-pages",
+      "description": "Browse and index Crosspost's public informational pages (home, docs, licenses, changelog, privacy, terms). Signing in, saving keys, and posting are for people only.",
+      "type": "skill-md",
+      "url": "https://tweet.mikedemo.dev/skills/browse-pages/SKILL.md",
+      "digest": "sha256:bccd9f4e21b4191b78ad3411547e318ad4fb6dfe3f8ddd4538bc2fdcc1105d16"
+    }
+  ]
+}

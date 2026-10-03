@@ -7,3 +7,5 @@ Allow: /
 Disallow: /app
 
 Sitemap: https://tweet.mikedemo.dev/sitemap.xml
+
+schemamap: https://tweet.mikedemo.dev/schema-map.xml

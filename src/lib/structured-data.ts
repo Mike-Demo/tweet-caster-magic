@@ -22,8 +22,15 @@ const PUBLISHER = {
     "https://www.linkedin.com/in/mikedemopoulos",
     "https://x.com/mike_demo",
     "https://www.threads.com/@mdemop",
+    "https://github.com/Mike-Demo",
     "https://app.tweet.app/post/92206629-1525-4a74-8f51-39e226fc9e75",
   ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "hey.demo@mikedemo.email",
+    contactType: "customer support",
+    url: `${SITE_URL}/contact`,
+  },
 } as const;
 
 const WEBSITE = {
@@ -69,6 +76,44 @@ export function homeJsonLd(): string {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${SITE_URL}/#faq`,
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "Is Crosspost free?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. Crosspost is free to use. You bring your own X developer account and your own tweet.app account; any costs from those services are between you and them.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Does Crosspost have a public API?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "No. Crosspost has no public API. Signing in, saving keys, and posting are for people only; reading and indexing public pages is welcome.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Which accounts do I need to use Crosspost?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Your own X developer account with an app set to Read and Write, and your own tweet.app account. Crosspost never posts through a shared account.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Is Crosspost affiliated with X or tweet.app?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "No. Crosspost is an independent service operated by MikeDemo. It is not affiliated with, endorsed by, or sponsored by X Corp. or Operation Bluebird, Inc.",
+            },
+          },
         ],
       },
     ],

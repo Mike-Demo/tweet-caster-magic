@@ -1,0 +1,13 @@
+# Crosspost docs — llms.txt
+
+> Scoped documentation index for Crosspost's guides.
+
+- [Setup guide](/docs/setup): Connect tweet.app, choose the account to watch, add X keys, pick behaviour.
+- [Posting](/docs/posting): Automatic vs review-first, replies, quotes, long posts, waiting queue and history.
+- [Tokens and keys](/docs/tokens): The four OAuth 1.0a X values, the tweet.app access token, and how both are stored.
+- [Security](/docs/security): Where keys and tokens are stored, how they are encrypted, who can use them, and how to delete them.
+- [Troubleshooting](/docs/troubleshooting): Fixes for 401 errors, rejected keys, missing posts, rate limits and sign-in problems.
+
+Markdown twins: append `.md` to any docs URL (for example `/docs/setup.md`).
+
+Full index: [/llms.txt](/llms.txt).

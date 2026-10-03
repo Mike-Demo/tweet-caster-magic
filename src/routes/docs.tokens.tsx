@@ -30,7 +30,10 @@ export const Route = createFileRoute("/docs/tokens")({
       { property: "og:image", content: `${SITE_URL}/og-cover.png` },
       { name: "twitter:image", content: `${SITE_URL}/og-cover.png` },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/docs/tokens` }],
+    links: [
+      { rel: "canonical", href: `${SITE_URL}/docs/tokens` },
+      { rel: "alternate", type: "text/markdown", href: `${SITE_URL}/docs/tokens.md` },
+    ],
     scripts: [
       {
         type: "application/ld+json",

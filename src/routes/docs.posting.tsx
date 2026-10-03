@@ -25,7 +25,10 @@ export const Route = createFileRoute("/docs/posting")({
       { property: "og:image", content: `${SITE_URL}/og-cover.png` },
       { name: "twitter:image", content: `${SITE_URL}/og-cover.png` },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/docs/posting` }],
+    links: [
+      { rel: "canonical", href: `${SITE_URL}/docs/posting` },
+      { rel: "alternate", type: "text/markdown", href: `${SITE_URL}/docs/posting.md` },
+    ],
     scripts: [
       {
         type: "application/ld+json",

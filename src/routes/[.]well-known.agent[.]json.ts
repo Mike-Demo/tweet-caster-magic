@@ -42,7 +42,7 @@ const AGENT_CARD = {
     publicApi: false,
     agentActions: "not-permitted",
     summary:
-      "There is no public API for agents. Signing in, saving keys and posting are for people only. Reading and indexing public pages is welcome; browsing and action agents are blocked on purpose in robots.txt.",
+      "There is no public API for agents. Signing in, saving keys and posting are for people only. Reading and indexing public pages is welcome.",
   },
 } as const;
 

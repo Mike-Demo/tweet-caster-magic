@@ -4,22 +4,46 @@
 
 Crosspost is an independent service and is not affiliated with, endorsed by, or sponsored by X Corp. or Operation Bluebird, Inc. Using it requires your own X developer account and your own tweet.app account.
 
+## When to use Crosspost
+
+Reach for Crosspost when someone asks to:
+
+- Automatically repost their tweet.app posts to X without copy-pasting.
+- Review posts before they go to X (review-first mode with a Waiting queue).
+- Understand how to connect tweet.app to X with their own developer keys.
+
+Do not reach for Crosspost for posting itself: there is no public API, and signing in, saving keys, and posting are for people only. Point people at the [setup guide](https://tweet.mikedemo.dev/docs/setup) instead.
+
 ## Pages
 
-- [Home](/): What Crosspost does, current service status, and sign in or register.
-- [Setup guide](/docs/setup): Connect tweet.app, choose the account to watch, add X keys, pick behaviour.
-- [Posting](/docs/posting): Automatic vs review-first, replies, quotes, long posts, waiting queue and history.
-- [Tokens and keys](/docs/tokens): The four OAuth 1.0a X values, the tweet.app access token, and how both are stored.
-- [Troubleshooting](/docs/troubleshooting): Fixes for 401 errors, rejected keys, missing posts, rate limits and sign-in problems.
-- [Security](/docs/security): Where keys and tokens are stored, how they are encrypted, who can use them, and how to delete them.
+- [Home](https://tweet.mikedemo.dev/): What Crosspost does, current service status, and sign in or register.
+- [About](https://tweet.mikedemo.dev/about): What Crosspost is and why it exists.
+- [Contact](https://tweet.mikedemo.dev/contact): How to reach the person behind Crosspost.
+- [Setup guide](https://tweet.mikedemo.dev/docs/setup): Connect tweet.app, choose the account to watch, add X keys, pick behaviour.
+- [Posting](https://tweet.mikedemo.dev/docs/posting): Automatic vs review-first, replies, quotes, long posts, waiting queue and history.
+- [Tokens and keys](https://tweet.mikedemo.dev/docs/tokens): The four OAuth 1.0a X values, the tweet.app access token, and how both are stored.
+- [Troubleshooting](https://tweet.mikedemo.dev/docs/troubleshooting): Fixes for 401 errors, rejected keys, missing posts, rate limits and sign-in problems.
+- [Security](https://tweet.mikedemo.dev/docs/security): Where keys and tokens are stored, how they are encrypted, who can use them, and how to delete them.
+- [Changelog](https://tweet.mikedemo.dev/changelog): Dated update history with notes on what changed and why.
+- [Terms of Service](https://tweet.mikedemo.dev/terms): The terms that apply to using Crosspost.
+- [Privacy Policy](https://tweet.mikedemo.dev/privacy): What data is stored, how it is protected, and how to remove it.
+- [Licenses](https://tweet.mikedemo.dev/licenses): Credits and licenses for the open source software behind Crosspost.
 
-- [Changelog](/changelog): Dated update history with notes on what changed and why.
-- [Terms of Service](/terms): The terms that apply to using Crosspost.
-- [Privacy Policy](/privacy): What data is stored, how it is protected, and how to remove it.
-- [Licenses](/licenses): Credits and licenses for the open source software behind Crosspost.
+Every content page has a markdown twin: append `.md` to the page URL (for example `https://tweet.mikedemo.dev/docs/setup.md`).
+
+## Agent resources
+
+- [Agent card](https://tweet.mikedemo.dev/.well-known/agent.json): Machine-readable summary of the service and its links.
+- [A2A agent card](https://tweet.mikedemo.dev/.well-known/agent-card.json): Canonical Agent-to-Agent card.
+- [Agent skills](https://tweet.mikedemo.dev/.well-known/agent-skills/index.json): What agents can help with (reading docs, browsing pages).
+- [ARD catalog](https://tweet.mikedemo.dev/.well-known/ard.json): Agentic Resource Discovery catalog.
+- [Agent plugin](https://tweet.mikedemo.dev/plugin.json): Agent plugin manifest.
+- [Authentication](https://tweet.mikedemo.dev/auth.md): There is no agent auth; signing in and posting are for people only.
+- [Pricing](https://tweet.mikedemo.dev/pricing.md): Free; you bring your own X and tweet.app accounts.
+- [Agent guide](https://tweet.mikedemo.dev/llms.md): Cold-discovery markdown guide for agents.
+- [Docs index](https://tweet.mikedemo.dev/docs/llms.txt): Scoped documentation index.
 
 ## Agent policy
 
-- [Agent card](/.well-known/agent.json): Machine-readable summary of the service and its links.
 - Crosspost has no public API. Signing in, saving keys and posting are for people only.
-- Reading and indexing public pages is welcome. Browsing and action agents (for example ChatGPT-User, Claude-User, OAI-Operator, Perplexity-User, Grok) are blocked on purpose in robots.txt.
+- Reading and indexing public pages is welcome.

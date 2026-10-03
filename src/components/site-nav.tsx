@@ -12,6 +12,8 @@ import { BrandMark } from "@/components/brand-mark";
 
 type NavTarget =
   | "/"
+  | "/about"
+  | "/contact"
   | "/changelog"
   | "/terms"
   | "/privacy"
@@ -59,6 +61,8 @@ const GROUPS: ReadonlyArray<NavGroup> = [
     title: "Site",
     items: [
       { href: "/", label: "Home", icon: "house" },
+      { href: "/about", label: "About", icon: "circle-info" },
+      { href: "/contact", label: "Contact", icon: "envelope" },
       { href: "/changelog", label: "Changelog", icon: "clock-rotate-left" },
     ],
   },
@@ -74,6 +78,8 @@ const GROUPS: ReadonlyArray<NavGroup> = [
 
 const ROUTES: ReadonlyArray<NavTarget> = [
   "/",
+  "/about",
+  "/contact",
   "/changelog",
   "/terms",
   "/privacy",
