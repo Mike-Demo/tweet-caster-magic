@@ -23,10 +23,10 @@ function CarbonEstimateLine(): ReactElement | null {
         ...performance.getEntriesByType("navigation"),
         ...performance.getEntriesByType("resource"),
       ];
-      const totalBytes = entries.reduce<number>(
-        (sum, entry) => sum + ("transferSize" in entry ? entry.transferSize : 0),
-        0,
-      );
+      const totalBytes = entries.reduce<number>((sum, entry) => {
+        if ("transferSize" in entry) return sum + (entry as PerformanceResourceTiming).transferSize;
+        return sum;
+      }, 0);
       if (!Number.isFinite(totalBytes)) return;
 
       const { co2 } = await import("@tgwf/co2");
