@@ -1,0 +1,166 @@
+{
+  "boltSlidesVersion": 1,
+  "boltSlidesId": "11011050-f9d6-4d43-8a9e-3e43af51bbaf",
+  "deck": {
+    "title": "TweetCaster Magic — point, cast, posted",
+    "transition": "fade",
+    "font": "sora",
+    "accent": "#a78bfa"
+  },
+  "slides": [
+    {
+      "id": "s1",
+      "position": 0,
+      "layout": "cover",
+      "props": {
+        "kicker": "TweetCaster Magic",
+        "title": "Point. ==Cast.== Posted.",
+        "subtitle": "A spell for the compose box — turn any thought, link, or thread into a ready-to-post tweet.",
+        "foot": "tweet.mikedemo.dev · open source"
+      },
+      "background": { "type": "color", "color": "var(--bg)" },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "Open with the hook: posting good tweets is a shaping problem, and TweetCaster is the spell that does the shaping. Keep it to one breath, then move.",
+      "status": "none"
+    },
+    {
+      "id": "s2",
+      "position": 1,
+      "layout": "statement",
+      "props": {
+        "kicker": "The problem",
+        "title": "A good post is ==trapped== in the wrong shape.",
+        "body": "A long thought, a link, a thread on another network. Re-shaping it for X by hand — inside the character limit, in your own voice — is fiddly enough that most of it never gets posted."
+      },
+      "background": { "type": "color", "color": "var(--bg)" },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "Everyone has drafts that died here. The friction isn't writing, it's re-shaping — and that friction kills most posts before they're ever sent.",
+      "status": "none"
+    },
+    {
+      "id": "s3",
+      "position": 2,
+      "layout": "chat",
+      "props": {
+        "kicker": "What it does",
+        "title": "The caster does the ==re-shaping==.",
+        "name": "TweetCaster",
+        "messages": [
+          { "from": "user", "text": "Cast this: a 400-word rant about ditching three tools for one." },
+          { "from": "ai", "text": "✦ Swapped three tools for one this week. Fewer tabs, fewer logins, more shipped. That's the whole post." },
+          { "from": "user", "text": "Tighter — it should feel like me." },
+          { "from": "ai", "text": "✦ Three tools out, one in. Fewer tabs, more shipped. — 52 characters, in your voice. Ready when you are." }
+        ]
+      },
+      "background": { "type": "color", "color": "var(--bg)" },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "Walk through the exchange: source material in, polished tweet out — right length, right shape, their voice. It reads like a spell for the compose box because that's exactly what it is.",
+      "status": "none"
+    },
+    {
+      "id": "s4",
+      "position": 3,
+      "layout": "steps",
+      "props": {
+        "kicker": "How it works",
+        "title": "Four beats, one nod.",
+        "items": [
+          { "title": "Drop it in", "body": "Paste the text or a link — long draft, article, thread." },
+          { "title": "The cast", "body": "The caster reshapes and tightens it to fit the limit." },
+          { "title": "Preview", "body": "Read the tweet exactly as it will land on X." },
+          { "title": "You post", "body": "Nothing goes out without your final nod." }
+        ]
+      },
+      "background": { "type": "color", "color": "var(--bg)" },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "Emphasize the last beat: the human always gives the final nod. The caster drafts, you decide — automation without loss of control.",
+      "status": "none"
+    },
+    {
+      "id": "s5",
+      "position": 4,
+      "layout": "code",
+      "props": {
+        "kicker": "Agent-friendly by design",
+        "title": "Built for the ==agent era==, not just the browser.",
+        "filename": "a2a-agent-card.json",
+        "code": "{\n  \"name\": \"tweet-caster\",\n  \"url\": \"https://tweet.mikedemo.dev\",\n  \"protocol\": \"agent-to-agent (A2A)\",\n  \"skills\": [\n    { \"id\": \"cast\",    \"input\": \"text | url\", \"output\": \"tweet\" },\n    { \"id\": \"preview\", \"input\": \"tweet\",      \"output\": \"rendered-post\" },\n    { \"id\": \"publish\", \"input\": \"tweet\",      \"output\": \"posted-url\" }\n  ]\n}",
+        "highlight": "\"protocol\""
+      },
+      "background": { "type": "color", "color": "var(--bg)" },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "TweetCaster publishes an A2A card describing its inputs, outputs, and skills, so other agents can discover it and work with it — no browser required. Point at the skills array as the contract.",
+      "status": "none"
+    },
+    {
+      "id": "s6",
+      "position": 5,
+      "layout": "bento",
+      "props": {
+        "kicker": "Key features",
+        "title": "Everything the cast needs.",
+        "tiles": [
+          { "title": "Right length, every time", "body": "Fits the character limit without butchering the point.", "variant": "accent", "c": 3 },
+          { "title": "Your voice", "body": "Casts in your tone — not robot-speak.", "c": 3 },
+          { "title": "Any source", "body": "Long drafts, links, threads from other networks." },
+          { "title": "Preview, then post", "body": "See the final tweet and publish straight to X.", "variant": "glow" },
+          { "title": "A2A card", "body": "Other agents discover it and call its skills." },
+          { "title": "Open source", "body": "Read it, fork it, make it yours." }
+        ]
+      },
+      "background": { "type": "color", "color": "var(--bg)" },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "Hit the top row hard — length and voice are the two things people don't trust tools to get right. The bottom row is the surface area: sources, publishing, agent access, open source.",
+      "status": "none"
+    },
+    {
+      "id": "s7",
+      "position": 6,
+      "layout": "statGrid",
+      "props": {
+        "kicker": "Status",
+        "title": "Live and in the wild.",
+        "stats": [
+          { "value": "Live", "label": "tweet.mikedemo.dev", "caption": "in production today" },
+          { "value": "100%", "label": "open source", "caption": "every line on GitHub" },
+          { "value": "A2A", "label": "agent-ready", "caption": "publishes its own agent card" }
+        ]
+      },
+      "background": { "type": "color", "color": "var(--bg)" },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "Not a mockup — it's deployed, public, and open. Anyone can use it right now, and any agent that speaks A2A can find it.",
+      "status": "none"
+    },
+    {
+      "id": "s8",
+      "position": 7,
+      "layout": "cover",
+      "props": {
+        "kicker": "Cast your first tweet",
+        "title": "==tweet.mikedemo.dev==",
+        "subtitle": "Open source: github.com/Mike-Demo/tweet-caster-magic",
+        "foot": "TweetCaster Magic — point, cast, posted."
+      },
+      "background": { "type": "gradient", "from": "#120a24", "to": "#06080d", "angle": 160 },
+      "animation": "zoom",
+      "transition": "zoom",
+      "nav": null,
+      "notes": "Close on the call to action: try it live, star the repo, and if you build agents — read the A2A card and cast something.",
+      "status": "none"
+    }
+  ]
+}
